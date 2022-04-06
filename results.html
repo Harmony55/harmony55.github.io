@@ -6,7 +6,7 @@
 <link rel="shortcut icon" type="x-icon" href="icon.png">
 <meta charset="utf-8">
 <script>
-  version = "Test Edition #1" //Remember to update this before making changes to the test itself!
+  version = "New Funky Mode" //Remember to update this before making changes to the test itself!
 </script>
 </head>
 <script type="application/javascript"
@@ -47,7 +47,7 @@
     <div class="bar progress" id="bar-progress"><div class="text-wrapper" id="progress"></div></div>
     <img id="img-progress" src="value_images/progress.svg" height="128pt"/>
 </div>
-<h2>Closest Match: <span class="weight-300" id="ideology-label"></span></h2>
+<h2>Vous êtes plus proche de : <span class="weight-300" id="ideology-label"></span></h2>
 <img src="" id="banner">
 <button class="button" onclick="location.href='index.html';">Retour</button> <br>
 <!-- Website visit statistics - no personal information is collected! -->
@@ -200,7 +200,7 @@ stats"></a></div></noscript>
         ctx.fillStyle="#222222"
         ctx.font="700 80px Montserrat"
         ctx.textAlign="left"
-        ctx.fillText("8values", 20, 90)
+        ctx.fillText("Neo test", 20, 90)
         ctx.font="50px Montserrat"
         ctx.fillText(ideology, 20, 140)
 
@@ -216,13 +216,13 @@ stats"></a></div></noscript>
         if (progress  > 30) {ctx.fillText(progress + "%", 670, 597.5)}
 
         ctx.font="300 30px Montserrat"
-        ctx.fillText("8values.github.io", 780, 60)
+        ctx.fillText("harmony55.github.io", 780, 60)
 		ctx.fillText(version, 780, 90)
         ctx.textAlign="center"
         ctx.fillText("Altitude : " + document.getElementById("economic-label").innerHTML, 400, 175)
-        ctx.fillText("Diplomatic Axis: " + document.getElementById("diplomatic-label").innerHTML, 400, 295)
-        ctx.fillText("Civil Axis: " + document.getElementById("state-label").innerHTML, 400, 415)
-        ctx.fillText("Societal Axis: " + document.getElementById("society-label").innerHTML, 400, 535)
+        ctx.fillText("Funky Cards: " + document.getElementById("diplomatic-label").innerHTML, 400, 295)
+        ctx.fillText("Streaming: " + document.getElementById("state-label").innerHTML, 400, 415)
+        ctx.fillText("Légalité: " + document.getElementById("society-label").innerHTML, 400, 535)
 
         document.getElementById("banner").src = c.toDataURL();
     }
