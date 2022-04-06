@@ -241,5 +241,59 @@ questions = [
             "govt": -10,
             "scty": 0
         }
+    },
+    {
+        "question": "L'oublie-19 ne justifie pas la mise en oeuvre d'un passe archivale.",
+        "effect": {
+            "econ": -10,
+            "dipl": 0,
+            "govt": 0,
+            "scty": 0
+        }
+    },
+    {
+        "question": "La première vague est de loin la meilleur, la dernière est nul.",
+        "effect": {
+            "econ": 0,
+            "dipl": 10,
+            "govt": 0,
+            "scty": 0
+        }
+    },
+    {
+        "question": "Twitch Con 2022 San Diego Terrorisme",
+        "effect": {
+            "econ": 0,
+            "dipl": 0,
+            "govt": 10,
+            "scty": 10
+        }
+    },
+    {
+        "question": "Enterer vivant l'extrême bas : \"pour leur montrer ce que ça fait d'être en bas\" est injustifiable.",
+        "effect": {
+            "econ": -5,
+            "dipl": 0,
+            "govt": 0,
+            "scty": -10
+        }
+    },
+    {
+        "question": "Je votterais En Marchive aux prochaines élections.",
+        "effect": {
+            "econ": 10,
+            "dipl": 0,
+            "govt": 0,
+            "scty": 0
+        }
+    },
+    {
+        "question": "Il faut une vague dédier aux streamer dans Funky Cards",
+        "effect": {
+            "econ": 0,
+            "dipl": -5,
+            "govt": -10,
+            "scty": 0
+        }
     }
 ];
