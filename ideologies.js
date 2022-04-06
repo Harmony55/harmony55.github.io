@@ -43,5 +43,15 @@ ideologies = [
             "govt": 71.4,
             "scty": 63.2
         }
+    },
+    {
+        "name": "TeXXit",
+        "stats": {
+            "econ": 91.5,
+            "dipl": 80.2,
+            "govt": 65.5,
+            "scty": 72.4
+        }
     }
+    
 ];
