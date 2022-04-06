@@ -351,7 +351,7 @@ questions = [
         }
     },
     {
-        "question": "J'ai pas spoil Sonic 2.",
+        "question": "Sonic 2 est très mashallah.",
         "effect": {
             "econ": 10,
             "dipl": 0,
