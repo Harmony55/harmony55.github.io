@@ -171,7 +171,7 @@ questions = [
         }
     },
     {
-        "question": "Pour accéder à certaines archvies, il faut montrer en être digne via un pass.",
+        "question": "Pour accéder à certaines archives, il faut montrer en être digne via un pass.",
         "effect": {
             "econ": 10,
             "dipl": 0,
@@ -192,8 +192,53 @@ questions = [
         "question": "Il faut une vague politisé.",
         "effect": {
             "econ": 0,
+            "dipl": -10,
+            "govt": 0,
+            "scty": 0
+        }
+    },
+    {
+        "question": "Le Cyprien d'avant le grand rework était pas OP.",
+        "effect": {
+            "econ": 0,
             "dipl": 10,
             "govt": 0,
+            "scty": 0
+        }
+    },
+    {
+        "question": "Il n'y a pas besoin d'équilibrer les cartes car il y a Marselo.",
+        "effect": {
+            "econ": 0,
+            "dipl": 10,
+            "govt": 0,
+            "scty": 0
+        }
+    },
+    {
+        "question": "Il ne faut pas perdre de temp et de l'espace de stockage pour sotcker des textes inutiles.",
+        "effect": {
+            "econ": -10,
+            "dipl": 0,
+            "govt": 0,
+            "scty": 0
+        }
+    },
+    {
+        "question": "J'ai 1 ans",
+        "effect": {
+            "econ": 0,
+            "dipl": 0,
+            "govt": 0,
+            "scty": -5
+        }
+    },
+    {
+        "question": "Twitch était positif sur r/place car il a permis a la France d'avoir un grand drapeau.",
+        "effect": {
+            "econ": 0,
+            "dipl": 0,
+            "govt": -10,
             "scty": 0
         }
     }
