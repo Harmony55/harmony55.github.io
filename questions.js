@@ -376,5 +376,50 @@ questions = [
             "govt": 0,
             "scty": 0
         }
+    },
+    {
+        "question": "Depuis la vague 10 les vagues sont nuls.",
+        "effect": {
+            "econ": 0,
+            "dipl": 10,
+            "govt": 0,
+            "scty": 0
+        }
+    },
+    {
+        "question": "La carte Allah doit être buff.",
+        "effect": {
+            "econ": 0,
+            "dipl": -10,
+            "govt": 0,
+            "scty": 0
+        }
+    },
+    {
+        "question": "La règle des 4 carte par deck est importante.",
+        "effect": {
+            "econ": 0,
+            "dipl": 10,
+            "govt": 0,
+            "scty": 0
+        }
+    },
+    {
+        "question": "Ne pas commettre de crime c'est cool.",
+        "effect": {
+            "econ": 0,
+            "dipl": 0,
+            "govt": 0,
+            "scty": -10
+        }
+    },
+    {
+        "question": "Si NICO reviens, il doit revenir sur Twitch.",
+        "effect": {
+            "econ": 0,
+            "dipl": 0,
+            "govt": -10,
+            "scty": 0
+        }
     }
 ];
