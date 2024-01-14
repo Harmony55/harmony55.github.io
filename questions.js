@@ -351,7 +351,7 @@ questions = [
         }
     },
     {
-        "question": "Sonic 2 est très mashallah.",
+        "question": "Sonic 2 est mashallah.",
         "effect": {
             "econ": 10,
             "dipl": 0,
