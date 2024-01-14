@@ -1,12 +1,135 @@
 body{
     font-family: Arial, sans-serif;
-    margin: 0;
+    margin:  0;
     padding: 0;
+    display: flex;
+    flex-direction: column; /* Add this line */
+    justify-content: top;
+    align-items: center;
+    height: 100vh;
+    background-image: url('background.jpg');
+    background-attachment: fixed;
+    background-color: #f0f0f0;
+}
+.box {
+    width: 250px; /* Specify the width */
+    height: 200px; /* Specify the height */
+    margin: 0 auto; /* Centers the box */
+    display: flex; /* Makes the box a flex container */
+    flex-direction: column; /* Add this line */
+    justify-content: center; /* Centers text horizontally */
+    align-items: top; /* Centers text vertically */
+    text-align: center; /* Aligns text to the center */
+    border: 1px solid black; /* Gives the box a border */
+    word-wrap: break-word; /* Ensures that the text wraps within the box */
+    background-color: lightblue;
+    margin-bottom: 30px;
+}
+
+.response {
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column; /* Add this line */
+    justify-content: center; /* Centers text horizontally */
+    align-items: top; /* Centers text vertically */
+    text-align: center; /* Aligns text to the center */
+    gap: 10px;
+    border: 1px solid black; /* Gives the box a border */
+    word-wrap: break-word; /* Ensures that the text wraps within the box */
+    background-color: lightblue;
+}
+
+.text {
+    color:  white;
+    text-shadow: 1px 1px 2px pink;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* Creates 6 columns of equal width */
+    justify-content: center; /* Centers the items horizontally */
+    align-items: center; /* Centers the items vertically */
+    margin-bottom: 30px;
+}
+
+
+.item {
+    /* Style your items here */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.item img {
+    width: 100%; /* Makes the image take up the full width of the item */
+    height: auto; /* Keeps the aspect ratio of the image */
+}
+
+
+.item2 {
+    /* Style your items here */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.item2 img {
+    width: 100%; /* Makes the image take up the full width of the item */
+    height: auto; /* Keeps the aspect ratio of the image */
+}
+
+.form-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 100%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+
+
+#box {
+    font-size: 2em;
+    border: 1px solid #000;
+    padding: 20px;
+    background-color: #fff;
 }
 #display {
     font-size: 2em;

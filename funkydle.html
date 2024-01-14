@@ -4,8 +4,82 @@
     <title>Random Name Display</title>
 
     <link rel="stylesheet" href="funkydle.css">
+    <script src="./scripts/complete.js"></script> 
 </head>
 <body>
+    <img src="images/logo.png" width ="200" height = "200"></img>
+    <div class="box">
+        <p class="text">Devine la Funky Cards d'aujourd'hui !</p>
+    </div>
+
+
+    <div class="form-container">
+        <form action="/submit_form" method="post">
+            <input type="text" id="fname" name="fname" list="names"><br>
+            <datalist id="names"></datalist>
+        </form>
+        <button>Confirmer</button>
+    </div>
+
+
+    <div class="container">
+        <div class="item2">
+            <div class="tooltip">Carte
+                <span class="tooltiptext">Tooltip text</span>
+            </div>
+            <img src="./images/bar.png" alt="Image 1">
+            <div class="response">
+              <img src="./images/logo.png" alt="Image 2">
+            </div>
+        </div>
+        <div class="item">
+            <div class="tooltip">Attaque
+                <span class="tooltiptext">Tooltip text</span>
+            </div>
+            <img src="./images/bar.png" alt="Image 1">
+            <div class="response">
+                <p class="text">10</p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="tooltip">Vie
+                <span class="tooltiptext">Tooltip text</span>
+            </div>
+            <img src="./images/bar.png" alt="Image 1">
+            <div class="response">
+                <p class="text">10</p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="tooltip">Bobux
+                <span class="tooltiptext">Tooltip text</span>
+            </div>
+            <img src="./images/bar.png" alt="Image 1">
+            <div class="response">
+                <p class="text">10</p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="tooltip">Rarete
+                <span class="tooltiptext">Tooltip text</span>
+            </div>
+            <img src="./images/bar.png" alt="Image 1">
+            <div class="response">
+                <p class="text">10</p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="tooltip">Type
+                <span class="tooltiptext">Tooltip text</span>
+            </div>
+            <img src="./images/bar.png" alt="Image 1">
+            <div class="response">
+                <p class="text">10</p>
+            </div>
+        </div>
+        <!-- Add more columns as needed -->
+    </div>
+
     <div id="display">Loading...</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
     <script>
