@@ -3,7 +3,7 @@ body{
     margin:  0;
     padding: 0;
     display: flex;
-    flex-direction: column; /* Add this line */
+    flex-direction: column;
     justify-content: top;
     align-items: center;
     height: 100vh;
@@ -12,16 +12,16 @@ body{
     background-color: #f0f0f0;
 }
 .box {
-    width: 250px; /* Specify the width */
-    height: 200px; /* Specify the height */
-    margin: 0 auto; /* Centers the box */
-    display: flex; /* Makes the box a flex container */
-    flex-direction: column; /* Add this line */
-    justify-content: center; /* Centers text horizontally */
-    align-items: top; /* Centers text vertically */
-    text-align: center; /* Aligns text to the center */
-    border: 1px solid black; /* Gives the box a border */
-    word-wrap: break-word; /* Ensures that the text wraps within the box */
+    width: 250px;
+    height: 200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: top;
+    text-align: center;
+    border: 1px solid black;
+    word-wrap: break-word;
     background-color: lightblue;
     margin-bottom: 30px;
 }
@@ -32,13 +32,13 @@ body{
     margin: 0 auto;
     padding: 10px;
     display: flex;
-    flex-direction: column; /* Add this line */
-    justify-content: center; /* Centers text horizontally */
-    align-items: top; /* Centers text vertically */
-    text-align: center; /* Aligns text to the center */
+    flex-direction: column;
+    justify-content: center;
+    align-items: top;
+    text-align: center;
     gap: 10px;
-    border: 1px solid black; /* Gives the box a border */
-    word-wrap: break-word; /* Ensures that the text wraps within the box */
+    border: 1px solid black;
+    word-wrap: break-word;
     background-color: lightblue;
 }
 
@@ -47,17 +47,23 @@ body{
     text-shadow: 1px 1px 2px pink;
 }
 
+.small-text {
+    font-size: 0.8em;
+    align-self: center;
+}
+
+
 .container {
     display: grid;
-    grid-template-columns: repeat(6, 1fr); /* Creates 6 columns of equal width */
-    justify-content: center; /* Centers the items horizontally */
-    align-items: center; /* Centers the items vertically */
+    grid-template-columns: repeat(6, 1fr);
+    justify-content: center;
+    align-items: center;
     margin-bottom: 30px;
 }
 
 
 .item {
-    /* Style your items here */
+   
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -67,13 +73,13 @@ body{
 }
 
 .item img {
-    width: 100%; /* Makes the image take up the full width of the item */
-    height: auto; /* Keeps the aspect ratio of the image */
+    width: 100%;
+    height: auto;
 }
 
 
 .item2 {
-    /* Style your items here */
+   
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -83,8 +89,8 @@ body{
 }
 
 .item2 img {
-    width: 100%; /* Makes the image take up the full width of the item */
-    height: auto; /* Keeps the aspect ratio of the image */
+    width: 100%;
+    height: auto;
 }
 
 .form-container {
