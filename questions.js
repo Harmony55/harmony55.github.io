@@ -32,7 +32,7 @@ questions = [
             "econ": 0,
             "dipl": 0,
             "govt": 0,
-            "scty": -10
+            "scty": 10
         }
     },
     {
@@ -41,7 +41,7 @@ questions = [
             "econ": 0,
             "dipl": 0,
             "govt": 0,
-            "scty": -10
+            "scty": 10
         }
     },
     {
@@ -77,7 +77,7 @@ questions = [
             "econ": 5,
             "dipl": 0,
             "govt": 0,
-            "scty": -10
+            "scty": 10
         }
     },
     {
@@ -177,6 +177,15 @@ questions = [
             "dipl": 0,
             "govt": 0,
             "scty": 0
+        }
+    },
+    {
+        "question": "J'ai un casier judiciaire vierge.",
+        "effect": {
+            "econ": 10,
+            "dipl": 0,
+            "govt": 0,
+            "scty": -10
         }
     }
 ];
