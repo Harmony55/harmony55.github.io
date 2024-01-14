@@ -182,10 +182,19 @@ questions = [
     {
         "question": "J'ai un casier judiciaire vierge.",
         "effect": {
-            "econ": 10,
+            "econ": 0,
             "dipl": 0,
             "govt": 0,
             "scty": -10
+        }
+    },
+    {
+        "question": "Il faut une vague politisé.",
+        "effect": {
+            "econ": 0,
+            "dipl": 10,
+            "govt": 0,
+            "scty": 0
         }
     }
 ];
