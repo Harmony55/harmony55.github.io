@@ -16,16 +16,17 @@ window.onload = function() {
 		event.preventDefault();
 
 		const item = data.find(item => item.texts.name === document.querySelector('input').value);
-		if(item){
-			console.log('HP: ' + item.values.hp);
-			console.log('Attack: ' + item.values.attack);
-        }
-        else{
-            console.log('No item found with the name ' + inputName);
-        }
+        
+        const today = new Date();
+        const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+        Math.seedrandom(seed.toString());
+        const itemGoal = data[Math.floor(Math.random() * data.length)];
 
         const values = [item.values.attack, item.values.hp, item.values.mana];
         const categories = [item.categories.rarity, item.categories.creature_type];
+
+        const valuesGoal = [itemGoal.values.attack, itemGoal.values.hp, itemGoal.values.mana];
+        const categoriesGoal = [itemGoal.categories.rarity, itemGoal.categories.creature_type];
 
 
                 items = document.querySelectorAll('.item2');
@@ -47,6 +48,12 @@ window.onload = function() {
 		            p.className = 'text';
 		            if(index < values.length) {
 		                p.textContent = values[index];
+		                if(values[index] > valuesGoal[index]){
+		                	response.className += ' arrowup';
+		                }
+		                if(values[index] < valuesGoal[index]){
+		                	response.className += ' arrowdown';
+		                }
 		            }
 		            else{
 		                p.textContent = categories[index - values.length];
