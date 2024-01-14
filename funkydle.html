@@ -59,26 +59,7 @@
             </div>
             <img src="./images/bar.png" alt="Image 1">
         </div>
-        <!-- Add more columns as needed -->
     </div>
-
-    <div id="display">Loading...</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
-    <script>
-        fetch('./funkydle/main.json')
-            .then(response => response.json())
-            .then(data => {
-                const names = data.map(item => item.texts.name);
-                const today = new Date();
-                const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
-                Math.seedrandom(seed.toString());
-                const randomName = names[Math.floor(Math.random() * names.length)];
-                document.getElementById('display').textContent = randomName;
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById('display').textContent = 'An error occurred.';
-            });
-    </script>
 </body>
 </html>
