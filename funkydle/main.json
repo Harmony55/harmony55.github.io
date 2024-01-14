@@ -1,0 +1,87 @@
+[ 
+	{
+"categories": {
+"class": "character",
+"creature_type": "monke",
+"rarity": "atypique"
+},
+"texts": {
+"desc": "Cette carte gagne +1 PV quand une autre carte est posée à côté.",
+"name": "1 - Bernadette"
+},
+"values": {
+"attack": 3,
+"hp": 3,
+"id": 1,
+"mana": 3,
+"tempAtk": 0,
+"tempDef": 0,
+"tempHp": 0,
+"timer": 0,
+"vague": 1
+}
+},
+	{
+"categories": {
+"class": "character",
+"creature_type": "none",
+"rarity": "ultra_rare"
+},
+"texts": {
+"desc": "L'orbe et toutes les autres cartes alliées (excepté cettte carte) gagnent +3 PV",
+"name": "2 - TeXXit"
+},
+"values": {
+"attack": 4,
+"hp": 3,
+"mana": 6,
+"tempAtk": 0,
+"tempDef": 0,
+"tempHp": 0,
+"timer": 0,
+"vague": 1
+}
+},
+	{
+"categories": {
+"class": "character",
+"creature_type": "none",
+"rarity": "ultra_rare"
+},
+"texts": {
+"desc": "Invoque 2 carte de type Monke dans votre main",
+"name": "3 - Kirbo"
+},
+"values": {
+"attack": 6,
+"hp": 6,
+"mana": 7,
+"tempAtk": 0,
+"tempDef": 0,
+"tempHp": 0,
+"timer": 0,
+"vague": 1
+}
+},
+	{
+"categories": {
+"class": "character",
+"creature_type": "monke",
+"rarity": "divin"
+},
+"texts": {
+"desc": "Attaque bonus.",
+"name": "4 - Funky Kong"
+},
+"values": {
+"attack": 5,
+"hp": 6,
+"mana": 7,
+"tempAtk": 0,
+"tempDef": 0,
+"tempHp": 0,
+"timer": 0,
+"vague": 1
+}
+}
+]
