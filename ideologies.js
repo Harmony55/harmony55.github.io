@@ -34,5 +34,14 @@ ideologies = [
             "govt": 96.7,
             "scty": 94.4
         }
+    },
+    {
+        "name": "Farine",
+        "stats": {
+            "econ": 79.3,
+            "dipl": 54.2,
+            "govt": 71.4,
+            "scty": 63.2
+        }
     }
 ];
