@@ -29,10 +29,10 @@ ideologies = [
     {
         "name": "Kirbo",
         "stats": {
-            "econ": 93.8,
-            "dipl": 70,
-            "govt": 96.7,
-            "scty": 94.4
+            "econ": 97.6,
+            "dipl": 50,
+            "govt": 64.3,
+            "scty": 81.6
         }
     },
     {
