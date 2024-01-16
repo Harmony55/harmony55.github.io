@@ -43,6 +43,7 @@ window.onload = function() {
 		items.forEach(item => {
 			const response = document.createElement('div');
 			response.className = 'response';
+			response.style.display = 'flex';
 			const img = document.createElement('img');
 			const div = document.createElement('div');
 			const span = document.createElement('span');
@@ -50,6 +51,7 @@ window.onload = function() {
 			span.className = "tooltiptext";
 			img.src = './images/cards/'+inputed.texts.name+'.png';
 //			img.alt = 'New Image';
+			response.style.opacity = 1.0;
 			img.className = "icon";
 			img.style.width = 400;
 			div.className = "tooltip";
@@ -69,8 +71,12 @@ window.onload = function() {
 		items.forEach((item, index) => {
 			const response = document.createElement('div');
 			response.className = 'response';
+			response.style.animationDelay = ((index+1)/2)+'s';
 			const p = document.createElement('p');
 			p.className = 'text';
+			setTimeout(() => {
+				response.style.opacity = 1.0;
+			}, (index+1)*500);
 			if(index < values.length){
 				p.textContent = values[index];
 				if(values[index] > valuesGoal[index]){
