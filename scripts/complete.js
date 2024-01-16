@@ -24,7 +24,21 @@ window.onload = function() {
 	});
 	function addToList(){
 
+
+
 		const item = data.find(item => item.texts.name === document.querySelector('input').value);
+		
+		let datalist = document.getElementById('names');
+
+		let options = Array.from(datalist.options);
+
+		let names = options.map(option => option.value);
+
+		let isInside = names.includes(item.texts.name);
+		if(!isInside){
+			return;
+		}
+
 
 		const today = new Date();
 		const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
@@ -38,6 +52,16 @@ window.onload = function() {
 		const categoriesGoal = [itemGoal.categories.rarity, itemGoal.categories.creature_type];
 
 		const inputed = item;
+
+
+		let option = datalist.querySelector('option[value="'+inputed.texts.name+'"]');
+
+		if(option){
+		    datalist.removeChild(option);
+		}
+		
+		let form = document.getElementById('fname');
+		form.value = '';
 
 		items = document.querySelectorAll('.item2');
 		items.forEach(item => {
