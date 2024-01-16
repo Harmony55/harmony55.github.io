@@ -44,6 +44,7 @@ window.onload = function() {
 		const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
 		Math.seedrandom(seed.toString());
 		const itemGoal = data[Math.floor(Math.random() * data.length)];
+		console.log(itemGoal.texts.name);
 
 		const values = [item.values.attack, item.values.hp, item.values.mana];
 		const categories = [item.categories.rarity, item.categories.creature_type];
@@ -117,9 +118,13 @@ window.onload = function() {
 			}
 			else{
 				p.textContent = categories[index - values.length];
+				if(p.textContent == "null"){
+					p.textContent = "Aucun"
+				}
 				if(p.textContent == "ultra_rare"){
 					p.textContent = "Tres rare"
 				}
+
 				if(categories[index - values.length] == categoriesGoal[index - values.length]){
 					response.className += ' green';
 				}

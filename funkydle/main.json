@@ -24,7 +24,7 @@
 	{
 "categories": {
 "class": "character",
-"creature_type": "none",
+"creature_type": "null",
 "rarity": "ultra_rare"
 },
 "texts": {
@@ -45,7 +45,7 @@
 	{
 "categories": {
 "class": "character",
-"creature_type": "none",
+"creature_type": "null",
 "rarity": "ultra_rare"
 },
 "texts": {
@@ -88,7 +88,7 @@
 {
 "categories": {
 "class": "character",
-"creature_type": "none",
+"creature_type": "null",
 "rarity": "commun"
 },
 "texts": {
@@ -130,7 +130,7 @@
 {
 "categories": {
 "class": "character",
-"creature_type": "none",
+"creature_type": "null",
 "rarity": "ultra_rare"
 },
 "texts": {
@@ -151,7 +151,7 @@
 {
 "categories": {
 "class": "character",
-"creature_type": "none",
+"creature_type": "null",
 "rarity": "commun"
 },
 "texts": {
@@ -172,7 +172,7 @@
 {
 "categories": {
 "class": "character",
-"creature_type": "none",
+"creature_type": "null",
 "rarity": "commun"
 },
 "texts": {
@@ -214,7 +214,7 @@
 {
 "categories": {
 "class": "character",
-"creature_type": "none",
+"creature_type": "null",
 "rarity": "commun"
 },
 "texts": {
@@ -235,7 +235,7 @@
 {
 "categories": {
 "class": "character",
-"creature_type": "none",
+"creature_type": "null",
 "rarity": "atypique"
 },
 "texts": {
