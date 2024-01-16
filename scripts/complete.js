@@ -45,7 +45,7 @@ window.onload = function() {
 		const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
 		Math.seedrandom(seed.toString());
 		const itemGoal = data[Math.floor(Math.random() * data.length)];
-		console.log(itemGoal.texts.name);
+		console.log(seed);
 
 		const values = [item.values.attack, item.values.hp, item.values.mana];
 		const categories = [item.categories.rarity, item.categories.creature_type];
@@ -142,7 +142,7 @@ window.onload = function() {
 			var modal = document.getElementById("myModal");
 			modal.style.display = "block";
 			var modalTexte = document.getElementById("modalTexte");
-			modalTexte.textContent = "Bravo ! Vous avez trouve\n"+itemGoal.texts.name+" en "+essaie+" essais !";
+			modalTexte.textContent = "Bravo ! Vous avez trouve la carte en "+essaie+" essais !";
 		}
 	}
 
