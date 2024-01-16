@@ -1,5 +1,6 @@
 window.onload = function() {
 	let data;
+	let essaie = 0;
 	fetch('./funkydle/main.json')
 		.then(response => response.json())
 		.then(jsonData => {
@@ -24,7 +25,7 @@ window.onload = function() {
 	});
 	function addToList(){
 
-
+		essaie += 1;
 
 		const item = data.find(item => item.texts.name === document.querySelector('input').value);
 		
@@ -136,5 +137,13 @@ window.onload = function() {
 			response.appendChild(p);
 			item.insertBefore(response, item.childNodes[4]);
 		});
+
+		if(itemGoal.texts.name == inputed.texts.name){
+			var modal = document.getElementById("myModal");
+			modal.style.display = "block";
+			var modalTexte = document.getElementById("modalTexte");
+			modalTexte.textContent = "Bravo ! Vous avez trouve\n"+itemGoal.texts.name+" en "+essaie+" essais !";
+		}
 	}
+
 };

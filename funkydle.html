@@ -6,11 +6,22 @@
     <link rel="stylesheet" href="funkydle.css">
     <script src="./scripts/complete.js"></script> 
 </head>
+
 <body>
     <img src="images/logo.png" width ="200" height = "200"></img>
     <div class="box">
         <p class="text">Devine la Funky Cards d'aujourd'hui !</p>
     </div>
+
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">x</span>
+        <div class="box">
+            <p id="modalTexte" class="text">Devine la Funky Cards d'aujourd'hui !</p>
+        </div>
+      </div>
+    </div>
+
 
 
     <div class="form-container">
@@ -61,5 +72,26 @@
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+    <script>
+      var modal = document.getElementById("myModal");
+
+      var btn = document.getElementById("myBtn");
+
+      var span = document.getElementsByClassName("close")[0];
+
+      btn.onclick = function() {
+        modal.style.display = "block";
+      }
+
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+    </script>
 </body>
 </html>
