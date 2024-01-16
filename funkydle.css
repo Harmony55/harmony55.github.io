@@ -124,8 +124,15 @@ body{
     gap: 10px;
 }
 
-.item2 img {
+.item2img {
     width: 100%;
+    height: auto;
+}
+
+.icon {
+    margin-top: 4px;
+    margin-left: -10px;
+    width: 167%;
     height: auto;
 }
 

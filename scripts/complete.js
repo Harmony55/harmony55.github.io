@@ -12,8 +12,17 @@ window.onload = function() {
 				dataList.appendChild(option);
 			});
 		});
+	document.querySelector('form').addEventListener('submit', function(event) {
+	    event.preventDefault();
+
+	    addToList();
+	});
 	document.querySelector('button').addEventListener('click', function(event) {
 		event.preventDefault();
+
+		addToList();
+	});
+	function addToList(){
 
 		const item = data.find(item => item.texts.name === document.querySelector('input').value);
 
@@ -35,16 +44,24 @@ window.onload = function() {
 			const response = document.createElement('div');
 			response.className = 'response';
 			const img = document.createElement('img');
-			img.src = './images/logo.png';
-			img.alt = 'New Image';
+			const div = document.createElement('div');
+			const span = document.createElement('span');
+			span.textContent = inputed.texts.name;
+			span.className = "tooltiptext";
+			img.src = './images/cards/'+inputed.texts.name+'.png';
+//			img.alt = 'New Image';
+			img.className = "icon";
+			img.style.width = 400;
+			div.className = "tooltip";
 			if(itemGoal.texts.name == inputed.texts.name){
 				response.className += ' green';
 			}
 			else{
 				response.className += ' red';
 			}
-
-			response.appendChild(img);
+			response.appendChild(div);
+			div.appendChild(img);
+			div.appendChild(span);
 			item.insertBefore(response, item.childNodes[4]);
 		});
 
@@ -84,5 +101,5 @@ window.onload = function() {
 			response.appendChild(p);
 			item.insertBefore(response, item.childNodes[4]);
 		});
-	});
+	}
 };
