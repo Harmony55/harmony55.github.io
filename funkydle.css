@@ -7,7 +7,8 @@ body{
     justify-content: top;
     align-items: center;
     height: 100vh;
-    background-image: url('background.jpg');
+    background-image: url("./images/background.png");
+    background-size: cover;
     background-attachment: fixed;
     background-color: #f0f0f0;
 }
@@ -37,7 +38,7 @@ body{
 
 .response {
     animation: flip 0.5s ease-out;
-    backface-visibility: hidden; /* Add this line */
+    backface-visibility: hidden;
     opacity: 0;
     width: 30px;
     height: 30px;
@@ -111,13 +112,13 @@ body{
 
 
 .item {
-   
     padding: 10px;
     display: flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
     gap: 10px;
+    color: white;
 }
 
 .item img {
@@ -134,6 +135,7 @@ body{
     text-align: center;
     align-items: center;
     gap: 10px;
+    color: white;
 }
 
 .item2img {
@@ -157,27 +159,27 @@ body{
 }
 
 
-        .tooltip {
-            position: relative;
-            display: inline-block;
-        }
+.tooltip {
+    position: relative;
+    display: white;
+}
 
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 120px;
-            background-color: #555;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 5px 0;
-            position: absolute;
-            z-index: 1;
-            bottom: 100%;
-            left: 50%;
-            margin-left: -60px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
 
         .tooltip:hover .tooltiptext {
             visibility: visible;
