@@ -5,9 +5,37 @@ window.onclick = function(event) {
 	}
 }
 
+function setCookie(cookieName, list){
+    const serializedList = JSON.stringify(list);
+
+    const expirationDate = new Date();
+    expirationDate.setDate(expirationDate.getDate());
+    expirationDate.setHours(24, 59, 59);
+
+    console.log(serializedList);
+
+    document.cookie = cookieName+'='+encodeURIComponent(serializedList)+';expires='+expirationDate.toUTCString()+';path=/';
+    console.log(cookieName+'='+encodeURIComponent(serializedList)+';expires='+expirationDate.toUTCString()+';path=/');
+}
+function getCookie(cookieName){
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const cookieArray = decodedCookie.split(';');
+
+    for(let i = 0; i < cookieArray.length; i++){
+        let cookie = cookieArray[i].trim();
+        if(cookie.startsWith(cookieName + '=')){
+            const serializedList = cookie.substring(cookieName.length + 1);
+            return JSON.parse(serializedList);
+        }
+    }
+
+    return null;
+}
+
+
+let data;
+
 window.onload = function() {
-	let data;
-	let essaie = 0;
 	fetch('./funkydle/main.json')
 		.then(response => response.json())
 		.then(jsonData => {
@@ -19,23 +47,53 @@ window.onload = function() {
 				option.value = name;
 				dataList.appendChild(option);
 			});
+			cookie = getCookie("inputedCards");
+			if(cookie){
+				cookie.forEach((item, index) => {
+					addToList(item);
+				});
+			}
 		});
 	document.querySelector('form').addEventListener('submit', function(event) {
 	    event.preventDefault();
 
-	    addToList();
+		let liste = getCookie("inputedCards");
+		if(liste == null){
+			setCookie("inputedCards", [document.querySelector('input').value]);
+		}
+		else{
+			liste.push(document.querySelector('input').value);
+			setCookie("inputedCards", liste);
+		}
+
+	    addToList(document.querySelector('input').value);
 	});
 	document.querySelector('button').addEventListener('click', function(event) {
 		event.preventDefault();
 
-		addToList();
+		let liste = getCookie("inputedCards");
+		if(liste == null){
+			setCookie("inputedCards", [document.querySelector('input').value]);
+		}
+		else{
+			liste.push(document.querySelector('input').value);
+			setCookie("inputedCards", liste);
+		}
+
+		addToList(document.querySelector('input').value);
 	});
 
-	function addToList(){
+
+};
+
+let essaie = 0;
+
+	function addToList(card){
 
 		essaie += 1;
 
-		const item = data.find(item => item.texts.name === document.querySelector('input').value);
+
+		const item = data.find(item => item.texts.name === card);
 		document.querySelector('input').blur();
 		
 		let datalist = document.getElementById('names');
@@ -43,6 +101,10 @@ window.onload = function() {
 		let options = Array.from(datalist.options);
 
 		let names = options.map(option => option.value);
+
+		
+
+
 
 		let isInside = names.includes(item.texts.name);
 		if(!isInside){
@@ -54,7 +116,6 @@ window.onload = function() {
 		const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
 		Math.seedrandom(seed.toString());
 		const itemGoal = data[Math.floor(Math.random() * data.length)];
-		console.log(seed);
 
 		const values = [item.values.attack, item.values.hp, item.values.mana];
 		const categories = [item.categories.rarity, item.categories.creature_type];
@@ -158,4 +219,3 @@ window.onload = function() {
 
 	}
 
-};
