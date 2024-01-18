@@ -28,6 +28,7 @@ window.onload = function() {
 		essaie += 1;
 
 		const item = data.find(item => item.texts.name === document.querySelector('input').value);
+		document.querySelector('input').blur();
 		
 		let datalist = document.getElementById('names');
 
