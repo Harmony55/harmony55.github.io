@@ -138,12 +138,15 @@ window.onload = function() {
 			item.insertBefore(response, item.childNodes[4]);
 		});
 
-		if(itemGoal.texts.name == inputed.texts.name){
-			var modal = document.getElementById("myModal");
-			modal.style.display = "block";
-			var modalTexte = document.getElementById("modalTexte");
-			modalTexte.textContent = "Bravo ! Vous avez trouve la carte en "+essaie+" essais !";
-		}
+		setTimeout(() => {
+			if(itemGoal.texts.name == inputed.texts.name){
+				var modal = document.getElementById("myModal");
+				modal.style.display = "block";
+				var modalTexte = document.getElementById("modalTexte");
+				modalTexte.textContent = "Bravo ! Vous avez trouve la carte en "+essaie+" essais !";
+			}
+		}, 6*500);
+
 	}
 
 };
