@@ -1,3 +1,10 @@
+window.onclick = function(event) {
+	var modal = document.getElementById("myModal");
+	if (event.target == modal) {
+			modal.style.display = "none";
+	}
+}
+
 window.onload = function() {
 	let data;
 	let essaie = 0;
@@ -23,6 +30,7 @@ window.onload = function() {
 
 		addToList();
 	});
+
 	function addToList(){
 
 		essaie += 1;
