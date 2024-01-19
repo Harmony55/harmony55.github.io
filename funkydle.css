@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'LuckiestGirl';
+  src: url('./fonts/LuckiestGirl.ttf');
+}
+
 body{
     font-family: Arial, sans-serif;
     margin:  0;
@@ -23,7 +28,7 @@ body{
     text-align: center;
     border: 1px solid black;
     word-wrap: break-word;
-    background-color: lightblue;
+    background-color: #F2449B;
     margin-bottom: 30px;
 }
 

@@ -57,30 +57,35 @@ window.onload = function() {
 	document.querySelector('form').addEventListener('submit', function(event) {
 	    event.preventDefault();
 
-		let liste = getCookie("inputedCards");
-		if(liste == null){
-			setCookie("inputedCards", [document.querySelector('input').value]);
-		}
-		else{
-			liste.push(document.querySelector('input').value);
-			setCookie("inputedCards", liste);
-		}
+	    let inputedValue = document.querySelector('input').value;
 
-	    addToList(document.querySelector('input').value);
+
+	    if(addToList(document.querySelector('input').value)){
+			let liste = getCookie("inputedCards");
+			if(liste == null){
+				setCookie("inputedCards", [inputedValue]);
+			}
+			else{
+				liste.push(inputedValue);
+				setCookie("inputedCards", liste);
+			}
+	    }
 	});
 	document.querySelector('button').addEventListener('click', function(event) {
 		event.preventDefault();
 
-		let liste = getCookie("inputedCards");
-		if(liste == null){
-			setCookie("inputedCards", [document.querySelector('input').value]);
-		}
-		else{
-			liste.push(document.querySelector('input').value);
-			setCookie("inputedCards", liste);
-		}
+	    let inputedValue = document.querySelector('input').value;
 
-		addToList(document.querySelector('input').value);
+		if(addToList(document.querySelector('input').value)){
+			let liste = getCookie("inputedCards");
+			if(liste == null){
+				setCookie("inputedCards", [inputedValue]);
+			}
+			else{
+				liste.push(inputedValue);
+				setCookie("inputedCards", liste);
+			}
+		}
 	});
 
 
@@ -108,7 +113,7 @@ let essaie = 0;
 
 		let isInside = names.includes(item.texts.name);
 		if(!isInside){
-			return;
+			return false;
 		}
 
 
@@ -213,9 +218,9 @@ let essaie = 0;
 				var modal = document.getElementById("myModal");
 				modal.style.display = "block";
 				var modalTexte = document.getElementById("modalTexte");
-				modalTexte.textContent = "Bravo ! Vous avez trouve la carte en "+essaie+" essais !";
+				modalTexte.textContent = "Bravo ! Vous avez trouv\u00E9 la carte en "+essaie+" essais !";
 			}
 		}, 6*500);
-
+		return true;
 	}
 
