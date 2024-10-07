@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertisseur monnaies BBCC</title>
+
+<style>
+    .converter h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+    .grid-item {
+        display: flex;
+        flex-direction: column;
+    }
+</style>
+
+</head>
+<body>
+    <div class="converter">
+        <h2>Convertisseur euro -> argent BBCC</h2>
+        <div class="grid-container">
+            <div class="grid-item">
+                <label for="euro">Euro:</label>
+                <input type="number" id="euro" oninput="convertFromEuro()">
+            </div>
+            <div class="grid-item">
+                <label for="obamium">Obamium:</label>
+                <input type="number" id="obamium" oninput="convertFromObamium()">
+            </div>
+            <div class="grid-item">
+                <label for="bobux">Bobux:</label>
+                <input type="number" id="bobux" oninput="convertFromBobux()">
+            </div>
+            <div class="grid-item">
+                <label for="moner">Moner:</label>
+                <input type="number" id="moner" oninput="convertFromMoner()">
+            </div>
+            <div class="grid-item">
+                <label for="chocolat">Chocolat:</label>
+                <input type="number" id="chocolat" oninput="convertFromChocolat()">
+            </div>
+            <div class="grid-item">
+                <label for="kikout">Kikout:</label>
+                <input type="number" id="kikout" oninput="convertFromKikout()">
+            </div>
+            <div class="grid-item">
+                <label for="vbucks">Vbucks:</label>
+                <input type="number" id="vbucks" oninput="convertFromVbucks()">
+            </div>
+            <div class="grid-item">
+                <label for="robux">Robux:</label>
+                <input type="number" id="robux" oninput="convertFromRobux()">
+            </div>
+            <div class="grid-item">
+                <label for="minecoin">Minecoin:</label>
+                <input type="number" id="minecoin" oninput="convertFromMinecoin()">
+            </div>
+            <div class="grid-item">
+                <label for="real">Réal:</label>
+                <input type="number" id="real" oninput="convertFromReal()">
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const rates = {
+            obamium: 1 / 20.99,
+            bobux: 1 / 2000,
+            moner: 1 / (120000 * 20.99 / 2.3),
+            chocolat: 1,
+            kikout: 123.53,
+            vbuck: 1000 / 8.99,
+            robux: 80,
+            minecoin: 320 / 1.99,
+            real: 136 / 12
+        };
+        function formatNumber(number) {
+            return number.toLocaleString('fr-FR');
+        }
+
+        function convertFromEuro(money) {
+            const euro = parseFloat(document.getElementById('euro').value);
+            if (!isNaN(euro)) {
+                if(money != 1){
+                    document.getElementById('obamium').value = formatNumber((euro * rates.obamium).toFixed(2));
+                }
+                if(money != 2){
+                    document.getElementById('bobux').value = formatNumber((euro * rates.bobux).toFixed(2));
+                }
+                if(money != 3){
+                    document.getElementById('moner').value = formatNumber((euro * rates.moner).toFixed(2));
+                }
+                if(money != 4){
+                   document.getElementById('chocolat').value = formatNumber((euro * rates.chocolat).toFixed(2));
+                }
+                if(money != 5){
+                    document.getElementById('kikout').value = formatNumber((euro * rates.kikout).toFixed(2));
+                }
+                if(money != 6){
+                    document.getElementById('vbucks').value = formatNumber((euro * rates.vbuck).toFixed(2));
+                }
+                if(money != 7){
+                    document.getElementById('robux').value = formatNumber((euro * rates.robux).toFixed(2));
+                }
+                if(money != 8){
+                    document.getElementById('minecoin').value = formatNumber((euro * rates.minecoin).toFixed(2));
+                }
+                if(money != 9){
+                    document.getElementById('real').value = formatNumber((euro * rates.real).toFixed(2));
+                }
+            }
+        }
+
+
+        function convertFromObamium() {
+            const obamium = parseFloat(document.getElementById('obamium').value);
+            if (!isNaN(obamium)) {
+                const euro = obamium / rates.obamium;
+                document.getElementById('euro').value = formatNumber(euro.toFixed(2));
+                convertFromEuro(1);
+            }
+        }
+
+        function convertFromBobux() {
+            const bobux = parseFloat(document.getElementById('bobux').value);
+            if (!isNaN(bobux)) {
+                const euro = bobux / rates.bobux;
+                document.getElementById('euro').value = formatNumber(euro.toFixed(2));
+                convertFromEuro(2);
+            }
+        }
+
+        function convertFromMoner() {
+            const moner = parseFloat(document.getElementById('moner').value);
+            if (!isNaN(moner)) {
+                const euro = moner / rates.moner;
+                document.getElementById('euro').value = formatNumber(euro.toFixed(2));
+                convertFromEuro(3);
+            }
+        }
+
+        function convertFromChocolat() {
+            const chocolat = parseFloat(document.getElementById('chocolat').value);
+            if (!isNaN(chocolat)) {
+                const euro = chocolat / rates.chocolat;
+                document.getElementById('euro').value = formatNumber(euro.toFixed(2));
+                convertFromEuro(4);
+            }
+        }
+
+        function convertFromKikout() {
+            const kikout = parseFloat(document.getElementById('kikout').value);
+            if (!isNaN(kikout)) {
+                const euro = kikout / rates.kikout;
+                document.getElementById('euro').value = formatNumber(euro.toFixed(2));
+                convertFromEuro(5);
+            }
+        }
+
+        function convertFromVbucks() {
+            const vbuck = parseFloat(document.getElementById('vbucks').value);
+            if (!isNaN(vbuck)) {
+                const euro = vbuck / rates.vbuck;
+                document.getElementById('euro').value = formatNumber(euro.toFixed(2));
+                convertFromEuro(6);
+            }
+        }
+
+        function convertFromRobux() {
+            const robux = parseFloat(document.getElementById('robux').value);
+            if (!isNaN(robux)) {
+                const euro = robux / rates.robux;
+                document.getElementById('euro').value = formatNumber(euro.toFixed(2));
+                convertFromEuro(7);
+            }
+        }
+
+        function convertFromMinecoin() {
+            const minecoin = parseFloat(document.getElementById('minecoin').value);
+            if (!isNaN(minecoin)) {
+                const euro = minecoin / rates.minecoin;
+                document.getElementById('euro').value = formatNumber(euro.toFixed(2));
+                convertFromEuro(8);
+            }
+        }
+
+        function convertFromReal() {
+            const real = parseFloat(document.getElementById('real').value);
+            if (!isNaN(real)) {
+                const euro = real / rates.real;
+                document.getElementById('euro').value = formatNumber(euro.toFixed(2));
+                convertFromEuro(9);
+            }
+        }
+    </script>
+</body>
+</html>
