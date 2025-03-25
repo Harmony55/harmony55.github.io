@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualisation graph projet</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/standalone/umd/vis-network.min.js"></script>
+    <style>
+        #container {
+            display: flex;
+            gap: 20px;
+        }
+        textarea {
+            width: 45%;
+            height: 200px;
+        }
+        #network {
+            width: 100%;
+            height: 500px;
+            border: 1px solid lightgray;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <textarea id="inputTransitions" placeholder="Mettre ici états et transition, par exemple &#10;		fsm.registerDefaultTransition(SP, RP);&#10;		fsm.registerTransition(RP, Ex, 0);&#10;ect..."></textarea>
+        <textarea id="inputLabels" placeholder='Mettre ici les labels, par exemple &#10;	private static final String SP = "SendPing";&#10;	private static final String RP = "ReceivePing";&#10; ect... '></textarea>
+    </div>
+    <br>
+    <button onclick="drawGraph()">Générer le graph des états</button>
+    <div id="network"></div>
+
+    <script>
+        function drawGraph() {
+            const transitionsText = document.getElementById("inputTransitions").value;
+            const labelsText = document.getElementById("inputLabels").value;
+            const edges = [];
+            const nodesMap = new Map();
+            
+            // Parse labels
+            const labelRegex = /private static final String (\w+) = \"(.*?)\";/g;
+            let match;
+            while ((match = labelRegex.exec(labelsText)) !== null) {
+                nodesMap.set(match[1], match[2]);
+            }
+            
+            // Parse transitions
+            const transitionRegex = /fsm\.register(?:Default)?Transition\((\w+),\s*(\w+)(?:,\s*(\d+))?\);/g;
+            while ((match = transitionRegex.exec(transitionsText)) !== null) {
+                const from = match[1];
+                const to = match[2];
+                const label = match[3] || "Default";
+                
+                nodesMap.set(from, nodesMap.get(from) || from);
+                nodesMap.set(to, nodesMap.get(to) || to);
+                edges.push({ from, to, label });
+            }
+            
+            const nodes = Array.from(nodesMap.entries()).map(([id, label]) => ({ id, label }));
+            
+            const container = document.getElementById("network");
+            const data = { nodes: new vis.DataSet(nodes), edges: new vis.DataSet(edges) };
+            const options = { edges: { arrows: "to" } };
+            new vis.Network(container, data, options);
+        }
+    </script>
+</body>
+</html>
