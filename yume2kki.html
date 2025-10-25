@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yume 2kki map name generator</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: radial-gradient(circle at center, #1a1a2e, #43353A);
+      color: #A28DA5;
+      text-align: center;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    #output {
+      font-size: 1.8rem;
+      margin: 2rem 0;
+      color: #A28DA5;
+      text-shadow: 0 0 10px #ff66cc;
+      min-height: 2em;
+    }
+
+    button {
+      background: #D3D0BE;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      color: #A28DA5;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    input[type="file"] {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #status {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #bbb;
+    }
+  </style>
+</head>
+<body>
+  <h1>Yume 2kki Generator</h1>
+  <button id="generateBtn" disabled>Génération map</button>
+  <div id="output"></div>
+  <div id="status">Mettez votre fichier</div>
+  <input type="file" id="fileInput" accept=".txt">
+
+  <script>
+    let part1 = [];
+    let part2 = [];
+
+    document.getElementById('fileInput').addEventListener('change', async (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const text = await file.text();
+      const lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
+
+      const midIndex = lines.findIndex((line, i) => i > 0 && lines[i - 1] === '' || lines[i - 1] === 'Thrift');
+      if (midIndex !== -1) {
+        part1 = lines.slice(0, midIndex);
+        part2 = lines.slice(midIndex + 1);
+      } else {
+        const half = Math.floor(lines.length / 2);
+        part1 = lines.slice(0, half);
+        part2 = lines.slice(half);
+      }
+
+      document.getElementById('generateBtn').disabled = false;
+    });
+
+    document.getElementById("generateBtn").addEventListener("click", () => {
+      if (part1.length === 0 || part2.length === 0) return;
+      const w1 = part1[Math.floor(Math.random() * part1.length)];
+      const w2 = part2[Math.floor(Math.random() * part2.length)];
+      document.getElementById("output").textContent = `${w1} ${w2}`;
+    });
+
+    loadFile();
+  </script>
+</body>
+</html>
