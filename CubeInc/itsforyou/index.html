@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<title>It's for you</title>
+<link href='./journal.css' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div class="container">
+    <img id="mainImage" src="./phone.png" alt="Image" />
+</div>
+
+<script>
+    const image = document.getElementById("mainImage");
+
+    const originalSrc = "./phone.png";
+    const clickedSrc = "./illdoanythingforthephonetostopringing.png";
+
+    const sounds = [
+      new Audio("./answerthephone.mp3"),
+      new Audio("./allyourfault.mp3"),
+      new Audio("./gasterEstDeRetour.mp3"),
+      new Audio("./notworththerisk.mp3")
+    ];
+
+    let clickCount = 0;
+
+    image.addEventListener("click", () => {
+      if (image.getAttribute("src") === clickedSrc) {
+            return;
+      }
+      const sound = sounds[clickCount % sounds.length];
+
+      image.src = clickedSrc;
+
+      sound.currentTime = 0;
+      sound.play();
+
+      sound.onended = () => {
+          image.src = originalSrc;
+          const hangup = new Audio("1F9AB.mp3");
+          hangup.play();
+      };
+
+      clickCount++;
+    });
+</script>
+</body>
+</html>
