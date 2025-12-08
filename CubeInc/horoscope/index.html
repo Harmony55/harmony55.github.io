@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Horoscope</title>
+  <link href='./journal.css' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <header>Horoscope du jour</header>
+
+  <div style="display:flex; max-width:1200px; margin:0 auto; padding:20px; gap:20px;">
+
+    <aside style="width:200px; background:white; padding:20px; border-radius:4px; box-shadow:0 4px 15px rgba(0,0,0,0.1); height:fit-content;">
+      <h3>Signes</h3>
+      <ul style="list-style:none; padding:0; line-height:1.8;">
+        <li>Rutherfordium </li>
+        <li>Dubnium</li>
+        <li>Seaborgium</li>
+        <li>Bohrium</li>
+        <li>Hassium</li>
+        <li>Meitnérium</li>
+        <li>Darmstadtium</li>
+        <li>Roentgenium</li>
+        <li>Copernicium</li>
+        <li>Nihonium</li>
+        <li>Chinerie</li>
+        <li>Flérovium</li>
+        <li>Moscovium</li>
+        <li>Livermorium</li>
+        <li>Tennesse</li>
+        <li>Oganesson</li>
+      </ul>
+    </aside>
+
+    <div style="flex:1;">
+      <div class="container">
+        <p id="description" style="text-align:center; font-size:1.2rem; margin-bottom:20px;">
+        	<p><b>HOROSCOPE</b></p>
+          Ce site est dédié à la prévision de l'avenir via l'astrologie et la voyance. Pour plus d'informations, composez le <b>555-473-8292</b>, si on vous le demande ne pressez surtout pas "8".
+          Nos prix sont extrêmement attractif avec 3 payment facile de 9,99€. Des prix défiant toute concurence avec un appelle au <b>555-473-8292</b>. Découvrez toutes les facettes de votre avenir et des différentes possibilités qui s'ouvrent a vous, maintenant entièrement en distanciel grace a la technologie! Plus besoin de se déplace. Nous pouvons capter les saisons, la météo, la passé,  le présent, le futur, et l'imparfait. Appelez nous tout les jours directement au <b>555-473-8292</b> nous EXISTONS!! Nous pouvons vous prouver notre existance en deal 3 pour 1 spéciale en nous appelant au <b>555-473-8292</b>. Dans tout les domaines nous vous offrons un service 5 étoile imbattable garantie diplomé certifié. Vous serez vous même surpris par la qualité de notre ligne téléphonique du <b>555-473-8292</b>.
+          Toute notre équipe vous souhaite bonne chance pour votre avenir selon ce qu'il vous réserve.
+          Nous ne sommes responsables d'aucune perte de membres ni d'autres organes ou de scénarios plus grave.
+        </p>
+
+        <label for="signe">Choisissez votre signe :</label>
+        <select id="signe">
+          <option value="">-- Sélectionnez --</option>
+          <option>Bélier</option><option>Taureau</option><option>Gémeaux</option><option>Cancer</option><option>Cochon</option>
+          <option>Lion</option><option>Vierge</option><option>Balance</option><option>Scorpion</option><option>Vers</option>
+          <option>Sagittaire</option><option>Capricorne</option><option>Verseau</option><option>Poissons</option><option>Castor</option>
+        </select>
+
+        <button id="btnHoroscope">Mon horoscope</button>
+
+        <div id="resultat" role="status" aria-live="polite"></div>
+      </div>
+    </div>
+
+<aside style="width:200px; display:flex; flex-direction:column; gap:20px;">
+  <div style="width:100%; height:150px; border-radius:4px; display:flex; align-items:center; justify-content:center;">
+    <img src="./rippedup.png" style="width:100%; height:100%; object-fit: cover; border-radius:4px;">
+  </div>
+  <div style="width:100%; height:150px; border-radius:4px; display:flex; align-items:center; justify-content:center;">
+    <img src="./allalong.png" style="width:100%; height:100%; object-fit: cover; border-radius:4px;">
+  </div>
+  <div style="width:100%; height:150px; border-radius:4px; display:flex; align-items:center; justify-content:center;">
+    <img src="./dialup.jpg" style="width:100%; height:100%; object-fit: cover; border-radius:4px;">
+  </div>
+</aside>
+
+  </div>
+
+  <script>
+    const horoscopes = {
+      "Bélier": "Il est temps de te vider la tête !",
+      "Taureau": "Tu ne trouveras jamais le vrai bonheur. Tu mourras seul.", // Trouve ma maison
+      "Gémeaux": "Fais attention au cochon qui parle en main.",
+      "Cancer": "Un indice : c'est dans le titre.",
+      "Lion": "Vous allez gagner 1 cubiliards d'euros d'ici genre demain soir.",
+      "Vierge": "2033 les aliens arrivent.",
+      "Balance": "Ils chinent et ils doguinent.",
+      "Scorpion": "Je crois que ça vient pour moi, décroche. Je ne peux rien t'expliquer tant que tu n'es pas seule. Garde ça entre nous.",
+      "Sagittaire": "Tue les.", // tVG5P6etiSk
+      "Capricorne": "Bravo ! Tu gagnes un  xÚ­[[sÛ8–~Ï¯ÐnU×ÊU‡‚|L§3=ÝÕIÏÆÉnÍÎÎ-Ò;©TÏ¯ßóP gratuitement !",
+      "Verseau": "Le rire est le meilleur des remèdes, n'oublie pas quand ton intestin grêle commencera à se dissoudre la semaine prochaine.",
+      "Poissons": "No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe infblumpoormación del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa. No existe información del programa.",
+      "Cochon": "Un sois et un réceptacle sur mesure.",
+      "Vers": "Une succession d'états à travers le temps formant une ligne convergeant en un point.",
+      "Castor": "Vous êtes l'origine, vous n'êtes plus rien, mais sans vous rien ne serait." // 1F9AB
+    };
+
+    function afficherHoroscope() {
+      const select = document.getElementById('signe');
+      const valeur = select.value;
+      const zone = document.getElementById('resultat');
+
+      const texte = horoscopes[valeur] || "Sélectionnez un horoscope.";
+      zone.style.display = 'block';
+      zone.textContent = texte;
+    }
+
+    document.getElementById('btnHoroscope').addEventListener('click', afficherHoroscope);
+  </script>
+</body>
+</html>
