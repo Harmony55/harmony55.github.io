@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cubes™</title>
+  <style>
+    :root{--bg:#333;--cell: #000}
+    html,body{height:100%;margin:0;background:var(--bg);font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial}
+    #gridWrap{padding:12px}
+    #grid{
+      display:grid;
+      grid-template-columns:repeat(100,40px);
+      grid-auto-rows:40px;
+      gap:6px;
+      width:max-content;
+    }
+    .cell{
+      width:40px;height:40px;background:var(--cell);cursor:pointer;border-radius:2px;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.02)
+    }
+
+    #stage{
+      position:fixed;left:0;top:0;right:0;bottom:0;display:none;background:var(--bg);overflow:hidden;z-index:50;
+    }
+    #stageInner{position:relative;width:100%;height:100%;z-index:10}
+    .placed{
+      position:absolute;user-select:none;pointer-events:auto;transform-origin:center center;transition:transform .15s ease
+    }
+    .placed:active{transform:scale(.98)}
+
+    #header{position:fixed;left:12px;top:12px;z-index:40;display:flex;gap:8px;align-items:center}
+    .btn{background:rgba(255,255,255,0.06);color:#fff;padding:8px 10px;border-radius:6px;border:0;cursor:pointer}
+    .label{color:#ddd;font-size:13px}
+
+    @media (max-width:700px){#grid{grid-template-columns:repeat(40,40px)}}
+  </style>
+</head>
+<body>
+
+  <div id="gridWrap">
+    <div id="grid" aria-label="Grid of 10,000 squares"></div>
+  </div>
+
+  <div id="stage" role="region" aria-label="Stage">
+    <div id="stageInner"></div>
+  </div>
+
+  <script>
+    const IMAGES = {
+      toilette: 'toilette.png',
+      bed:   'bed.png',
+      worm:  'worm.png',
+      image:  'image.png',
+      phone:  'phone.png',
+      sighting: 'sighting.png'
+    };
+
+    const imageSets = [
+      ['toilette','bed','worm','image','phone','sighting'],
+      ['bed','toilette','worm','image','phone'],
+      ['worm','toilette','bed','image'],
+      ['worm','toilette','bed']
+    ];
+
+    function pickImageSet() {
+      const r = Math.floor(Math.random() * imageSets.length);
+      return imageSets[r];
+    }
+
+    const grid = document.getElementById('grid');
+    const TOTAL = 20000;
+
+    const frag = document.createDocumentFragment();
+    for(let i=0;i<TOTAL;i++){
+      const d = document.createElement('div');
+      d.className='cell';
+      d.tabIndex = 0;
+      d.dataset.index = i;
+      d.addEventListener('click', onCellClick);
+      d.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' ') onCellClick.call(d,e); });
+      frag.appendChild(d);
+    }
+    grid.appendChild(frag);
+
+    const stage = document.getElementById('stage');
+    const stageInner = document.getElementById('stageInner');
+    const backBtn = document.getElementById('back');
+    const curIndexLabel = document.getElementById('curIndex');
+
+    backBtn.addEventListener('click', ()=>{
+      stage.style.display = 'none';
+      document.getElementById('gridWrap').style.display = '';
+    });
+
+    function onCellClick(e){
+      const idx = Number(this.dataset.index);
+      openStageForIndex(idx);
+    }
+
+    function openStageForIndex(idx){
+      document.getElementById('gridWrap').style.display = 'none';
+      stage.style.display = 'block';
+      stage.style.zIndex = 50;
+      renderImagesForIndex(idx);
+    }
+
+    function renderImagesForIndex(idx){
+      const existing = stageInner.dataset.rendered;
+      if(existing && Number(existing) === idx) return;
+
+      stageInner.innerHTML = '';
+      stageInner.dataset.rendered = idx;
+
+      const chosen = pickImageSet(idx);
+      const rng = Math.random;
+
+      const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+      const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+      chosen.forEach((key, i) => {
+        const img = document.createElement('img');
+        img.src = IMAGES[key] || IMAGES['worm'];
+        img.className = 'placed';
+        img.alt = key;
+
+        const size = Math.floor(rng() * 140) + 80;
+        img.style.width = size + 'px';
+
+        const padding = 40;
+        const left = Math.floor(Math.random() * (Math.max(100, vw - size - padding*2))) + padding;
+        const top = Math.floor(rng() * (Math.max(100, vh - size - padding*2))) + padding;
+        img.style.left = left + 'px';
+        img.style.top = top + 'px';
+
+        const rot = Math.floor(Math.random() * 80) - 40;
+        img.style.transform = `rotate(${rot}deg)`;
+
+        stageInner.appendChild(img);
+      });
+
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    if(params.has('i')){
+      const idx = Number(params.get('i'));
+      if(!isNaN(idx) && idx >=0 && idx < TOTAL) openStageForIndex(idx);
+    }
+
+    let resizeTimer = null;
+    window.addEventListener('resize', ()=>{
+      if(resizeTimer) clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(()=>{
+        const rendered = stageInner.dataset.rendered;
+        if(rendered) renderImagesForIndex(Number(rendered));
+      }, 150);
+    });
+  </script>
+</body>
+</html>
