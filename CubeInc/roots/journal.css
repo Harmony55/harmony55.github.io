@@ -1,0 +1,21 @@
+body {
+  background: #111;
+  margin: 0;
+  overflow: hidden;
+}
+svg {
+  width: 100vw;
+  height: 100vh;
+}
+.node {
+  fill: #444;
+  cursor: pointer;
+  transition: fill 0.2s;
+}
+.node:hover {
+  fill: #666;
+}
+line {
+  stroke: #333;
+  stroke-width: 2;
+}
