@@ -101,7 +101,7 @@ function addChildren(parent) {
   draw();
 }
 
-const collapseDepth = 3;//Math.floor(Math.random() * 11) + 10;
+const collapseDepth = Math.floor(Math.random() * 11) + 10;
 let collapsed = false;
 let collapseInProgress = false;
 
@@ -167,4 +167,5 @@ function addChildren(parent) {
   }
 
   draw();
+
 }
