@@ -1,3 +1,6 @@
+var image = new Image();
+image.src = 'tv_glitch.gif';
+
     const assets = {
         tvNormal: "tv.png",
         tvGlitch: "tv_glitch.gif",
@@ -97,4 +100,5 @@
             character.src = assets.char1;
             currentCharacter = 1;
         }
+
     }
