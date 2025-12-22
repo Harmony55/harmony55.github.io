@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PATH</title>
+    <link href='./journal.css' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+    <div class="container" id="step-1">
+        <div class="input-group">
+            <input type="text" maxlength="1" id="digit1">
+            <input type="text" maxlength="1" id="digit2">
+            <input type="text" maxlength="1" id="digit3">
+        </div>
+        <button onclick="checkCode()"></button>
+    </div>
+
+    <div class="container hidden" id="step-2">
+        <div id="label-prevalence">QUEL EST TA PRéVALENCE</div>
+        <div class="input-group">
+            <input type="text" id="input-prevalence" style="display: block;">
+        </div>
+        <button onclick="checkPrevalence()"></button>
+    </div>
+
+<script src='./jquery.js'></script>
+</body>
+</html>
