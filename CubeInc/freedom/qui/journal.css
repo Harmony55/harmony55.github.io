@@ -1,0 +1,30 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: black;
+    color: #8a8a8a;
+    font-family: "Courier New", monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#container {
+    text-align: center;
+}
+
+.question {
+    font-size: 20px;
+    margin-bottom: 40px;
+}
+
+.choice {
+    font-size: 18px;
+    margin: 8px 0;
+    cursor: pointer;
+}
+
+.choice:hover {
+    color: #676767;
+}
