@@ -1,0 +1,148 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #0c0c0c;
+            color: #00ff00;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background-color: #1a1a1a;
+            padding: 8px 12px;
+            border-bottom: 1px solid #333;
+        }
+
+        .terminal-title {
+            color: #888;
+            font-size: 12px;
+        }
+
+        .chat-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .message {
+            margin-bottom: 12px;
+        }
+
+        .timestamp {
+            color: #666;
+            font-size: 11px;
+        }
+
+        .user-id {
+            font-weight: bold;
+        }
+
+        .user-1 { color: #00d9ff; }
+        .user-2 { color: #ff6b9d; }
+
+        .message-text {
+            color: #e0e0e0;
+            margin-left: 20px;
+        }
+
+        .input-container {
+            background-color: #1a1a1a;
+            border-top: 1px solid #333;
+            padding: 12px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .prompt {
+            color: #00ff00;
+        }
+
+        #messageInput {
+            flex: 1;
+            background-color: transparent;
+            border: none;
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .system-message {
+            color: #888;
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+
+        .command-output {
+            color: #00ff00;
+            margin-bottom: 12px;
+            white-space: pre-wrap;
+        }
+
+        .error-message {
+            color: #ff5555;
+            margin-bottom: 12px;
+        }
+
+        .file-content {
+            color: #e0e0e0;
+            margin-bottom: 12px;
+            padding-left: 20px;
+            border-left: 2px solid #333;
+        }
+
+        .game-container {
+            color: #00ff00;
+            margin: 12px 0;
+            padding: 20px;
+            border: 2px solid #00ff00;
+            background-color: #000;
+        }
+
+        .game-map {
+            line-height: 1.2;
+            letter-spacing: 2px;
+        }
+
+        .game-info {
+            margin-top: 10px;
+            color: #ffff00;
+        }
+
+        .image-container {
+            margin: 12px 0;
+            padding: 10px;
+            border: 1px solid #333;
+            background-color: #1a1a1a;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0c0c0c;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
