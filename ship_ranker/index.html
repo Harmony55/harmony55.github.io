@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deltarune Shipping Ranker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="main-content">
+
+
+            <div class="versus-container">
+                <div class="card" id="card1">
+                    <div class="card-flag" id="flag1">
+                        <img src="images/us-flag.png" alt="United States Flag">
+                    </div>
+                    <div class="card-name" id="name1">United States</div>
+                </div>
+
+                <div class="versus-text">VS</div>
+
+                <div class="card" id="card2">
+                    <div class="card-flag" id="flag2">
+                        <img src="images/uk-flag.png" alt="United Kingdom Flag">
+                    </div>
+                    <div class="card-name" id="name2">United Kingdom</div>
+                </div>
+            </div>
+
+            <div class="progress-section">
+                <div class="progress-label">
+                    <span id="progressText">0 / 0</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="header-controls">
+                <button class="btn btn-secondary btn-small" id="resetBtn">Reset</button>
+                <button class="btn btn-secondary btn-small" id="importBtn">Import</button>
+                <button class="btn btn-primary btn-small" id="exportBtn">Export</button>
+            </div>
+                <!--
+            <div class="sidebar-section">
+                <div class="sidebar-title">Stats</div>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-value" id="totalComparisons">0</div>
+                        <div class="stat-label">Comparisons</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="totalItems">0</div>
+                        <div class="stat-label">Items</div>
+                    </div>
+                </div>
+
+            </div>
+                -->
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Classement</div>
+                <div class="ranking-list" id="rankingList">
+                    <div class="empty-state">
+                        <div class="empty-state-text">HYPERLINK BLOCKED</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="file" id="fileInput" style="display: none;" accept=".json">
+
+    <!-- Import Modal -->
+    <div class="modal" id="importModal">
+        <div class="modal-content">
+            <div class="modal-title">Importer le classement</div>
+            <div class="form-group">
+                <label class="form-label">Copier coller classement</label>
+                <textarea class="form-input form-textarea" id="importData" placeholder="Mettre texte ici..."></textarea>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeImportModal()">Annuler</button>
+                <button class="btn btn-primary" onclick="confirmImport()">Importer</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
