@@ -1,588 +1,728 @@
 const DEFAULT_ITEMS = [
     {
-        "id": "1",
+        "id": 1,
         "name": "25 Shadowguys",
         "flag": "./deltarune-ship/25-shadowguys.png"
     },
     {
-        "id": "2",
+        "id": 2,
         "name": "Addison Polycule",
         "flag": "./deltarune-ship/addison-polycule.png"
     },
     {
-        "id": "3",
+        "id": 3,
         "name": "Alphiel",
         "flag": "./deltarune-ship/alphiel.png"
     },
     {
-        "id": "4",
+        "id": 4,
         "name": "Alphore",
         "flag": "./deltarune-ship/alphore.png"
     },
     {
-        "id": "5",
+        "id": 5,
         "name": "Alphyne",
         "flag": "./deltarune-ship/alphyne.png"
     },
     {
-        "id": "6",
+        "id": 6,
         "name": "Asgore x Carol",
         "flag": "./deltarune-ship/asgore-x-carol.png"
     },
     {
-        "id": "7",
+        "id": 7,
         "name": "Asgoriel",
         "flag": "./deltarune-ship/asgoriel.png"
     },
     {
-        "id": "8",
+        "id": 8,
         "name": "Asgorudy",
         "flag": "./deltarune-ship/asgorudy.png"
     },
     {
-        "id": "9",
+        "id": 9,
         "name": "Azzypants",
-        "flag": "./deltarune-ship/azzypants.png"
+        "flag": "./deltarune-ship/66.png"
     },
     {
-        "id": "10",
+        "id": 10,
         "name": "Berdelle",
         "flag": "./deltarune-ship/berdelle.png"
     },
     {
-        "id": "11",
+        "id": 11,
         "name": "Berdsei",
         "flag": "./deltarune-ship/berdsei.png"
     },
     {
-        "id": "12",
+        "id": 12,
         "name": "Berdsie",
         "flag": "./deltarune-ship/berdsie.png"
     },
     {
-        "id": "14",
+        "id": 14,
         "name": "Bluescreen",
         "flag": "./deltarune-ship/bluescreen.png"
     },
     {
-        "id": "15",
+        "id": 15,
         "name": "Bratcat",
         "flag": "./deltarune-ship/bratcat.png"
     },
     {
-        "id": "16",
+        "id": 16,
         "name": "Brazzy",
-        "flag": "./deltarune-ship/brazzy.png"
+        "flag": "./deltarune-ship/67.png"
     },
     {
-        "id": "19",
+        "id": 19,
         "name": "Cariel",
         "flag": "./deltarune-ship/cariel.png"
     },
     {
-        "id": "22",
+        "id": 22,
         "name": "Carudy",
         "flag": "./deltarune-ship/carudy.png"
     },
     {
-        "id": "23",
+        "id": 23,
         "name": "Catelle",
         "flag": "./deltarune-ship/catelle.png"
     },
     {
-        "id": "25",
+        "id": 25,
         "name": "Catsie",
         "flag": "./deltarune-ship/catsie.png"
     },
     {
-        "id": "26",
+        "id": 26,
         "name": "Catti x Berdly",
         "flag": "./deltarune-ship/catti-x-berdly.png"
     },
     {
-        "id": "27",
+        "id": 27,
         "name": "Cattington",
         "flag": "./deltarune-ship/cattington.png"
     },
     {
-        "id": "28",
+        "id": 28,
         "name": "Cazzy",
         "flag": "./deltarune-ship/cazzy.png"
     },
     {
-        "id": "30",
+        "id": 30,
         "name": "Clovsei",
         "flag": "./deltarune-ship/clovsei.png"
     },
     {
-        "id": "31",
+        "id": 31,
         "name": "Cyberspade",
         "flag": "./deltarune-ship/cyberspade.png"
     },
     {
-        "id": "32",
+        "id": 32,
         "name": "Dess x Bratty",
         "flag": "./deltarune-ship/dess-x-bratty.png"
     },
     {
-        "id": "33",
+        "id": 33,
         "name": "Dessriel",
-        "flag": "./deltarune-ship/dessriel.png"
+        "flag": "./deltarune-ship/68.png"
     },
     {
-        "id": "34",
+        "id": 34,
         "name": "FRIEND x ERAM",
         "flag": "./deltarune-ship/friend-x-eram.png"
     },
     {
-        "id": "35",
+        "id": 35,
         "name": "Friendtenna",
         "flag": "./deltarune-ship/friendtenna.png"
     },
     {
-        "id": "37",
+        "id": 37,
         "name": "Friendton",
         "flag": "./deltarune-ship/friendton.png"
     },
     {
-        "id": "38",
+        "id": 38,
         "name": "Corestrings",
         "flag": "./deltarune-ship/gaster-x-player.png"
     },
     {
-        "id": "39",
+        "id": 39,
         "name": "gasterouxls",
         "flag": "./deltarune-ship/gasterouxls.png"
     },
     {
-        "id": "40",
+        "id": 40,
         "name": "gerster",
         "flag": "./deltarune-ship/gerster.png"
     },
     {
-        "id": "41",
+        "id": 41,
         "name": "Head Hathy x Werewerewire",
         "flag": "./deltarune-ship/head-hathy-x-werewerewire.png"
     },
     {
-        "id": "42",
+        "id": 42,
         "name": "Jevilaard",
         "flag": "./deltarune-ship/jevilaard.png"
     },
     {
-        "id": "44",
+        "id": 44,
         "name": "Kerdly",
         "flag": "./deltarune-ship/kerdly.png"
     },
     {
-        "id": "45",
+        "id": 45,
         "name": "Kerdsei",
         "flag": "./deltarune-ship/kerdsei.png"
     },
     {
-        "id": "46",
+        "id": 46,
         "name": "Kerdsuselle",
         "flag": "./deltarune-ship/kerdsuselle.png"
     },
     {
-        "id": "47",
+        "id": 47,
         "name": "Kingkaard",
         "flag": "./deltarune-ship/kingkaard.png"
     },
     {
-        "id": "49",
+        "id": 49,
         "name": "Kingvil",
         "flag": "./deltarune-ship/kingvil.png"
     },
     {
-        "id": "50",
+        "id": 50,
         "name": "Kralsei",
         "flag": "./deltarune-ship/kralsei.png"
     },
     {
-        "id": "51",
+        "id": 51,
         "name": "Kralsuselle",
         "flag": "./deltarune-ship/kralsuselle.png"
     },
     {
-        "id": "52",
+        "id": 52,
         "name": "Kralsuselly",
         "flag": "./deltarune-ship/kralsuselly.png"
     },
     {
-        "id": "53",
+        "id": 53,
         "name": "Kralsusie",
         "flag": "./deltarune-ship/kralsusie.png"
     },
     {
-        "id": "54",
+        "id": 54,
         "name": "Kratti",
         "flag": "./deltarune-ship/kratti.png"
     },
     {
-        "id": "55",
+        "id": 55,
         "name": "Kressel",
         "flag": "./deltarune-ship/kressel.png"
     },
     {
-        "id": "56",
+        "id": 56,
         "name": "Snowgrave Kriselle",
         "flag": "./deltarune-ship/kriselle-wr.png"
     },
     {
-        "id": "57",
+        "id": 57,
         "name": "Kriselle",
         "flag": "./deltarune-ship/kriselle.png"
     },
     {
-        "id": "58",
+        "id": 58,
         "name": "Krisington",
         "flag": "./deltarune-ship/krisington.png"
     },
     {
-        "id": "59",
+        "id": 59,
         "name": "Kristeen",
         "flag": "./deltarune-ship/kristeen.png"
     },
     {
-        "id": "60",
+        "id": 60,
         "name": "Krusie",
         "flag": "./deltarune-ship/krusie.png"
     },
     {
-        "id": "61",
+        "id": 61,
         "name": "Krusielle",
         "flag": "./deltarune-ship/krusielle.png"
     },
     {
-        "id": "63",
+        "id": 63,
         "name": "Mettatenna",
         "flag": "./deltarune-ship/mettatenna.png"
     },
     {
-        "id": "64",
+        "id": 64,
         "name": "Mewgore",
         "flag": "./deltarune-ship/mewgore.png"
     },
     {
-        "id": "65",
+        "id": 65,
         "name": "Polymike",
         "flag": "./deltarune-ship/mike-polycule.png"
     },
     {
-        "id": "67",
+        "id": 67,
         "name": "Miketenna",
         "flag": "./deltarune-ship/miketenna.png"
     },
     {
-        "id": "73",
+        "id": 73,
         "name": "Mizzmanager",
         "flag": "./deltarune-ship/mizzmanager.png"
     },
     {
-        "id": "74",
+        "id": 74,
         "name": "Nicepants",
         "flag": "./deltarune-ship/nicepants.png"
     },
     {
-        "id": "75",
+        "id": 75,
         "name": "Nubert x Starwalker",
         "flag": "./deltarune-ship/nubert-x-starwalker.png"
     },
     {
-        "id": "76",
+        "id": 76,
         "name": "Papykaard",
         "flag": "./deltarune-ship/papykaard.png"
     },
     {
-        "id": "77",
+        "id": 77,
         "name": "Playersei",
         "flag": "./deltarune-ship/playersei.png"
     },
     {
-        "id": "78",
+        "id": 78,
         "name": "Polyrouxls",
         "flag": "./deltarune-ship/polyrouxls.png"
     },
     {
-        "id": "79",
+        "id": 79,
         "name": "Queenkaard",
         "flag": "./deltarune-ship/queenkaard.png"
     },
     {
-        "id": "81",
+        "id": 81,
         "name": "Queentenna",
         "flag": "./deltarune-ship/queentenna.png"
     },
     {
-        "id": "82",
+        "id": 82,
         "name": "Quoriel",
         "flag": "./deltarune-ship/quoriel.png"
     },
     {
-        "id": "84",
+        "id": 84,
         "name": "Ralselle",
         "flag": "./deltarune-ship/ralselle.png"
     },
     {
-        "id": "85",
+        "id": 85,
         "name": "Ralsusie",
         "flag": "./deltarune-ship/ralsusie.png"
     },
     {
-        "id": "86",
+        "id": 86,
         "name": "Ramb x ERAM",
         "flag": "./deltarune-ship/ramb-x-eram.png"
     },
     {
-        "id": "87",
+        "id": 87,
         "name": "Rambfriend",
         "flag": "./deltarune-ship/rambfriend.png"
     },
     {
-        "id": "88",
+        "id": 88,
         "name": "Rambtenna",
         "flag": "./deltarune-ship/rambtenna.png"
     },
     {
-        "id": "91",
+        "id": 91,
         "name": "Rudouxls",
         "flag": "./deltarune-ship/rudouxls.png"
     },
     {
-        "id": "93",
+        "id": 93,
         "name": "Sweet Cap'n Cakes",
         "flag": "./deltarune-ship/scc.png"
     },
     {
-        "id": "98",
+        "id": 98,
         "name": "Seavil",
         "flag": "./deltarune-ship/seavil.png"
     },
     {
-        "id": "103",
+        "id": 103,
         "name": "Snowyteen",
         "flag": "./deltarune-ship/snowyteen.png"
     },
     {
-        "id": "104",
+        "id": 104,
         "name": "Soriel",
         "flag": "./deltarune-ship/soriel.png"
     },
     {
-        "id": "106",
+        "id": 106,
         "name": "Spadesgore",
         "flag": "./deltarune-ship/spadesgore.png"
     },
     {
-        "id": "111",
+        "id": 111,
         "name": "Spamqueen",
         "flag": "./deltarune-ship/spamqueen.png"
     },
     {
-        "id": "112",
+        "id": 112,
         "name": "Spamtenna",
         "flag": "./deltarune-ship/spamtenna.png"
     },
     {
-        "id": "114",
+        "id": 114,
         "name": "Spamvil",
         "flag": "./deltarune-ship/spamvil.png"
     },
     {
-        "id": "115",
+        "id": 115,
         "name": "Starweather",
         "flag": "./deltarune-ship/starweather.png"
     },
     {
-        "id": "117",
+        "id": 117,
         "name": "Suselle",
         "flag": "./deltarune-ship/suselle.png"
     },
     {
-        "id": "118",
+        "id": 118,
         "name": "Susellerdy",
         "flag": "./deltarune-ship/susellerdy.png"
     },
     {
-        "id": "124",
+        "id": 124,
         "name": "Swatchton",
         "flag": "./deltarune-ship/swatchton.png"
     },
     {
-        "id": "127",
+        "id": 127,
         "name": "Tasqueen",
         "flag": "./deltarune-ship/tasqueen.png"
     },
     {
-        "id": "128",
+        "id": 128,
         "name": "Tasquevil",
         "flag": "./deltarune-ship/tasquevil.png"
     },
     {
-        "id": "131",
+        "id": 131,
         "name": "Vessel x Ralsei",
         "flag": "./deltarune-ship/vessel-x-ralsei.png"
     },
     {
-        "id": "132",
+        "id": 132,
         "name": "Vesselle",
         "flag": "./deltarune-ship/vesselle.png"
     },
     {
-        "id": "133",
+        "id": 133,
         "name": "Weather Duo",
         "flag": "./deltarune-ship/weather-duo.png"
     },
     {
-        "id": "137",
+        "id": 137,
         "name": "Jongtat",
         "flag": "./deltarune-ship/zzzzz-1763928359jongtat.png"
     },
     {
-        "id": "138",
+        "id": 138,
         "name": "Miketat",
         "flag": "./deltarune-ship/zzzzz-1763928359miketat.png"
     },
     {
-        "id": "139",
+        "id": 139,
         "name": "Rambpins",
         "flag": "./deltarune-ship/zzzzz-1763928359rambpins.png"
     },
     {
-        "id": "140",
+        "id": 140,
         "name": "Rambtat",
         "flag": "./deltarune-ship/zzzzz-1763928359rambtat.png"
     },
     {
-        "id": "141",
+        "id": 141,
         "name": "Battenna",
         "flag": "./deltarune-ship/zzzzz-1763928360battenna.png"
     },
     {
-        "id": "142",
+        "id": 142,
         "name": "Copycats",
         "flag": "./deltarune-ship/zzzzz-1763928360copycats.png"
     },
     {
-        "id": "143",
+        "id": 143,
         "name": "Friendlytricks",
         "flag": "./deltarune-ship/zzzzz-1763928360friendlytricks.png"
     },
     {
-        "id": "144",
+        "id": 144,
         "name": "Friendpins",
         "flag": "./deltarune-ship/zzzzz-1763928360friendpins.png"
     },
     {
-        "id": "145",
+        "id": 145,
         "name": "Meowdy",
         "flag": "./deltarune-ship/zzzzz-1763928360meowdy.png"
     },
     {
-        "id": "146",
+        "id": 146,
         "name": "Pluttat",
         "flag": "./deltarune-ship/zzzzz-1763928360pluttat.png"
     },
     {
-        "id": "147",
+        "id": 147,
         "name": "Ralsuselle",
         "flag": "./deltarune-ship/zzzzz-1763928360ralsuselle.png"
     },
     {
-        "id": "149",
+        "id": 149,
         "name": "Shippins",
         "flag": "./deltarune-ship/zzzzz-1763928360shippins.png"
     },
     {
-        "id": "150",
+        "id": 150,
         "name": "Zappins",
         "flag": "./deltarune-ship/zzzzz-1763928360zappins.png"
     },
     {
-        "id": "152",
+        "id": 152,
         "name": "Ramb x Swatch",
         "flag": "./deltarune-ship/zzzzz-1763929226ramb-x-swatch.png"
     },
     {
-        "id": "154",
+        "id": 154,
         "name": "Batgast",
         "flag": "./deltarune-ship/zzzzz-1763929361batgast.png"
     },
     {
-        "id": "155",
+        "id": 155,
         "name": "Mettaspam",
         "flag": "./deltarune-ship/zzzzz-1764297740mettaspam.png"
     },
     {
-        "id": "157",
+        "id": 157,
         "name": "Little Ball x Nubert",
         "flag": "./deltarune-ship/zzzzz-1765653783little-ball-x-nubert.png"
     },
     {
-        "id": "160",
+        "id": 160,
         "name": "Jongtenna",
         "flag": "./deltarune-ship/zzzzz-1769327787jongtenna.png"
     },
     {
-        "id": "161",
+        "id": 161,
         "name": "Kingtenna",
         "flag": "./deltarune-ship/zzzzz-1769327787kingtenna.png"
     },
     {
-        "id": "162",
+        "id": 162,
         "name": "Krissoul",
         "flag": "./deltarune-ship/zzzzz-1769327787krissoul.png"
     },
     {
-        "id": "168",
+        "id": 168,
         "name": "Soulttat",
         "flag": "./deltarune-ship/zzzzz-1769327787soulttat.png"
     },
     {
-        "id": "171",
+        "id": 171,
         "name": "Spamtat",
         "flag": "./deltarune-ship/zzzzz-1769327787spamtat.png"
     },
     {
-        "id": "172",
+        "id": 172,
         "name": "Zapper x Shadowguy",
         "flag": "./deltarune-ship/zzzzz-1769327787zapper-x-shadowguy.png"
     },
     {
-        "id": "173",
+        "id": 173,
         "name": "Azzyrus",
         "flag": "./deltarune-ship/zzzzz-1769327788azzyrus.png"
     },
     {
-        "id": "176",
+        "id": 176,
         "name": "Gaster x Forgotten Man",
         "flag": "./deltarune-ship/zzzzz-1769327788gaster-x-forgotten-man.png"
     },
     {
-        "id": "178",
+        "id": 178,
         "name": "Knight x Maddie",
         "flag": "./deltarune-ship/zzzzz-1769327788knight-x-maddie.png"
     },
     {
-        "id": "179",
+        "id": 179,
         "name": "Mettaswatch",
         "flag": "./deltarune-ship/zzzzz-1769327788mettaswatch.png"
     },
     {
-        "id": "183",
+        "id": 183,
         "name": "Plutenna",
         "flag": "./deltarune-ship/zzzzz-1769327788plutenna.png"
     },
     {
-        "id": "184",
+        "id": 184,
         "name": "Spamtennaton",
         "flag": "./deltarune-ship/zzzzz-1769327788spamtennaton.png"
     },
     {
-        "id": "185",
-        "name": "Torudy",
-        "flag": "./deltarune-ship/zzzzz-1769327788torudy.png"
+        "id": 185,
+        "name": "Charisk",
+        "flag": "./deltarune-ship/1.png"
+    },
+    {
+        "id": 186,
+        "name": "Friskriel",
+        "flag": "./deltarune-ship/2.png"
+    },
+    {
+        "id": 187,
+        "name": "Friskid",
+        "flag": "./deltarune-ship/3.png"
+    },
+    {
+        "id": 188,
+        "name": "Undertale Asgoriel",
+        "flag": "./deltarune-ship/4.png"
+    },
+    {
+        "id": 189,
+        "name": "KingDings",
+        "flag": "./deltarune-ship/10.png"
+    },
+    {
+        "id": 190,
+        "name": "Undertale Soriel",
+        "flag": "./deltarune-ship/19.png"
+    },
+    {
+        "id": 191,
+        "name": "Toaster",
+        "flag": "./deltarune-ship/21.png"
+    },
+    {
+        "id": 192,
+        "name": "Goatbun",
+        "flag": "./deltarune-ship/23.png"
+    },
+    {
+        "id": 193,
+        "name": "Sansby",
+        "flag": "./deltarune-ship/28.png"
+    },
+    {
+        "id": 194,
+        "name": "Dunkin Donuts",
+        "flag": "./deltarune-ship/29.png"
+    },
+    {
+        "id": 195,
+        "name": "Sciencepeoples",
+        "flag": "./deltarune-ship/30.png"
+    },
+    {
+        "id": 197,
+        "name": "Sanschup",
+        "flag": "./deltarune-ship/35.png"
+    },
+    {
+        "id": 198,
+        "name": "Papyruffet",
+        "flag": "./deltarune-ship/38.png"
+    },
+    {
+        "id": 199,
+        "name": "Papby",
+        "flag": "./deltarune-ship/39.png"
+    },
+    {
+        "id": 200,
+        "name": "Papyton",
+        "flag": "./deltarune-ship/41.png"
+    },
+    {
+        "id": 201,
+        "name": "Undertale Alphyne",
+        "flag": "./deltarune-ship/42.png"
+    },
+    {
+        "id": 202,
+        "name": "Mewdyne",
+        "flag": "./deltarune-ship/45.png"
+    },
+    {
+        "id": 203,
+        "name": "MewAlphyne",
+        "flag": "./deltarune-ship/46.png"
+    },
+    {
+        "id": 204,
+        "name": "Mewphys",
+        "flag": "./deltarune-ship/48.png"
+    },
+    {
+        "id": 205,
+        "name": "Mettalphys",
+        "flag": "./deltarune-ship/49.png"
+    },
+    {
+        "id": 206,
+        "name": "Alphster",
+        "flag": "./deltarune-ship/50.png"
+    },
+    {
+        "id": 207,
+        "name": "Burgerton",
+        "flag": "./deltarune-ship/51.png"
+    },
+    {
+        "id": 208,
+        "name": "MettaGrill",
+        "flag": "./deltarune-ship/52.png"
+    },
+    {
+        "id": 209,
+        "name": "Mettaren",
+        "flag": "./deltarune-ship/53.png"
+    },
+    {
+        "id": 210,
+        "name": "GhostlyWebs",
+        "flag": "./deltarune-ship/54.png"
+    },
+    {
+        "id": 211,
+        "name": "Dogamyressa",
+        "flag": "./deltarune-ship/59.png"
+    },
+    {
+        "id": 212,
+        "name": "Grillster",
+        "flag": "./deltarune-ship/60.png"
+    },
+    {
+        "id": 213,
+        "name": "Royal Guards",
+        "flag": "./deltarune-ship/64.png"
+    },
+    {
+        "id": 214,
+        "name": "Schoolgirls",
+        "flag": "./deltarune-ship/112.png"
     }
 ];
 
@@ -595,11 +735,12 @@ class RankingGame {
         this.comparisonCount = {};
         this.comparisons = [];
         // Ships big
-        this.boostedItemIds = [5, 98, 147, 141, 117, 112, 104, 85, 65, 63, 61, 60, 57, 56, 50, 44, 38, 33];
+        this.boostedItemIds = [5, 98, 147, 141, 117, 112, 104, 85, 65, 63, 61, 60, 57, 56, 50, 44, 38, 33, 185, 188, 190, 201, 207, 195];
         // Matchup récents
         this.recentMatches = [];
         this.preventDuplicates = true;
         this.INITIAL_ELO = 1500;
+        this.bannedIds = [];
         this.initializeItems();
         this.loadFromStorage();
         this.setupEventListeners();
@@ -640,7 +781,7 @@ class RankingGame {
         };
     }
             nextMatchup() {
-                const items = [...this.items];
+                const items = this.items.filter(item => !this.bannedIds.includes(item.id));
                 let item1, item2;
                 let attempts = 0;
                 const maxAttempts = 15;
@@ -697,6 +838,24 @@ class RankingGame {
                 this.currentItem2 = item2;
                 this.displayMatchup();
             }
+
+    toggleBan(id) {
+        console.log(id);
+        const index = this.bannedIds.indexOf(id);
+        if (index === -1) {
+            this.bannedIds.push(id);
+        } else {
+            this.bannedIds.splice(index, 1);
+        }
+        this.saveToStorage();
+        this.updateUI();
+        
+        console.log(this.bannedIds);
+
+        if (this.currentItem1?.id === id || this.currentItem2?.id === id) {
+            this.nextMatchup();
+        }
+    }
     displayMatchup() {
         document.getElementById('flag1').innerHTML = `<img src="${this.currentItem1.flag}" alt="${this.currentItem1.name}">`;
         document.getElementById('name1').textContent = this.currentItem1.name;
@@ -773,17 +932,27 @@ class RankingGame {
                 const rankingList = document.getElementById('rankingList');
                 if (ranking.length > 0) {
                     rankingList.innerHTML = ranking
-                        .map((item, index) => `
-                            <div class="ranking-item" style="--animation-delay: ${index * 0.05}s">
-                                <div class="ranking-index">${index + 1}</div>
-                                <div class="ranking-flag">
-                                    <img src="${item.flag}" alt="${item.name}" class="ranking-img">
+                        .map((item, index) => {
+                            const isBanned = this.bannedIds.includes(item.id);
+                            console.log(this.bannedIds);
+                            console.log(item.id);
+                            console.log(isBanned);
+                            return `
+                                <div class="ranking-item" style="--animation-delay: ${index * 0.05}s">
+                                    <div class="ranking-index">${index + 1}</div>
+                                    <div class="ranking-flag">
+                                        <img src="${item.flag}" alt="${item.name}" class="${isBanned ? 'ranking-img-swoon' : 'ranking-img'}">
+                                    </div>
+                                    <div class="ranking-name">${item.name}</div>
+                                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-left: auto;">${Math.round(item.elo)}</div>
+                                    <button class="ban-btn" onclick="game.toggleBan(${item.id})">
+                                        ${isBanned ? 'Revive' : 'Swoon'}
+                                    </button>
                                 </div>
-                                <div class="ranking-name">${item.name}</div>
-                                <div style="font-size: 0.75rem; color: var(--text-muted); margin-left: auto;">${Math.round(item.elo)}</div>
-                            </div>
-                        `)
+                            `;
+                        })
                         .join('');
+
                 } else {
                     rankingList.innerHTML = '<div class="empty-state"><div class="empty-state-text">Start comparing!</div></div>';
                 }
@@ -797,7 +966,8 @@ class RankingGame {
             comparisons: this.comparisons,
             boostedItemIds: this.boostedItemIds,
             recentMatches: this.recentMatches,
-            preventDuplicates: this.preventDuplicates
+            preventDuplicates: this.preventDuplicates,
+            bannedIds: this.bannedIds
         };
         localStorage.setItem('rankingGameData', JSON.stringify(data));
     }
@@ -806,13 +976,14 @@ class RankingGame {
         if (stored) {
             try {
                 const data = JSON.parse(stored);
-                this.items = data.items || this.items;
+                //this.items = data.items || this.items;
                 this.elo = data.elo || this.elo;
                 this.comparisonCount = data.comparisonCount || {};
                 this.comparisons = data.comparisons || [];
                 this.boostedItemIds = data.boostedItemIds || [];
                 this.recentMatches = data.recentMatches || [];
                 this.preventDuplicates = data.preventDuplicates !== undefined ? data.preventDuplicates : true;
+                this.bannedIds = data.bannedIds || [];
                 this.initializeItems();
             } catch (e) {
                 console.error('Echec du stockage', e);
@@ -824,7 +995,8 @@ class RankingGame {
                     items: this.items,
                     elo: this.elo,
                     comparisons: this.comparisons,
-                    exportDate: new Date().toISOString()
+                    exportDate: new Date().toISOString(),
+                    bannedIds: this.bannedIds
                 };
                 const dataStr = JSON.stringify(data, null, 2);
                 const blob = new Blob([dataStr], { type: 'application/json' });
@@ -893,16 +1065,28 @@ class RankingGame {
                     alert('Invalid ranking data format');
                     return;
                 }
-                game.items = data.items;
-                game.elo = data.elo;
-                game.comparisons = data.comparisons;
+                //game.items = data.items;
+                
+                const newEloMap = {};
+                game.items.forEach(item => {
+                    newEloMap[item.id] = data.elo[item.id] !== undefined ? data.elo[item.id] : game.INITIAL_ELO;
+                });
+                game.elo = newEloMap;
+
+                const newCountMap = {};
+                game.items.forEach(item => {
+                    newCountMap[item.id] = (data.comparisonCount && data.comparisonCount[item.id]) ? data.comparisonCount[item.id] : 0;
+                });
+
+                game.comparisonCount = newCountMap;
+                game.bannedIds = data.bannedIds || [];
                 game.saveToStorage();
                 game.updateUI();
                 game.nextMatchup();
                 closeImportModal();
-                alert('Ranking imported successfully!');
+                alert('Importation réussie!');
             } catch (e) {
-                alert('Invalid JSON format: ' + e.message);
+                alert('Fichier invalide: ' + e.message);
             }
         }
 

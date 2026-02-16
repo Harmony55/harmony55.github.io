@@ -4,21 +4,21 @@
     --bg-color: #000000;
     --text-color: #ffffff;
     --accent-color: #00ff9d;
-    /* Defaults */
+    
     --grid-color: #330033;
     --grid-line: #660066;
     --border-width: 3px;
     --ui-font: 'Roboto Mono', monospace;
 }
 
-/* resetting things because browsers are inconsistent */
+
 * {
     box-sizing: border-box;
 }
 
 body {
     background-color: var(--bg-color);
-    /* pretend this looks like a cool grid */
+    
     background-image:
         linear-gradient(var(--grid-line) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
@@ -32,11 +32,11 @@ body {
     padding: 0;
     min-height: 100vh;
     min-height: 100dvh;
-    /* band-aid for tiny screens */
+    
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
-    /* cursor: none; Removed global hide */
+    
 }
 
         body {
@@ -148,16 +148,16 @@ body {
 
 .progress-bar {
     width: 100%;
-    height: 12px;           /* Slightly taller often looks better for square bars */
-    background: #800000;    /* Dark Maroon Background */
-    border-radius: 0;       /* Removes the rounding */
+    height: 12px;           
+    background: #800000;    
+    border-radius: 0;       
     overflow: hidden;
 }
 
 .progress-fill {
     height: 100%;
-    background: #02FFFF;    /* Cyan/Aqua Progress Color */
-    border-radius: 0;       /* Removes the rounding */
+    background: #02FFFF;    
+    border-radius: 0;       
     transition: width 0.4s ease;
 }
 
@@ -171,24 +171,24 @@ body {
         }
 
 .card {
-    /* 1. Set the background color (this shows through the transparency) */
-    background-color: #000000;
-    background-clip: padding-box; /* Crucial: keeps background inside the border */
-
-    /* 2. Setup the Border Image */
-    border-style: solid;
-    border-width: 40px; /* Adjust this to match the size of your corners */
     
-    /* Replace 'your-image.png' with your actual file path */
+    background-color: #000000;
+    background-clip: padding-box; 
+
+    
+    border-style: solid;
+    border-width: 40px; 
+    
+    
     border-image-source: url('frame_light.png'); 
     
-    /* Slice the image. Don't use 'fill' if you want the CSS background to show */
+    
     border-image-slice: 40; 
     
-    /* 3. Handling the edges */
+    
     border-image-repeat: stretch; 
 
-    /* Layout & Polish */
+    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -229,20 +229,20 @@ body {
         }
 
 .sidebar {
-    width: 320px;
-    background: #000000;      /* Solid Black Background */
-    border: 4px solid #FFFFFF; /* White Square Outline */
+    width: 400px;
+    background: #000000;      
+    border: 4px solid #FFFFFF; 
     
-    /* 1. Detach from the sides */
-    margin: 1rem;             /* Adds space around the entire sidebar */
-    height: calc(100% - 2rem); /* Adjusts height to account for the margin */
     
-    /* 2. Aesthetics & Layout */
+    margin: 1rem;             
+    height: calc(100% - 2rem); 
+    
+    
     display: flex;
     flex-direction: column;
     overflow: hidden;
     
-    /* Optional: sharp corners (remove if inherited from elsewhere) */
+    
     border-radius: 0; 
 }
 
@@ -261,16 +261,16 @@ body {
         }
 
 .ranking-list {
-    /* 1. Set a fixed height or max-height */
+    
     height: 670px; 
     
-    /* 2. Enable vertical scrolling */
+    
     overflow-y: auto; 
     
-    /* 3. Optional: Prevents horizontal scrollbars from appearing */
+    
     overflow-x: hidden; 
     
-    /* 4. Optional: Add some padding so the scrollbar doesn't touch the text */
+    
     padding-right: 10px;
 }
 
@@ -313,8 +313,8 @@ body {
         }
 
 .ranking-flag {
-    width: 30px;        /* Fixed width for the flag container */
-    margin-right: 10px; /* Space between flag and name */
+    width: 30px;        
+    margin-right: 10px; 
     display: flex;
     align-items: center;
 }
@@ -322,7 +322,16 @@ body {
 .ranking-img {
     width: 100%;
     height: auto;
-    border-radius: 2px; /* Small rounding for a cleaner look */
+    border-radius: 2px; 
+    display: block;
+    object-fit: contain; 
+}
+
+.ranking-img-swoon {
+    filter: grayscale(100%);
+    width: 100%;
+    height: auto;
+    border-radius: 2px; 
     display: block;
     object-fit: contain; 
 }
@@ -521,3 +530,34 @@ body {
         .sidebar-section:last-child {
             border-bottom: none;
         }
+
+.ranking-item.banned {
+    opacity: 0.5;
+    filter: grayscale(1);
+    background: rgba(, 0, 0, 0.1);
+}
+
+.ban-btn {
+    margin-left: 10px;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 0.7rem;
+    border: 1px solid var(--text-muted);
+    background: transparent;
+    color: var(--text-muted);
+    transition: all 0.2s;
+}
+
+
+
+.ban-btn:hover {
+    background: #000000;
+    color: white;
+    border: 1px solid #FFFFFF; 
+}
+
+.ranking-item.banned .ban-btn {
+    background: #44ff44;
+    color: black;
+    border-color: #44ff44;
+}
