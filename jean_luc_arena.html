@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JEAN-LUC GAMBLING</title>
+<link href="https://fonts.googleapis.com/css2?family=Creepster&family=Oswald:wght@700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #00ff41;
+    --red: #ff0033;
+    --yellow: #ffcc00;
+    --cyan: #00ffff;
+    --bg: #020a04;
+    --slot-bg: #0a1a0a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--bg);
+    color: var(--green);
+    font-family: 'Share Tech Mono', monospace;
+    overflow-x: hidden;
+    min-height: 100vh;
+    cursor: crosshair;
+    touch-action: manipulation; /* better mobile touch */
+  }
+
+  /* SCANLINE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,255,65,0.03) 2px,
+      rgba(0,255,65,0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+    animation: scanMove 8s linear infinite;
+  }
+
+  @keyframes scanMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100px; }
+  }
+
+  /* FLICKERING HEADER */
+  .header {
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    border-bottom: 2px solid var(--red);
+  }
+
+  .header-title {
+    font-family: 'Creepster', cursive;
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    color: var(--red);
+    animation: flicker 3s infinite;
+    letter-spacing: 4px;
+  }
+
+  @keyframes flicker {
+    0%,19%,21%,23%,25%,54%,56%,100% { opacity: 1; }
+    20%,24%,55% { opacity: 0.4; }
+  }
+
+  .header-sub {
+    font-size: 0.8rem;
+    color: var(--yellow);
+    animation: blink 1s step-end infinite;
+    margin-top: 6px;
+    letter-spacing: 2px;
+  }
+
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* BACKGROUND CHAOS ELEMENTS */
+  .bg-chaos {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .float-text {
+    position: absolute;
+    font-size: 0.6rem;
+    color: rgba(0,255,65,0.15);
+    animation: floatUp linear infinite;
+    white-space: nowrap;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(110vh) rotate(var(--rot)); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-10vh) rotate(var(--rot)); opacity: 0; }
+  }
+
+  .eye {
+    position: absolute;
+    font-size: 2rem;
+    animation: eyePulse 2s ease-in-out infinite;
+  }
+
+  @keyframes eyePulse {
+    0%,100% { transform: scale(1) rotate(0deg); opacity: 0.6; }
+    50% { transform: scale(1.3) rotate(10deg); opacity: 1; }
+  }
+
+  .radar-ring {
+    position: absolute;
+    border: 2px solid rgba(0,255,65,0.2);
+    border-radius: 50%;
+    animation: radarExpand 4s ease-out infinite;
+  }
+
+  @keyframes radarExpand {
+    0% { transform: scale(0); opacity: 0.8; }
+    100% { transform: scale(3); opacity: 0; }
+  }
+
+  /* TICKER TAPE */
+  .ticker-wrap {
+    overflow: hidden;
+    background: var(--red);
+    padding: 6px 0;
+    border-top: 2px solid var(--yellow);
+    border-bottom: 2px solid var(--yellow);
+    position: relative;
+    z-index: 10;
+  }
+
+  .ticker {
+    display: inline-block;
+    white-space: nowrap;
+    animation: ticker 30s linear infinite;
+    font-size: 0.85rem;
+    color: #000;
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1px;
+  }
+
+  @keyframes ticker {
+    0% { transform: translateX(100vw); }
+    100% { transform: translateX(-100%); }
+  }
+
+  /* MAIN MACHINE */
+  .machine-container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .conspiracy-board {
+    background: rgba(0,10,0,0.8);
+    border: 2px solid var(--green);
+    border-radius: 4px;
+    padding: 12px 20px;
+    font-size: 0.75rem;
+    color: rgba(0,255,65,0.7);
+    max-width: 700px;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .slots-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* SLOT MACHINE */
+  .slot-machine {
+    background: linear-gradient(180deg, #1a0a00, #0d0d0d, #001a00);
+    border: 3px solid var(--yellow);
+    border-radius: 12px;
+    padding: 16px;
+    width: 220px;
+    position: relative;
+    max-width: 100%;
+  }
+
+  .slot-machine::before {
+    content: '⚠ CLASSIFIED ⚠';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--red);
+    color: #000;
+    font-size: 0.55rem;
+    font-family: 'Oswald', sans-serif;
+    padding: 2px 8px;
+    white-space: nowrap;
+    letter-spacing: 2px;
+  }
+
+  .slot-label {
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.7rem;
+    color: var(--yellow);
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  .slot-window {
+    background: #000;
+    border: 3px inset #333;
+    border-radius: 6px;
+    height: 80px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .slot-window::before,
+  .slot-window::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    height: 25px;
+    z-index: 5;
+    pointer-events: none;
+  }
+  .slot-window::before {
+    top: 0;
+    background: linear-gradient(to bottom, #000, transparent);
+  }
+  .slot-window::after {
+    bottom: 0;
+    background: linear-gradient(to top, #000, transparent);
+  }
+
+  .slot-reel {
+    position: absolute;
+    left: 0; right: 0;
+    top: 0;
+    transition: none;
+    will-change: transform;
+  }
+
+  .slot-item {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6px 8px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.85rem;
+    color: var(--green);
+    border-bottom: 1px solid rgba(0,255,65,0.1);
+    line-height: 1.2;
+    cursor: default;
+  }
+
+  .slot-item.winner {
+    color: var(--yellow);
+    animation: winnerGlow 0.5s ease infinite alternate;
+    cursor: pointer;
+  }
+
+  .slot-item.winner:hover {
+    color: var(--cyan);
+  }
+
+  @keyframes winnerGlow {
+    from { text-shadow: 0 0 10px var(--yellow); }
+    to { text-shadow: 0 0 25px var(--yellow), 0 0 40px #ff8800; }
+  }
+
+  /* CENTER HIGHLIGHT BAR */
+  .slot-center-line {
+    position: absolute;
+    top: 50%;
+    left: 0; right: 0;
+    height: 82px;
+    transform: translateY(-50%);
+    border-top: 2px solid var(--yellow);
+    border-bottom: 2px solid var(--yellow);
+    background: rgba(255,204,0,0.04);
+    pointer-events: none;
+    z-index: 4;
+  }
+
+  /* VERSUS */
+  .versus {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .versus-text {
+    font-family: 'Creepster', cursive;
+    font-size: 3.5rem;
+    color: var(--red);
+    animation: vsShake 0.3s infinite;
+    line-height: 1;
+  }
+
+  @keyframes vsShake {
+    0%,100% { transform: translateX(0) rotate(-2deg); }
+    50% { transform: translateX(2px) rotate(2deg); }
+  }
+
+  .versus-eye {
+    font-size: 2rem;
+    animation: eyePulse 1.5s ease-in-out infinite;
+  }
+
+  /* LEVER - improved for drag + mobile */
+  .lever-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .lever-container {
+    position: relative;
+    width: 60px;
+    height: 140px; /* taller for better drag feel */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+  }
+
+  .lever-shaft {
+    width: 12px;
+    background: linear-gradient(90deg, #888, #eee, #888);
+    border-radius: 6px;
+    flex: 1;
+    position: relative;
+    transition: transform 0.3s;
+    transform-origin: bottom center;
+  }
+
+  .lever-ball {
+    width: 38px; /* slightly bigger for touch */
+    height: 38px;
+    background: radial-gradient(circle at 35% 35%, #ff6600, #cc2200, #660000);
+    border-radius: 50%;
+    border: 3px solid var(--yellow);
+    cursor: grab;
+    position: absolute;
+    top: -19px;
+    left: 50%;
+    transform: translateX(-50%);
+    touch-action: none;
+  }
+
+  .lever-ball:active {
+    cursor: grabbing;
+  }
+
+  .lever-base {
+    width: 50px;
+    height: 14px;
+    background: linear-gradient(180deg, #444, #222);
+    border-radius: 4px;
+    border: 2px solid var(--yellow);
+  }
+
+  #pull-btn {
+    background: linear-gradient(180deg, var(--red), #880000);
+    border: 2px solid var(--yellow);
+    color: var(--yellow);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    padding: 12px 22px;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 4px;
+    transition: all 0.2s;
+    animation: btnPulse 2s ease-in-out infinite;
+  }
+
+  #pull-btn:hover:not(:disabled) {
+    background: linear-gradient(180deg, #ff4444, var(--red));
+    transform: scale(1.05);
+  }
+
+  #pull-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    animation: none;
+  }
+
+  /* RESULT AREA */
+  .result-area {
+    text-align: center;
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    max-width: 700px;
+    width: 100%;
+  }
+
+  .result-names {
+    display: none;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .result-names.visible {
+    display: flex;
+  }
+
+  .result-name-btn {
+    background: rgba(0,255,65,0.1);
+    border: 2px solid var(--green);
+    color: var(--green);
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s;
+    animation: resultAppear 0.5s ease both;
+    max-width: 200px;
+    word-break: break-word;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .result-name-btn:hover {
+    background: rgba(0,255,65,0.25);
+    transform: scale(1.05);
+    color: var(--yellow);
+    border-color: var(--yellow);
+  }
+
+  @keyframes resultAppear {
+    from { opacity: 0; transform: scale(0.5) rotate(-10deg); }
+    to { opacity: 1; transform: scale(1) rotate(0deg); }
+  }
+
+  .result-vs {
+    font-family: 'Creepster', cursive;
+    font-size: 2rem;
+    color: var(--red);
+  }
+
+  .result-hint {
+    font-size: 0.7rem;
+    color: rgba(0,255,65,0.5);
+    animation: blink 1.5s step-end infinite;
+  }
+
+  /* BOTTOM SECTION */
+  .bottom-section {
+    position: relative;
+    z-index: 10;
+    padding: 10px 20px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .bottom-text {
+    font-size: 0.6rem;
+    color: rgba(0,255,65,0.3);
+    text-align: center;
+    max-width: 600px;
+    line-height: 1.8;
+  }
+
+  .counter {
+    color: var(--cyan);
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+  }
+
+  /* CORNER DECORATIONS */
+  .corner {
+    position: fixed;
+    font-size: 3rem;
+    z-index: 20;
+    animation: cornerPulse 3s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .corner-tl { top: 10px; left: 10px; color: var(--green); animation-delay: 0s; }
+  .corner-tr { top: 10px; right: 10px; color: var(--red); animation-delay: 0.5s; }
+  .corner-bl { bottom: 10px; left: 10px; color: var(--yellow); animation-delay: 1s; }
+  .corner-br { bottom: 10px; right: 10px; color: var(--cyan); animation-delay: 1.5s; }
+
+  @keyframes cornerPulse {
+    0%,100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+
+  /* SPINNING LOADING */
+  .spinning {
+    display: inline-block;
+    animation: spinFast 0.1s linear infinite;
+    color: var(--cyan) !important;
+  }
+
+  @keyframes spinFast {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* MATRIX RAIN canvas */
+  #matrix-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+    opacity: 0.08;
+    pointer-events: none;
+  }
+
+  /* PROGRESS BAR */
+  .spin-progress {
+    height: 4px;
+    background: rgba(0,255,65,0.2);
+    border-radius: 2px;
+    overflow: hidden;
+    width: 180px;
+    margin-top: 6px;
+    display: none;
+  }
+
+  .spin-progress-bar {
+    height: 100%;
+    background: var(--green);
+    width: 0%;
+    transition: width 0.1s;
+  }
+
+  .spin-progress.active {
+    display: block;
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 600px) {
+    .slot-machine {
+      width: 190px;
+    }
+    .lever-container {
+      width: 70px;
+      height: 160px;
+    }
+    .lever-ball {
+      width: 42px;
+      height: 42px;
+      top: -21px;
+    }
+    .result-name-btn {
+      font-size: 1rem;
+      padding: 8px 16px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- CORNER DECORATIONS -->
+<div class="corner corner-tl"> <img src="himmler.jpg" style="width:64px;height:64px;"></div>
+<div class="corner corner-tr"><img src="raelien.png" style="width:64px;height:64px;"></div>
+<div class="corner corner-bl"><img src="jlm.jpg" style="width:64px;height:64px;"></div>
+<div class="corner corner-br"><img src="jlr.jpg" style="width:64px;height:64px;"></div>
+
+<!-- MATRIX RAIN -->
+<canvas id="matrix-canvas"></canvas>
+
+<!-- BACKGROUND CHAOS -->
+<div class="bg-chaos" id="bgChaos"></div>
+
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-title">JEAN-LUC GAMBLING</div>
+  <div class="header-sub">TOUT LES JEAN-LUC QUE VOUS IGNOREZ</div>
+  <div style="display:flex;justify-content:center;gap:16px;margin-top:8px;flex-wrap:wrap;">
+    <span class="stamp">JEAN-LUC</span>
+    <span class="stamp">376 JEAN-LUC</span>
+    <span class="stamp">141 376 COMBATS</span>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <span class="ticker" id="ticker">
+    ⚡ ALERT: 376 JEAN-LUCS IDENTIFIÉS ⚡ QUI EST LE VRAI JEAN-LUC ? ⚡ LES ILLUMINATI SAVENT ⚡ L'ÉTAT PROFOND SURVEILLE ⚡ LE CERCLE DES JEAN-LUC ⚡ MÉFIEZ-VOUS ⚡ CHAQUE JEAN-LUC EST UNE PIÈCE DU PUZZLE ⚡ DÉCOUVREZ LA VÉRITÉ ⚡ 
+  </span>
+</div>
+
+<!-- MAIN MACHINE -->
+<div class="machine-container">
+  
+  <div class="conspiracy-board">
+    <span style="color:rgba(0,255,65,0.6)">Les archives mondiales révèlent 376 individus portant le prénom JEAN-LUC.<br>
+    Mais qui est le vrais ? <span style="color:var(--red);font-weight:bold">QUI EST LE VRAIS JEAN-LUC ?</span><br>
+    Tirez le levier pour les faire se battre, le gagnant sera le vrais Jean-Luc.</span>
+  </div>
+
+  <!-- SLOTS + LEVER -->
+  <div class="slots-section">
+    
+    <!-- SLOT 1 -->
+    <div class="slot-machine">
+      <div class="slot-window">
+        <div class="slot-center-line"></div>
+        <div class="slot-reel" id="reel1"></div>
+      </div>
+    </div>
+
+    <!-- VERSUS + LEVER -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:14px;">
+      <div class="versus">
+        <div class="versus-eye">👁️</div>
+        <div class="versus-text">VS</div>
+        <div class="versus-eye">👁️</div>
+      </div>
+      
+      <div class="lever-section">
+        <div class="lever-container" id="leverContainer">
+          <div class="lever-shaft" id="leverShaft">
+            <div class="lever-ball" id="leverBall"></div>
+          </div>
+          <div class="lever-base"></div>
+        </div>
+        <button id="pull-btn">▶ TIRER LE LEVIER ◀</button>
+        <div class="spin-progress" id="spinProgress">
+          <div class="spin-progress-bar" id="spinProgressBar"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLOT 2 -->
+    <div class="slot-machine">
+      <div class="slot-window">
+        <div class="slot-center-line"></div>
+        <div class="slot-reel" id="reel2"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RESULT -->
+  <div class="result-area">
+    <div class="result-names" id="resultNames">
+      <button class="result-name-btn" id="resultBtn1" onclick="openWiki(0)">-</button>
+      <div class="result-vs">VS</div>
+      <button class="result-name-btn" id="resultBtn2" onclick="openWiki(1)">-</button>
+    </div>
+    <div class="result-hint" id="resultHint" style="display:none">
+      CLIQUEZ SUR UN NOM (dans les slots OU ci-dessous) POUR ACCÉDER AU DOSSIER WIKIPEDIA
+    </div>
+  </div>
+
+  <div class="counter" id="spinCount">TIRAGES: 0 | JEAN-LUCS DÉTECTÉS: 0</div>
+</div>
+
+<script>
+const JEAN_LUCS = [{"title": "Jean-Luc Addor", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Addor"}, {"title": "Jean-Luc Aka-Evy", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Aka-Evy"}, {"title": "Jean-Luc Albert", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Albert"}, {"title": "Jean-Luc Allavena", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Allavena"}, {"title": "Jean-Luc Angot", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Angot"}, {"title": "Jean-Luc Annaix", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Annaix"}, {"title": "Jean-Luc Aotret", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Aotret"}, {"title": "Jean-Luc Aplogan", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Aplogan"}, {"title": "Jean-Luc Aqua", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Aqua"}, {"title": "Jean-Luc Arblay", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Arblay"}, {"title": "Jean-Luc Aribaud", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Aribaud"}, {"title": "Jean-Luc Arribart", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Arribart"}, {"title": "Jean-Luc Assi", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Assi"}, {"title": "Jean-Luc Aubert", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Aubert"}, {"title": "Jean-Luc Audy", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Audy"}, {"title": "Jean-Luc Averous", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Averous"}, {"title": "Jean-Luc Azoulay", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Azoulay"}, {"title": "Jean-Luc Ballestra", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Ballestra"}, {"title": "Jean-Luc Balthazar", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Balthazar"}, {"title": "Jean-Luc Bannalec", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Bannalec"}, {"title": "Jean-Luc Barré", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Barré"}, {"title": "Jean-Luc Barthés", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Barthés"}, {"title": "Jean-Luc Bastien", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Bastien"}, {"title": "Jean-Luc Bataille", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Bataille"}, {"title": "Jean-Luc Beaumont", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Beaumont"}, {"title": "Jean-Luc Beghin", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Beghin"}, {"title": "Jean-Luc Benhamias", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Benhamias"}, {"title": "Jean-Luc Bennahmias", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Bennahmias"}, {"title": "Jean-Luc Benoit", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Benoit"}, {"title": "Jean-Luc Benoziglio", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Benoziglio"}, {"title": "Jean-Luc Berard", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Berard"}, {"title": "Jean-Luc Berlet", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Berlet"}, {"title": "Jean-Luc Bertrand", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Bertrand"}, {"title": "Jean-Luc Beylat", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Beylat"}, {"title": "Jean-Luc Bichaud", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Bichaud"}, {"title": "Jean-Luc Bideau", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Bideau"}, {"title": "Jean-Luc Bilodeau", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Bilodeau"}, {"title": "Jean-Luc Bitton", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Bitton"}, {"title": "Jean-Luc Bizien", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Bizien"}, {"title": "Jean-Luc Blain", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Blain"}, {"title": "Jean-Luc Blanche", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Blanche"}, {"title": "Jean-Luc Blanchemain", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Blanchemain"}, {"title": "Jean-Luc Blaquart", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Blaquart"}, {"title": "Jean-Luc Bleunven", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Bleunven"}, {"title": "Jean-Luc Bohl", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Bohl"}, {"title": "Jean-Luc Bonniol", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Bonniol"}, {"title": "Jean-Luc Bouilleret", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Bouilleret"}, {"title": "Jean-Luc Boulay", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Boulay"}, {"title": "Jean-Luc Bourgeaux", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Bourgeaux"}, {"title": "Jean-Luc Bousquet", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Bousquet"}, {"title": "Jean-Luc Boutté", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Boutté"}, {"title": "Jean-Luc Brassard", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Brassard"}, {"title": "Jean-Luc Brault", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Brault"}, {"title": "Jean-Luc Brunel", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Brunel"}, {"title": "Jean-Luc Brunin", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Brunin"}, {"title": "Jean-Luc Brylinski", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Brylinski"}, {"title": "Jean-Luc Brédas", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Brédas"}, {"title": "Jean-Luc Buisine", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Buisine"}, {"title": "Jean-Luc Bécart", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Bécart"}, {"title": "Jean-Luc Béghin", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Béghin"}, {"title": "Jean-Luc Bélanger", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Bélanger"}, {"title": "Jean-Luc Bélingard", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Bélingard"}, {"title": "Jean-Luc Bérard", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Bérard"}, {"title": "Jean-Luc Cairon", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Cairon"}, {"title": "Jean-Luc Calyel", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Calyel"}, {"title": "Jean-Luc Cambier", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Cambier"}, {"title": "Jean-Luc Carbuccia", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Carbuccia"}, {"title": "Jean-Luc Caron", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Caron"}, {"title": "Jean-Luc Cayez", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Cayez"}, {"title": "Jean-Luc Cazettes", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Cazettes"}, {"title": "Jean-Luc Cester", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Cester"}, {"title": "Jean-Luc Chabanon", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Chabanon"}, {"title": "Jean-Luc Chaignaud", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Chaignaud"}, {"title": "Jean-Luc Chalumeau", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Chalumeau"}, {"title": "Jean-Luc Chambard", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Chambard"}, {"title": "Jean-Luc Chapin", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Chapin"}, {"title": "Jean-Luc Chappey", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Chappey"}, {"title": "Jean-Luc Chassel", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Chassel"}, {"title": "Jean-Luc Chavent", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Chavent"}, {"title": "Jean-Luc Chenut", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Chenut"}, {"title": "Jean-Luc Chevalier", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Chevalier"}, {"title": "Jean-Luc Choplin", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Choplin"}, {"title": "Jean-Luc Christin", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Christin"}, {"title": "Jean-Luc Chéreau", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Chéreau"}, {"title": "Jean-Luc Coatalem", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Coatalem"}, {"title": "Jean-Luc Cornette", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Cornette"}, {"title": "Jean-Luc Coronel", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Coronel"}, {"title": "Jean-Luc Coronel de Boissezon", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Coronel_de_Boissezon"}, {"title": "Jean-Luc Couchard", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Couchard"}, {"title": "Jean-Luc Coudray", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Coudray"}, {"title": "Jean-Luc Courcoult", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Courcoult"}, {"title": "Jean-Luc Courtet", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Courtet"}, {"title": "Jean-Luc Cretier", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Cretier"}, {"title": "Jean-Luc Crucke", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Crucke"}, {"title": "Jean-Luc Crétier", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Crétier"}, {"title": "Jean-Luc Darbellay", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Darbellay"}, {"title": "Jean-Luc De Meyer", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_De_Meyer"}, {"title": "Jean-Luc Deganis", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Deganis"}, {"title": "Jean-Luc Dehaene", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Dehaene"}, {"title": "Jean-Luc Delarue", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Delarue"}, {"title": "Jean-Luc Delaunay", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Delaunay"}, {"title": "Jean-Luc Delblat", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Delblat"}, {"title": "Jean-Luc Delpech", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Delpech"}, {"title": "Jean-Luc Delpeuch", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Delpeuch"}, {"title": "Jean-Luc Delvaux", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Delvaux"}, {"title": "Jean-Luc Desfoux", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Desfoux"}, {"title": "Jean-Luc Despax", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Despax"}, {"title": "Jean-Luc Deuffic", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Deuffic"}, {"title": "Jean-Luc Dogon", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Dogon"}, {"title": "Jean-Luc Domenach", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Domenach"}, {"title": "Jean-Luc Domenge", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Domenge"}, {"title": "Jean-Luc Dompé", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Dompé"}, {"title": "Jean-Luc Donnet", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Donnet"}, {"title": "Jean-Luc Drapeau", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Drapeau"}, {"title": "Jean-Luc Du Preez", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Du_Preez"}, {"title": "Jean-Luc Dubart", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Dubart"}, {"title": "Jean-Luc Duez", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Duez"}, {"title": "Jean-Luc Déjean", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Déjean"}, {"title": "Jean-Luc Dépraz", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Dépraz"}, {"title": "Jean-Luc Einaudi", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Einaudi"}, {"title": "Jean-Luc Englebert", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Englebert"}, {"title": "Jean-Luc Escayol", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Escayol"}, {"title": "Jean-Luc Etienne", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Etienne"}, {"title": "Jean-Luc Ettori", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Ettori"}, {"title": "Jean-Luc Fafchamps", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Fafchamps"}, {"title": "Jean-Luc Fauconnier", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Fauconnier"}, {"title": "Jean-Luc Fichet", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Fichet"}, {"title": "Jean-Luc Fillon", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Fillon"}, {"title": "Jean-Luc Flohic", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Flohic"}, {"title": "Jean-Luc Fonck", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Fonck"}, {"title": "Jean-Luc Force", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Force"}, {"title": "Jean-Luc Fournet", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Fournet"}, {"title": "Jean-Luc Fournier", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Fournier"}, {"title": "Jean-Luc François", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_François"}, {"title": "Jean-Luc Fromental", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Fromental"}, {"title": "Jean-Luc Fugaldi", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Fugaldi"}, {"title": "Jean-Luc Fugit", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Fugit"}, {"title": "Jean-Luc GERMOND", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_GERMOND"}, {"title": "Jean-Luc Gadreau", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Gadreau"}, {"title": "Jean-Luc Gaffard", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Gaffard"}, {"title": "Jean-Luc Gag", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Gag"}, {"title": "Jean-Luc Gaget", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Gaget"}, {"title": "Jean-Luc Gagliolo", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Gagliolo"}, {"title": "Jean-Luc Garin", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Garin"}, {"title": "Jean-Luc Garnier", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Garnier"}, {"title": "Jean-Luc Gaudiot", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Gaudiot"}, {"title": "Jean-Luc Gautier", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Gautier"}, {"title": "Jean-Luc Germani", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Germani"}, {"title": "Jean-Luc Germond", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Germond"}, {"title": "Jean-Luc Gilles", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Gilles"}, {"title": "Jean-Luc Girard", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Girard"}, {"title": "Jean-Luc Godard", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Godard"}, {"title": "Jean-Luc Godard, le désordre exposé", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Godard,_le_désordre_exposé"}, {"title": "Jean-Luc Godard Poète", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Godard_Poète"}, {"title": "Jean-Luc Gouyon", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Gouyon"}, {"title": "Jean-Luc Grand-Pierre", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Grand-Pierre"}, {"title": "Jean-Luc Grandjean", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Grandjean"}, {"title": "Jean-Luc Greau", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Greau"}, {"title": "Jean-Luc Gripond", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Gripond"}, {"title": "Jean-Luc Grzeskowiak", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Grzeskowiak"}, {"title": "Jean-Luc Gréau", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Gréau"}, {"title": "Jean-Luc Guillot", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Guillot"}, {"title": "Jean-Luc Guionnet", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Guionnet"}, {"title": "Jean-Luc Harousseau", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Harousseau"}, {"title": "Jean-Luc Hees", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Hees"}, {"title": "Jean-Luc Hennig", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Hennig"}, {"title": "Jean-Luc Herbulot", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Herbulot"}, {"title": "Jean-Luc Herman", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Herman"}, {"title": "Jean-Luc Herve Berthelot", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Herve_Berthelot"}, {"title": "Jean-Luc Hervé", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Hervé"}, {"title": "Jean-Luc Hervé Berthelot", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Hervé_Berthelot"}, {"title": "Jean-Luc Hess", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Hess"}, {"title": "Jean-Luc Hiettre", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Hiettre"}, {"title": "Jean-Luc Ho", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Ho"}, {"title": "Jean-Luc Houssaye", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Houssaye"}, {"title": "Jean-Luc Hudsyn", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Hudsyn"}, {"title": "Jean-Luc Imler", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Imler"}, {"title": "Jean-Luc Istin", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Istin"}, {"title": "Jean-Luc Jeener", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Jeener"}, {"title": "Jean-Luc Joinel", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Joinel"}, {"title": "Jean-Luc Joncas", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Joncas"}, {"title": "Jean-Luc Jonrond", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Jonrond"}, {"title": "Jean-Luc Joseph", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Joseph"}, {"title": "Jean-Luc Juhel", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Juhel"}, {"title": "Jean-Luc Kayser", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Kayser"}, {"title": "Jean-Luc Konan", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Konan"}, {"title": "Jean-Luc Lagarce", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Lagarce"}, {"title": "Jean-Luc Lagardere", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Lagardere"}, {"title": "Jean-Luc Lagardère", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Lagardère"}, {"title": "Jean-Luc Lagleize", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Lagleize"}, {"title": "Jean-Luc Lahaye", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Lahaye"}, {"title": "Jean-Luc Lamarche", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Lamarche"}, {"title": "Jean-Luc Lambourde", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Lambourde"}, {"title": "Jean-Luc Laurent", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Laurent"}, {"title": "Jean-Luc Lavallée", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Lavallée"}, {"title": "Jean-Luc Lavrille", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Lavrille"}, {"title": "Jean-Luc Le Gall", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Le_Gall"}, {"title": "Jean-Luc Le Magueresse", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Le_Magueresse"}, {"title": "Jean-Luc Le Moign", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Le_Moign"}, {"title": "Jean-Luc Le Tenia", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Le_Tenia"}, {"title": "Jean-Luc Le Ténia", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Le_Ténia"}, {"title": "Jean-Luc Legrand", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Legrand"}, {"title": "Jean-Luc Leguay", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Leguay"}, {"title": "Jean-Luc Lemire", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Lemire"}, {"title": "Jean-Luc Lemoine", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Lemoine"}, {"title": "Jean-Luc Lemonnier", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Lemonnier"}, {"title": "Jean-Luc Leonardon", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Leonardon"}, {"title": "Jean-Luc Loyer", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Loyer"}, {"title": "Jean-Luc Luciani", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Luciani"}, {"title": "Jean-Luc Léonardon", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Léonardon"}, {"title": "Jean-Luc Manaud", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Manaud"}, {"title": "Jean-Luc Mandaba", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Mandaba"}, {"title": "Jean-Luc Manet", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Manet"}, {"title": "Jean-Luc Mano", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Mano"}, {"title": "Jean-Luc Manz", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Manz"}, {"title": "Jean-Luc Maranelli", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Maranelli"}, {"title": "Jean-Luc Marcastel", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Marcastel"}, {"title": "Jean-Luc Margot", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Margot"}, {"title": "Jean-Luc Marion", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Marion"}, {"title": "Jean-Luc Marret", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Marret"}, {"title": "Jean-Luc Martin-Lagardette", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Martin-Lagardette"}, {"title": "Jean-Luc Martinez", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Martinez"}, {"title": "Jean-Luc Marty", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Marty"}, {"title": "Jean-Luc Marx", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Marx"}, {"title": "Jean-Luc Maréchal", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Maréchal"}, {"title": "Jean-Luc Masbou", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Masbou"}, {"title": "Jean-Luc Masdupuy", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Masdupuy"}, {"title": "Jean-Luc Maury-Laribière", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Maury-Laribière"}, {"title": "Jean-Luc Maxence", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Maxence"}, {"title": "Jean-Luc Melenchon", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Melenchon"}, {"title": "Jean-Luc Michon", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Michon"}, {"title": "Jean-Luc Miesch", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Miesch"}, {"title": "Jean-Luc Migue", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Migue"}, {"title": "Jean-Luc Migué", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Migué"}, {"title": "Jean-Luc Miraux", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Miraux"}, {"title": "Jean-Luc Moerman", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Moerman"}, {"title": "Jean-Luc Molineris", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Molineris"}, {"title": "Jean-Luc Molinéris", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Molinéris"}, {"title": "Jean-Luc Moner-Banet", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Moner-Banet"}, {"title": "Jean-Luc Mongrain", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Mongrain"}, {"title": "Jean-Luc Monschau", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Monschau"}, {"title": "Jean-Luc Montama", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Montama"}, {"title": "Jean-Luc Monterosso", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Monterosso"}, {"title": "Jean-Luc Montminy", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Montminy"}, {"title": "Jean-Luc Moreau", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Moreau"}, {"title": "Jean-Luc Moreau acteur", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Moreau_acteur"}, {"title": "Jean-Luc Morel", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Morel"}, {"title": "Jean-Luc Moreul", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Moreul"}, {"title": "Jean-Luc Moudenc", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Moudenc"}, {"title": "Jean-Luc Moulene", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Moulene"}, {"title": "Jean-Luc Moulène", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Moulène"}, {"title": "Jean-Luc Moutou", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Moutou"}, {"title": "Jean-Luc Muller", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Muller"}, {"title": "Jean-Luc Mélanchon", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Mélanchon"}, {"title": "Jean-Luc Mélenchon", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Mélenchon"}, {"title": "Jean-Luc Nancy", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Nancy"}, {"title": "Jean-Luc Ndayishimiye", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Ndayishimiye"}, {"title": "Jean-Luc Nelias", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Nelias"}, {"title": "Jean-Luc Nix", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Nix"}, {"title": "Jean-Luc Nélias", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Nélias"}, {"title": "Jean-Luc Névache", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Névache"}, {"title": "Jean-Luc Outers", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Outers"}, {"title": "Jean-Luc Pailler", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Pailler"}, {"title": "Jean-Luc Paliès", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Paliès"}, {"title": "Jean-Luc Parant", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Parant"}, {"title": "Jean-Luc Parodi", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Parodi"}, {"title": "Jean-Luc Pepin", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Pepin"}, {"title": "Jean-Luc Perat", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Perat"}, {"title": "Jean-Luc Perez", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Perez"}, {"title": "Jean-Luc Perraud", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Perraud"}, {"title": "Jean-Luc Perret", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Perret"}, {"title": "Jean-Luc Perrier", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Perrier"}, {"title": "Jean-Luc Perrot", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Perrot"}, {"title": "Jean-Luc Petithuguenin", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Petithuguenin"}, {"title": "Jean-Luc Petitrenaud", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Petitrenaud"}, {"title": "Jean-Luc Phaneuf", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Phaneuf"}, {"title": "Jean-Luc Piacentino", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Piacentino"}, {"title": "Jean-Luc Picard", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Picard"}, {"title": "Jean-Luc Pinel", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Pinel"}, {"title": "Jean-Luc Pinol", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Pinol"}, {"title": "Jean-Luc Plouvier", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Plouvier"}, {"title": "Jean-Luc Ponchon", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Ponchon"}, {"title": "Jean-Luc Ponty", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Ponty"}, {"title": "Jean-Luc Porquet", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Porquet"}, {"title": "Jean-Luc Porraz", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Porraz"}, {"title": "Jean-Luc Poudroux", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Poudroux"}, {"title": "Jean-Luc Pouliquen", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Pouliquen"}, {"title": "Jean-Luc Poussin", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Poussin"}, {"title": "Jean-Luc Pouteau", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Pouteau"}, {"title": "Jean-Luc Pouthier", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Pouthier"}, {"title": "Jean-Luc Preel", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Preel"}, {"title": "Jean-Luc Préel", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Préel"}, {"title": "Jean-Luc Pépin", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Pépin"}, {"title": "Jean-Luc Pérat", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Pérat"}, {"title": "Jean-Luc Rabanel", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Rabanel"}, {"title": "Jean-Luc Rabat", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Rabat"}, {"title": "Jean-Luc Rabot", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Rabot"}, {"title": "Jean-Luc Raharimanana", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Raharimanana"}, {"title": "Jean-Luc Ramandou", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Ramandou"}, {"title": "Jean-Luc Rasamoelina", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Rasamoelina"}, {"title": "Jean-Luc Reichmann", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Reichmann"}, {"title": "Jean-Luc Reitzer", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Reitzer"}, {"title": "Jean-Luc Revol", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Revol"}, {"title": "Jean-Luc Ribar", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Ribar"}, {"title": "Jean-Luc Rigault", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Rigault"}, {"title": "Jean-Luc Rigaut", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Rigaut"}, {"title": "Jean-Luc Rivallo", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Rivallo"}, {"title": "Jean-Luc Robert", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Robert"}, {"title": "Jean-Luc Rocha", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Rocha"}, {"title": "Jean-Luc Roediger", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Roediger"}, {"title": "Jean-Luc Roland", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Roland"}, {"title": "Jean-Luc Romero", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Romero"}, {"title": "Jean-Luc Romero-Michel", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Romero-Michel"}, {"title": "Jean-Luc Roméro", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Roméro"}, {"title": "Jean-Luc Roos", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Roos"}, {"title": "Jean-Luc Roudaut", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Roudaut"}, {"title": "Jean-Luc Rouge", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Rouge"}, {"title": "Jean-Luc Rougé", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Rougé"}, {"title": "Jean-Luc Roy", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Roy"}, {"title": "Jean-Luc Ruelle", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Ruelle"}, {"title": "Jean-Luc Ruty", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Ruty"}, {"title": "Jean-Luc Régent", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Régent"}, {"title": "Jean-Luc Sadourny", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Sadourny"}, {"title": "Jean-Luc Sala", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Sala"}, {"title": "Jean-Luc Sandoz", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Sandoz"}, {"title": "Jean-Luc Sarré", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Sarré"}, {"title": "Jean-Luc Sassus", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Sassus"}, {"title": "Jean-Luc Sauron", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Sauron"}, {"title": "Jean-Luc Sauvaigo", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Sauvaigo"}, {"title": "Jean-Luc Schaffhauser", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Schaffhauser"}, {"title": "Jean-Luc Schneider", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Schneider"}, {"title": "Jean-Luc Seigle", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Seigle"}, {"title": "Jean-Luc Seret", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Seret"}, {"title": "Jean-Luc Servino", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Servino"}, {"title": "Jean-Luc Silo", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Silo"}, {"title": "Jean-Luc Sokal", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Sokal"}, {"title": "Jean-Luc Steinmetz", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Steinmetz"}, {"title": "Jean-Luc Tardieu", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Tardieu"}, {"title": "Jean-Luc Tartarin", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Tartarin"}, {"title": "Jean-Luc Tavernier", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Tavernier"}, {"title": "Jean-Luc Terrade", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Terrade"}, {"title": "Jean-Luc Therier", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Therier"}, {"title": "Jean-Luc Thiebaut", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Thiebaut"}, {"title": "Jean-Luc Thiébaut", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Thiébaut"}, {"title": "Jean-Luc Thérier", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Thérier"}, {"title": "Jean-Luc Tichadou", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Tichadou"}, {"title": "Jean-Luc Tissot", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Tissot"}, {"title": "Jean-Luc Tricoire", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Tricoire"}, {"title": "Jean-Luc Trotignon", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Trotignon"}, {"title": "Jean-Luc Trulès", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Trulès"}, {"title": "Jean-Luc Van Damme", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Van_Damme"}, {"title": "Jean-Luc Van Den Heede", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Van_Den_Heede"}, {"title": "Jean-Luc Vandenbroucke", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Vandenbroucke"}, {"title": "Jean-Luc Vannuchi", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Vannuchi"}, {"title": "Jean-Luc Vanraes", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Vanraes"}, {"title": "Jean-Luc Vasseur", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Vasseur"}, {"title": "Jean-Luc Vergne", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Vergne"}, {"title": "Jean-Luc Verley", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Verley"}, {"title": "Jean-Luc Verna", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Verna"}, {"title": "Jean-Luc Vernal", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Vernal"}, {"title": "Jean-Luc Viaux", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Viaux"}, {"title": "Jean-Luc Vignaud", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Vignaud"}, {"title": "Jean-Luc Vilmouth", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Vilmouth"}, {"title": "Jean-Luc Vincent", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Vincent"}, {"title": "Jean-Luc Vinuesa", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Vinuesa"}, {"title": "Jean-Luc Votano", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Votano"}, {"title": "Jean-Luc Voulfow", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Voulfow"}, {"title": "Jean-Luc Warsmann", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Warsmann"}, {"title": "Jean-Luc Wauthier", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Wauthier"}, {"title": "Jean-Luc Wingert", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Wingert"}, {"title": "Jean-Luc brédas", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_brédas"}, {"title": "Jean-Luc d'Achery", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_d'Achery"}, {"title": "Jean-Luc du Preez", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_du_Preez"}, {"title": "Jean-Luc godard, le désordre exposé", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_godard,_le_désordre_exposé"}, {"title": "Jean-Luc persécuté", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_persécuté"}, {"title": "Jean-Luc Étienne", "url": "https://fr.wikipedia.org/wiki/Jean-Luc_Étienne"}];
+
+let spinning = false;
+let spinCount = 0;
+let exposedCount = 0;
+let currentWinners = [null, null];
+
+const canvas = document.getElementById('matrix-canvas');
+const ctx = canvas.getContext('2d');
+function resizeCanvas() { 
+  canvas.width = window.innerWidth; 
+  canvas.height = window.innerHeight; 
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+const matrixChars = 'JEAN-LUCJL01アイウエオカキクケコ▲▼◀▶☢👁🔺⚠BATTATFRIENDPINS'.split('');
+const columns = [];
+function initMatrix() {
+  const cols = Math.floor(canvas.width / 16);
+  for(let i = 0; i < cols; i++) columns[i] = Math.random() * canvas.height;
+}
+initMatrix();
+
+function drawMatrix() {
+  ctx.fillStyle = 'rgba(2,10,4,0.05)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = '#00ff41';
+  ctx.font = '13px Share Tech Mono, monospace';
+  for(let i = 0; i < columns.length; i++) {
+    const char = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+    ctx.fillText(char, i * 16, columns[i]);
+    if(columns[i] > canvas.height && Math.random() > 0.975) columns[i] = 0;
+    columns[i] += 16;
+  }
+}
+setInterval(drawMatrix, 50);
+
+const bgChaos = document.getElementById('bgChaos');
+const conspiracyWords = [
+  'JEAN-LUC', 'ILLUMINATI', 'NWO', '5G', 'DÉFINITIVEMENT', 'DEEPSTATE', 'QUI ?', 'POURQUOI ?', 
+  'RÉSEAU JL', 'CODED', 'INFILTRÉ', 'AGENT 376', 'DECODE', 'SUIVEZ LES JEAN-LUC',
+  'JEAN-LUC = ?', 'VÉRITÉ', 'CACHÉ', 'SIGNES', 'MATRICE', 'ÉVEIL'
+];
+
+function spawnFloatText() {
+  const div = document.createElement('div');
+  div.className = 'float-text';
+  div.style.left = Math.random() * 100 + 'vw';
+  div.style.setProperty('--rot', (Math.random() * 20 - 10) + 'deg');
+  const duration = 8 + Math.random() * 12;
+  div.style.animationDuration = duration + 's';
+  div.style.animationDelay = -Math.random() * duration + 's';
+  div.style.fontSize = (0.5 + Math.random() * 0.7) + 'rem';
+  const jl = JEAN_LUCS[Math.floor(Math.random() * JEAN_LUCS.length)];
+  div.textContent = Math.random() > 0.4 ? jl.title.split(' ')[1] : conspiracyWords[Math.floor(Math.random() * conspiracyWords.length)];
+  bgChaos.appendChild(div);
+  setTimeout(() => div.remove(), duration * 1000);
+}
+
+for(let i = 0; i < 25; i++) spawnFloatText();
+setInterval(spawnFloatText, 800);
+
+function spawnRadar() {
+  const div = document.createElement('div');
+  div.className = 'radar-ring';
+  const size = 50 + Math.random() * 100;
+  div.style.width = size + 'px';
+  div.style.height = size + 'px';
+  div.style.left = (Math.random() * 100) + 'vw';
+  div.style.top = (Math.random() * 100) + 'vh';
+  bgChaos.appendChild(div);
+  setTimeout(() => div.remove(), 4000);
+}
+setInterval(spawnRadar, 1500);
+
+const eyeSymbols = ['👁️', '🔺', '☢️', '⚠️', '🛸', '🔴'];
+for(let i = 0; i < 8; i++) {
+  const div = document.createElement('div');
+  div.className = 'eye';
+  div.textContent = eyeSymbols[i % eyeSymbols.length];
+  div.style.left = (5 + Math.random() * 90) + 'vw';
+  div.style.top = (10 + Math.random() * 80) + 'vh';
+  div.style.animationDelay = (Math.random() * 3) + 's';
+  div.style.animationDuration = (1.5 + Math.random() * 2) + 's';
+  bgChaos.appendChild(div);
+}
+
+function buildTicker() {
+  const sample = [];
+  for(let i = 0; i < 12; i++) sample.push(JEAN_LUCS[Math.floor(Math.random() * JEAN_LUCS.length)].title);
+  document.getElementById('ticker').textContent = 
+    sample.join(' | Jean-Luc est définitivement ') + ' 376 JEAN-LUC QUI EST LE VRAIS ?';
+}
+buildTicker();
+setInterval(buildTicker, 30000);
+
+// ─── REEL SETUP ──────────────────────────────────────────────────────────────
+const VISIBLE_ITEMS = 1;
+const ITEM_HEIGHT = 80;
+
+function buildReel(reelEl) {
+  reelEl.innerHTML = '';
+  const shuffled = [...JEAN_LUCS].sort(() => Math.random() - 0.5);
+  const full = [...shuffled, ...shuffled, ...shuffled];
+  full.forEach(jl => {
+    const div = document.createElement('div');
+    div.className = 'slot-item';
+    div.textContent = jl.title;
+    reelEl.appendChild(div);
+  });
+  return full;
+}
+
+let reelData1 = buildReel(document.getElementById('reel1'));
+let reelData2 = buildReel(document.getElementById('reel2'));
+
+document.getElementById('reel1').style.transform = 'translateY(0px)';
+document.getElementById('reel2').style.transform = 'translateY(0px)';
+
+function easeOut(t) {
+  return 1 - Math.pow(1 - t, 4);
+}
+
+function spinReel(reelEl, reelData, targetWinner, duration, delay) {
+  return new Promise(resolve => {
+    let landingIndex = -1;
+    for (let i = reelData.length - 1; i >= 0; i--) {
+      if (reelData[i] === targetWinner) {
+        landingIndex = i;
+        break;
+      }
+    }
+    if (landingIndex === -1) landingIndex = Math.floor(reelData.length * 0.75);
+
+    const targetY = -landingIndex * ITEM_HEIGHT;
+
+    reelEl.style.transition = 'none';
+    reelEl.style.transform = 'translateY(0px)';
+
+    setTimeout(() => {
+      const startTime = performance.now();
+      const overshoot = reelData.length * ITEM_HEIGHT * 0.6;
+
+      function animate(now) {
+        const elapsed = now - startTime;
+        const t = Math.min(elapsed / duration, 1);
+
+        let y;
+        if (t < 0.75) {
+          const fastT = t / 0.75;
+          y = 0 - (overshoot + Math.abs(targetY)) * fastT;
+        } else {
+          const slowT = (t - 0.75) / 0.25;
+          const eased = easeOut(slowT);
+          const fastEndY = -(overshoot + Math.abs(targetY));
+          y = fastEndY + (targetY - fastEndY) * eased;
+        }
+
+        reelEl.style.transform = `translateY(${y}px)`;
+
+        if (t < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          reelEl.style.transform = `translateY(${targetY}px)`;
+          const items = reelEl.querySelectorAll('.slot-item');
+          items.forEach(i => i.classList.remove('winner'));
+          if (items[landingIndex]) {
+            items[landingIndex].classList.add('winner');
+          }
+          resolve(landingIndex);
+        }
+      }
+      requestAnimationFrame(animate);
+    }, delay);
+  });
+}
+
+let isDragging = false;
+let startY = 0;
+let currentRotation = 0;
+const MAX_ROTATION = 48;
+const leverContainer = document.getElementById('leverContainer');
+const leverShaft = document.getElementById('leverShaft');
+const leverBall = document.getElementById('leverBall');
+
+function startDrag(e) {
+  if (spinning) return;
+  isDragging = true;
+  startY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
+  currentRotation = 0;
+  leverShaft.style.transition = 'none';
+  document.addEventListener('mousemove', dragMove, { passive: false });
+  document.addEventListener('touchmove', dragMove, { passive: false });
+  document.addEventListener('mouseup', endDrag);
+  document.addEventListener('touchend', endDrag);
+}
+
+function dragMove(e) {
+  if (!isDragging) return;
+  e.preventDefault(); // prevent scroll on mobile
+  const clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
+  const deltaY = Math.max(0, clientY - startY); // only pull down
+  currentRotation = Math.min(deltaY * 0.85, MAX_ROTATION); // tuned sensitivity
+  leverShaft.style.transform = `rotate(${currentRotation}deg)`;
+}
+
+function endDrag() {
+  if (!isDragging) return;
+  isDragging = false;
+  document.removeEventListener('mousemove', dragMove);
+  document.removeEventListener('touchmove', dragMove);
+  document.removeEventListener('mouseup', endDrag);
+  document.removeEventListener('touchend', endDrag);
+
+  if (currentRotation > 22) {
+    // Snap to pulled position and trigger spin
+    leverShaft.style.transition = 'transform 0.25s cubic-bezier(0.68, -0.55, 0.27, 1.55)';
+    leverShaft.style.transform = `rotate(${MAX_ROTATION}deg)`;
+    setTimeout(() => {
+      pullLever();
+      // Reset lever after the pull animation finishes
+      setTimeout(() => {
+        leverShaft.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        leverShaft.style.transform = 'rotate(0deg)';
+      }, 700);
+    }, 180);
+  } else {
+    // Snap back if not pulled enough
+    leverShaft.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    leverShaft.style.transform = 'rotate(0deg)';
+  }
+}
+
+// Attach drag listeners
+leverBall.addEventListener('mousedown', startDrag);
+leverBall.addEventListener('touchstart', startDrag, { passive: false });
+
+// ─── MAIN PULL LOGIC (now uses correct winner landing) ───────────────────────
+async function pullLever() {
+  if (spinning) return;
+  spinning = true;
+  
+  const btn = document.getElementById('pull-btn');
+  btn.disabled = true;
+  btn.textContent = 'EN COURS...';
+  
+  // Hide previous results
+  document.getElementById('resultNames').classList.remove('visible');
+  document.getElementById('resultHint').style.display = 'none';
+  
+  // Progress bar
+  const prog = document.getElementById('spinProgress');
+  const progBar = document.getElementById('spinProgressBar');
+  prog.classList.add('active');
+  progBar.style.width = '0%';
+  
+  // Rebuild reels for fresh random strip each time
+  reelData1 = buildReel(document.getElementById('reel1'));
+  reelData2 = buildReel(document.getElementById('reel2'));
+  
+  // Pick two DIFFERENT winners
+  let idx1 = Math.floor(Math.random() * JEAN_LUCS.length);
+  let idx2;
+  do { idx2 = Math.floor(Math.random() * JEAN_LUCS.length); } while (idx2 === idx1);
+  
+  const winner1 = JEAN_LUCS[idx1];
+  const winner2 = JEAN_LUCS[idx2];
+  currentWinners = [winner1, winner2];
+  
+  const duration1 = 3400;
+  const duration2 = 4100;
+  
+  // Progress animation
+  const progStart = performance.now();
+  const progDuration = duration2 + 400;
+  function animProg(now) {
+    const t = Math.min((now - progStart) / progDuration, 1);
+    progBar.style.width = (t * 100) + '%';
+    if (t < 1) requestAnimationFrame(animProg);
+  }
+  requestAnimationFrame(animProg);
+  
+  // Spin both reels — now guaranteed to stop on the exact chosen Jean-Luc
+  await Promise.all([
+    spinReel(document.getElementById('reel1'), reelData1, winner1, duration1, 0),
+    spinReel(document.getElementById('reel2'), reelData2, winner2, duration2, 180)
+  ]);
+  
+  // Update stats
+  spinCount++;
+  exposedCount += 2;
+  document.getElementById('spinCount').textContent = `TIRAGES: ${spinCount} | JEAN-LUCS EXPOSÉS: ${exposedCount}`;
+  
+  // Show result area (still useful on mobile)
+  document.getElementById('resultBtn1').textContent = currentWinners[0].title;
+  document.getElementById('resultBtn2').textContent = currentWinners[1].title;
+  document.getElementById('resultNames').classList.add('visible');
+  document.getElementById('resultHint').style.display = 'block';
+  
+  prog.classList.remove('active');
+  
+  // Flash effect
+  document.body.style.boxShadow = 'inset 0 0 120px rgba(255,204,0,0.4)';
+  setTimeout(() => document.body.style.boxShadow = '', 600);
+  
+  // Make the STOPPED names INSIDE the slots clickable too (exactly what you asked for)
+  setTimeout(() => {
+    const reel1Winner = document.getElementById('reel1').querySelector('.slot-item.winner');
+    const reel2Winner = document.getElementById('reel2').querySelector('.slot-item.winner');
+    
+    if (reel1Winner) {
+      reel1Winner.onclick = () => window.open(currentWinners[0].url, '_blank');
+    }
+    if (reel2Winner) {
+      reel2Winner.onclick = () => window.open(currentWinners[1].url, '_blank');
+    }
+  }, 300);
+  
+  spinning = false;
+  btn.disabled = false;
+  btn.textContent = '▶ TIRER LE LEVIER ◀';
+}
+
+function openWiki(idx) {
+  if (currentWinners[idx]) {
+    window.open(currentWinners[idx].url, '_blank');
+  }
+}
+
+// ─── INITIAL REEL DISPLAY ────────────────────────────────────────────────────
+function initReelDisplay(reelEl, reelData) {
+  const idx = Math.floor(Math.random() * JEAN_LUCS.length);
+  const winner = JEAN_LUCS[idx];
+  const items = reelEl.querySelectorAll('.slot-item');
+  // Find the first occurrence of a random name for initial look
+  for (let i = 0; i < items.length; i++) {
+    if (items[i].textContent === winner.title) {
+      reelEl.style.transform = `translateY(${-i * ITEM_HEIGHT}px)`;
+      items[i].classList.add('winner');
+      return;
+    }
+  }
+}
+setTimeout(() => {
+  initReelDisplay(document.getElementById('reel1'), reelData1);
+  initReelDisplay(document.getElementById('reel2'), reelData2);
+}, 120);
+
+// ─── RANDOM GLITCH ───────────────────────────────────────────────────────────
+setInterval(() => {
+  const title = document.querySelector('.header-title');
+  const names = ['JEAN-LUC GAMBLING', 'J-L NEXUS', '376 AGENTS', 'QUI EST JL?'];
+  title.textContent = names[Math.floor(Math.random() * names.length)];
+  setTimeout(() => title.textContent = 'JEAN-LUC GAMBLING', 220);
+}, 6500);
+</script>
+</body>
+</html>
