@@ -43,7 +43,7 @@ const RELATIONSHIPS = [
   { a: "susie",   b: "ralsei",     type: "friend",       dir: "both", mode: "relationships", canon: true,
     title: "L'amitié entre Susie et Ralsei",
     desc: "Amis depuis le Chapitre 1." },
-  { a: "kris",   b: "ralsei",     type: "friend",       dir: "both", mode: "relationships", canon: true,
+  { a: "ralsei",   b: "kris",     type: "friend",       dir: "both", mode: "relationships", canon: true,
     title: "L'amitié entre Kris et Ralsei",
     desc: "Amis depuis le Chapitre 1." },
   { a: "berdly",   b: "kris",     type: "friend",       dir: "both", mode: "relationships", canon: true,
