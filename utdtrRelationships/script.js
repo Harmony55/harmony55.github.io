@@ -98,7 +98,7 @@ const RELATIONSHIPS = [
     title: "Bénéfacteur",
     desc: "Si FRIEND est bien Mike, et que Mike est bien le bénéfacteur de Spamton, alors FRIEND aurais voulu l'aider avant de l'abandonner, pour une raison encore flous." },
   { a: "gaster",   b: "kris",     type: "partners",       dir: "both", mode: "relationships", canon: false,
-    title: "Patient",
+    title: "Psy",
     desc: "Si Gaster est l'homme oublié, il est aussi surement l'ancien psychologue de Kris." },
   { a: "gaster",   b: "ralsei",     type: "family",       dir: "none", mode: "relationships", canon: false,
     title: "Création",
