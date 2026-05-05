@@ -187,11 +187,11 @@ const RELATIONSHIPS = [
 ];
 
 
- 
 let currentMode = "relationships";
 let hiddenTypes = new Set();
 let hideCanon = false;
 let hideTheory = false;
+let activePath = null;
 let nodes = [];
 let activeLink = null;
 let hoveredLink = null;
@@ -199,7 +199,6 @@ let dragging = null;
 let dragOffX = 0, dragOffY = 0;
 const NODE_R = 18;
  
-
  
 const canvas = document.getElementById("map-canvas");
 const ctx = canvas.getContext("2d");
@@ -213,7 +212,6 @@ function resize() {
   draw();
 }
  
-
  
 function initNodes() {
   const W = canvas.width, H = canvas.height;
@@ -233,7 +231,6 @@ function initNodes() {
  
 function getNode(id) { return nodes.find(n => n.id === id); }
  
-
  
 let animFrame = null;
  
@@ -241,7 +238,7 @@ function physicsStep() {
   const W = canvas.width, H = canvas.height;
   const links = getVisibleLinks();
  
-  
+ 
   for (let i = 0; i < nodes.length; i++) {
     for (let j = i + 1; j < nodes.length; j++) {
       const a = nodes[i], b = nodes[j];
@@ -255,7 +252,7 @@ function physicsStep() {
     }
   }
  
-  
+ 
   links.forEach(lk => {
     const a = getNode(lk.a), b = getNode(lk.b);
     if (!a || !b) return;
@@ -269,14 +266,14 @@ function physicsStep() {
     b.vx -= fx; b.vy -= fy;
   });
  
-  
+ 
   const cx = W / 2, cy = H / 2;
   nodes.forEach(n => {
     n.vx += (cx - n.x) * 0.0015;
     n.vy += (cy - n.y) * 0.0015;
   });
  
-  
+ 
   nodes.forEach(n => {
     if (dragging && dragging.id === n.id) { n.vx = 0; n.vy = 0; return; }
     n.vx *= 0.82; n.vy *= 0.82;
@@ -289,7 +286,6 @@ function physicsStep() {
   animFrame = requestAnimationFrame(physicsStep);
 }
  
-
  
 function getTypeMap() {
   return currentMode === "relationships" ? REL_TYPES : PAR_TYPES;
@@ -311,22 +307,18 @@ function getVisibleLinks() {
   });
 }
  
-
  
-
-
-const CURVE_STEP = 38; 
+const CURVE_STEP = 38;
  
 function getControlPoint(ax, ay, bx, by, offset) {
   const mx = (ax + bx) / 2, my = (ay + by) / 2;
   const dx = bx - ax, dy = by - ay;
   const dist = Math.sqrt(dx*dx + dy*dy) || 1;
-  
+ 
   const px = -dy / dist, py = dx / dist;
   return { cx: mx + px * offset * CURVE_STEP, cy: my + py * offset * CURVE_STEP };
 }
  
-
 function bezierPoint(ax, ay, cx, cy, bx, by, t) {
   const mt = 1 - t;
   return {
@@ -335,7 +327,6 @@ function bezierPoint(ax, ay, cx, cy, bx, by, t) {
   };
 }
  
-
 function bezierTangent(ax, ay, cx, cy, bx, by, t) {
   const mt = 1 - t;
   const tx = 2*mt*(cx-ax) + 2*t*(bx-cx);
@@ -344,7 +335,6 @@ function bezierTangent(ax, ay, cx, cy, bx, by, t) {
   return { ux: tx/len, uy: ty/len };
 }
  
-
 function bezierTrimT(ax, ay, cx, cy, bx, by, fromEnd) {
   const steps = 30;
   const ex = fromEnd ? bx : ax, ey = fromEnd ? by : ay;
@@ -357,10 +347,7 @@ function bezierTrimT(ax, ay, cx, cy, bx, by, fromEnd) {
   return fromEnd ? 0 : 1;
 }
  
-
  
-
-
 function assignOffsets(links) {
   const groups = new Map();
   links.forEach(lk => {
@@ -372,13 +359,13 @@ function assignOffsets(links) {
   groups.forEach(group => {
     const n = group.length;
     group.forEach((lk, i) => {
-      
+     
       let slot;
       if (n === 1) {
         slot = 0;
       } else {
         const mid = (n - 1) / 2;
-        slot = i - mid; 
+        slot = i - mid;
       }
       map.set(lk, slot);
     });
@@ -386,12 +373,12 @@ function assignOffsets(links) {
   return map;
 }
  
-
  
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   const links = getVisibleLinks();
   const offsets = assignOffsets(links);
+ 
  
   links.forEach(lk => {
     const a = getNode(lk.a), b = getNode(lk.b);
@@ -399,13 +386,20 @@ function draw() {
     const ti = getTypeInfo(lk.type);
     if (!ti) return;
     const isActive = lk === activeLink || lk === hoveredLink;
-    drawEdge(a, b, ti.color, ti.dash, lk.dir, isActive, lk.canon, offsets.get(lk) || 0);
+    const inPath = activePath && activePath.links.has(lk);
+    const dimmed = activePath && !inPath && !isActive;
+    drawEdge(a, b, ti.color, ti.dash, lk.dir, isActive || inPath, lk.canon, offsets.get(lk) || 0, dimmed);
   });
  
-  nodes.forEach(n => drawNode(n));
+ 
+  nodes.forEach(n => {
+    const inPath = activePath && activePath.nodes.has(n.id);
+    const dimmed = activePath && !inPath;
+    drawNode(n, inPath, dimmed);
+  });
 }
  
-function drawEdge(a, b, color, dash, dir, highlight, canon, offset) {
+function drawEdge(a, b, color, dash, dir, highlight, canon, offset, dimmed) {
   const { cx, cy } = getControlPoint(a.x, a.y, b.x, b.y, offset);
  
   const tStart = bezierTrimT(a.x, a.y, cx, cy, b.x, b.y, false);
@@ -415,7 +409,7 @@ function drawEdge(a, b, color, dash, dir, highlight, canon, offset) {
   const pEnd   = bezierPoint(a.x, a.y, cx, cy, b.x, b.y, tEnd);
  
   ctx.save();
-  ctx.globalAlpha = canon ? 1 : 0.55;
+  ctx.globalAlpha = dimmed ? 0.15 : (canon ? 1 : 0.55);
   ctx.strokeStyle = highlight ? "#000" : color;
   ctx.lineWidth = highlight ? 3 : 1.5;
   if (!canon) ctx.setLineDash([10, 6]);
@@ -444,7 +438,7 @@ function drawArrow(ctx, x, y, ux, uy, len, w, color) {
   const px = -uy, py = ux;
   ctx.save();
   ctx.setLineDash([]);
-  ctx.globalAlpha = ctx.globalAlpha; 
+  ctx.globalAlpha = ctx.globalAlpha;
   ctx.beginPath();
   ctx.fillStyle = color;
   ctx.moveTo(x, y);
@@ -455,27 +449,26 @@ function drawArrow(ctx, x, y, ux, uy, len, w, color) {
   ctx.restore();
 }
  
-function drawNode(n) {
+function drawNode(n, inPath, dimmed) {
   ctx.save();
+  ctx.globalAlpha = dimmed ? 0.2 : 1;
   ctx.beginPath();
   ctx.arc(n.x, n.y, NODE_R, 0, Math.PI * 2);
-  ctx.fillStyle = "#fff";
+  ctx.fillStyle = inPath ? "#000" : "#fff";
   ctx.fill();
   ctx.strokeStyle = "#000";
-  ctx.lineWidth = 2;
+  ctx.lineWidth = inPath ? 3 : 2;
   ctx.stroke();
  
-  ctx.fillStyle = "#000";
+  ctx.fillStyle = inPath ? "#fff" : "#000";
   ctx.font = "bold 11px 'Courier New', Courier, monospace";
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  
   const label = n.label.length > 7 ? n.label.slice(0, 6) + "." : n.label;
   ctx.fillText(label, n.x, n.y);
   ctx.restore();
 }
  
-
  
 function buildLegend() {
   const legend = document.getElementById("legend");
@@ -509,17 +502,16 @@ function buildLegend() {
   }
 }
  
-
  
 function buildFilters() {
   const list = document.getElementById("filter-list");
   list.innerHTML = "";
  
-  
+ 
   if (currentMode === "relationships") {
     const secHeader = document.createElement("div");
     secHeader.style.cssText = "background:#bbb;padding:3px 8px;font-weight:bold;font-size:11px;border-bottom:1px solid #000;letter-spacing:0.5px;";
-    secHeader.textContent = "CANON / THEORY";
+    secHeader.textContent = "Canon / Theory";
     list.appendChild(secHeader);
  
     [{ label: "Canon", key: "canon" }, { label: "Theory", key: "theory" }].forEach(({ label, key }) => {
@@ -555,7 +547,7 @@ function buildFilters() {
  
     const secHeader2 = document.createElement("div");
     secHeader2.style.cssText = "background:#ddd;padding:3px 8px;font-weight:bold;font-size:11px;border-bottom:1px solid #000;border-top:1px solid #000;letter-spacing:0.5px;";
-    secHeader2.textContent = "TYPE DE CONNECTION";
+    secHeader2.textContent = "Connections";
     list.appendChild(secHeader2);
   }
  
@@ -587,7 +579,6 @@ function buildFilters() {
   });
 }
  
-
  
 function showInfo(lk) {
   const ti = getTypeInfo(lk.type);
@@ -608,12 +599,11 @@ function showInfo(lk) {
 }
  
 function clearInfo() {
-  if (activeLink) return; 
+  if (activeLink) return;
   document.getElementById("info-placeholder").style.display = "";
   document.getElementById("info-content").style.display = "none";
 }
  
-
  
 function hitTestNode(mx, my) {
   for (let i = nodes.length - 1; i >= 0; i--) {
@@ -627,14 +617,14 @@ function hitTestNode(mx, my) {
 function hitTestLink(mx, my) {
   const links = getVisibleLinks();
   const offsets = assignOffsets(links);
-  
+ 
   for (let i = links.length - 1; i >= 0; i--) {
     const lk = links[i];
     const a = getNode(lk.a), b = getNode(lk.b);
     if (!a || !b) continue;
     const offset = offsets.get(lk) || 0;
     const { cx, cy } = getControlPoint(a.x, a.y, b.x, b.y, offset);
-    
+   
     const steps = 40;
     for (let s = 0; s <= steps; s++) {
       const t = s / steps;
@@ -645,7 +635,6 @@ function hitTestLink(mx, my) {
   return null;
 }
  
-
  
 const tooltip = document.getElementById("node-tooltip");
  
@@ -720,7 +709,6 @@ canvas.addEventListener("mouseleave", () => {
   draw();
 });
  
-
 document.querySelectorAll(".tab-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
@@ -731,17 +719,165 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
     hideTheory = false;
     activeLink = null;
     hoveredLink = null;
+    activePath = null;
     clearInfo();
     buildLegend();
     buildFilters();
+    buildPathSelects();
     draw();
   });
 });
  
-
+ 
+function buildGraph() {
+  const edges = RELATIONSHIPS.filter(lk => lk.mode === currentMode);
+ 
+  const adj = new Map();
+  CHARACTERS.forEach(c => adj.set(c.id, []));
+  edges.forEach(lk => {
+    const cost = (currentMode === "relationships" && !lk.canon) ? 1.5 : 1;
+    adj.get(lk.a).push({ neighbor: lk.b, link: lk, cost });
+    adj.get(lk.b).push({ neighbor: lk.a, link: lk, cost });
+  });
+  return adj;
+}
+ 
+function dijkstra(adj, startId) {
+  const dist = new Map(), prev = new Map(), prevLink = new Map();
+  const visited = new Set();
+  CHARACTERS.forEach(c => dist.set(c.id, Infinity));
+  dist.set(startId, 0);
+ 
+ 
+  const queue = [{ id: startId, d: 0 }];
+ 
+  while (queue.length) {
+    queue.sort((a, b) => a.d - b.d);
+    const { id: u } = queue.shift();
+    if (visited.has(u)) continue;
+    visited.add(u);
+    for (const { neighbor: v, link, cost } of (adj.get(u) || [])) {
+      const nd = dist.get(u) + cost;
+      if (nd < dist.get(v)) {
+        dist.set(v, nd);
+        prev.set(v, u);
+        prevLink.set(v, link);
+        queue.push({ id: v, d: nd });
+      }
+    }
+  }
+  return { dist, prev, prevLink };
+}
+ 
+function findShortestPath(fromId, toId) {
+  if (fromId === toId) return { path: [fromId], links: [], dist: 0 };
+  const adj = buildGraph();
+  const { dist, prev, prevLink } = dijkstra(adj, fromId);
+  if (!isFinite(dist.get(toId))) return null;
+ 
+ 
+  const path = [], links = [];
+  let cur = toId;
+  while (cur !== fromId) {
+    path.unshift(cur);
+    links.unshift(prevLink.get(cur));
+    cur = prev.get(cur);
+  }
+  path.unshift(fromId);
+  return { path, links, dist: dist.get(toId) };
+}
+ 
+function buildPathSelects() {
+  ["path-from", "path-to"].forEach((id, idx) => {
+    const sel = document.getElementById(id);
+    sel.innerHTML = "";
+    CHARACTERS.forEach((c, i) => {
+      const opt = document.createElement("option");
+      opt.value = c.id;
+      opt.textContent = c.label;
+      if (i === idx) opt.selected = true;
+      sel.appendChild(opt);
+    });
+  });
+ 
+  document.getElementById("path-to").selectedIndex = 1;
+}
+ 
+function clearPath() {
+  activePath = null;
+  document.getElementById("path-result").innerHTML = "";
+  draw();
+}
+ 
+function runPathfinder() {
+  const fromId = document.getElementById("path-from").value;
+  const toId   = document.getElementById("path-to").value;
+  const result = document.getElementById("path-result");
+ 
+  if (fromId === toId) {
+    result.innerHTML = '<span class="path-err">Select two different characters.</span>';
+    clearPath();
+    return;
+  }
+ 
+  const res = findShortestPath(fromId, toId);
+  if (!res) {
+    result.innerHTML = '<span class="path-err">No path found between these characters in this mode.</span>';
+    clearPath();
+    return;
+  }
+ 
+ 
+  activePath = {
+    nodes: new Set(res.path),
+    links: new Set(res.links)
+  };
+ 
+ 
+  const hops = res.path.length - 1;
+  const distDisplay = Number.isInteger(res.dist) ? res.dist : res.dist.toFixed(1);
+  let html = `<strong>Distance: ${hops} liens${hops !== 1 ? 's' : ''}</strong>`;
+  if (currentMode === "relationships" && res.dist !== hops) {
+    html += ``;
+  }
+  html += '<br>';
+ 
+  res.path.forEach((nodeId, i) => {
+    const char = CHARACTERS.find(c => c.id === nodeId);
+    html += `<div class="path-step">`;
+    html += `<div class="path-step-dot" style="background:${i === 0 || i === res.path.length-1 ? '#000' : '#fff'}"></div>`;
+    html += `<span>${char.label}</span></div>`;
+    if (i < res.links.length) {
+      const lk = res.links[i];
+      const ti = getTypeInfo(lk.type) || { color: '#000', label: lk.type };
+      const canonTag = lk.mode === "relationships"
+        ? ` <span style="font-size:9px;border:1px solid ${ti.color};padding:0 2px;color:${ti.color}">${lk.canon ? 'C' : 'T'}</span>`
+        : '';
+      html += `<div class="path-edge-line" style="border-color:${ti.color}">`;
+      html += `<span style="color:${ti.color}">&#9472; ${ti.label}${canonTag}</span>`;
+      html += `</div>`;
+    }
+  });
+ 
+  html += `<button id="path-clear">CLEAR</button>`;
+  result.innerHTML = html;
+  document.getElementById("path-clear").addEventListener("click", clearPath);
+  draw();
+}
+ 
+document.getElementById("path-header").addEventListener("click", () => {
+  const body = document.getElementById("path-body");
+  const icon = document.getElementById("path-toggle-icon");
+  const collapsed = body.classList.toggle("collapsed");
+  icon.textContent = collapsed ? "+" : "-";
+});
+ 
+document.getElementById("path-run").addEventListener("click", runPathfinder);
+ 
  
 window.addEventListener("resize", resize);
 resize();
 buildLegend();
 buildFilters();
+buildPathSelects();
 physicsStep();
