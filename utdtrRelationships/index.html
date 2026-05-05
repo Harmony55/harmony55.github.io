@@ -33,12 +33,30 @@
       <div id="info-placeholder">Clique sur une connection pour la voir ici.</div>
       <div id="info-content" style="display:none"></div>
     </div>
-    <div id="filter-header">MONTRER / CACHER DES CONNECTIONS</div>
+    <div id="filter-header">Monter / Cacher des connections</div>
     <div id="filter-list">
     </div>
+    <div id="path-panel">
+      <div id="path-header">
+        <span>[ GPS ]</span>
+        <span id="path-toggle-icon">+</span>
+      </div>
+      <div id="path-body" class="collapsed">
+        <div class="path-row">
+          <label>de</label>
+          <select id="path-from"></select>
+        </div>
+        <div class="path-row">
+          <label>à</label>
+          <select id="path-to"></select>
+        </div>
+        <button id="path-run">Lien le plus court</button>
+        <div id="path-result"></div>
+      </div>
+    </div>
+
   </div>
 </div>
-
 
 <script src="./script.js"></script> 
 </body>
