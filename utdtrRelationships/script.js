@@ -1,5 +1,3 @@
-
-
 const CHARACTERS = [
   { id: "kris",    label: "Kris",      desc: "The first hero. The cage, with human soul and parts!" },
   { id: "susie",   label: "Susie",     desc: "The second hero. The girl, with hope crossed on her heart" },
@@ -13,6 +11,13 @@ const CHARACTERS = [
   { id: "asriel",  label: "Asriel",    desc: "A crying and crying and crying boy." },
   { id: "gaster",  label: "Gaster",    desc: "GALLERY" },
   { id: "friend",  label: "FRIEND",    desc: "They'll see the tail of hell take crawl." },
+  { id: "eram",    label: "ERAM",      desc: "Without play, the knife grows dull." },
+  { id: "knight",  label: "Roaring Knight",  desc: "The knight which makes with blackened knife." },
+  { id: "gerson",  label: "Gerson",  desc: "Axe carved by the tortoise's grand hammer." },
+  { id: "jevil",   label: "Jevil",  desc: "WON'T YOU LET YOURSELF OUTSIDE?" },
+  { id: "soul",    label: "SOUL",  desc: "The angel, banished, will finally meet with its desire." },
+  { id: "seam",    label: "Seam",  desc: "The name's Seam. Pronounced 'Shawm.'" },
+  { id: "ramb",    label: "Ramb",  desc: "Freedom. That's what YOU want, chum, freedom!" },
 ];
 
 
@@ -22,6 +27,7 @@ const REL_TYPES = [
   { id: "enemy",      label: "Ennemis",     color: "#c0392b", dash: false  },
   { id: "family",     label: "Famille",      color: "#27ae60", dash: false },
   { id: "partners",     label: "Associés",      color: "#e0ed21", dash: false },
+  { id: "divorce",     label: "Divorce",      color: "#9e14f5", dash: false },
   { id: "unkown",     label: "Inconnu",      color: "#6e6e6e", dash: true },
 ];
 
@@ -60,7 +66,7 @@ const RELATIONSHIPS = [
     desc: "Tenna est la télévision familiale des Dreemurr, et veut divertir Kris comme au bon vieux temps." },
   { a: "spamton",   b: "noelle",     type: "friend",       dir: "a->b", mode: "relationships", canon: true,
     title: "Pipis",
-    desc: "Comme Noelle était la seul personne lisant ses spams, Spamton est devenus amis avec Noelle est lui a offert un pipis." },
+    desc: "Comme Noelle était la seule personne lisant ses spams, Spamton est devenu ami avec Noelle et lui a offert un pipis." },
   { a: "tenna",   b: "kris",     type: "partners",       dir: "none", mode: "relationships", canon: true,
     title: "Notre deal",
     desc: "Kris a conclu un deal avec Tenna pour aider le Roaring Knight." },
@@ -69,128 +75,252 @@ const RELATIONSHIPS = [
     desc: "Un événement tragique s'est produit après la signature du contrat de Tenna par Spamton, le contraignant à fuir TV World. Chacun était convaincu d'avoir été escroqué par l'autre." },
   { a: "spamton",   b: "tenna",     type: "love",       dir: "both", mode: "relationships", canon: false,
     title: "Spamtenna",
-    desc: "Le ship entre Spamton et Tenna est le ship le plus populaire de Deltarune. Leur obsessions pour chacun, le fait que leur séparation soit un quiproquo, et de nombreux autres indices dans le jeu et ses fichiers laissent penser que Spamton et Tenna sont encore amoureux, rendant ce ship très populaire." },
+    desc: "Le ship entre Spamton et Tenna est le ship le plus populaire de Deltarune. Leur obsession l'un pour l'autre, le fait que leur séparation soit un quiproquo, et de nombreux autres indices dans le jeu et ses fichiers laissent penser que Spamton et Tenna sont encore amoureux, rendant ce ship très populaire." },
   { a: "noelle",   b: "susie",     type: "love",       dir: "a->b", mode: "relationships", canon: true,
     title: "Suselle",
-    desc: "Noelle crush sur Susie depuis son arrivée." },
+    desc: "Noelle a un crush sur Susie depuis son arrivée." },
   { a: "berdly",   b: "susie",     type: "love",       dir: "a->b", mode: "relationships", canon: true,
     title: "Berdsie",
     desc: "Berdly veut rizz Susie dans le Chapitre 2." },
   { a: "kris",   b: "susie",     type: "love",       dir: "a->b", mode: "relationships", canon: false,
     title: "Krusie",
-    desc: "Le comportement de Kris avec Susie dans certaines scènes peu laisser penser que Kris crush sur Susie." },
+    desc: "Le comportement de Kris avec Susie dans certaines scènes peut laisser penser que Kris a un crush sur Susie." },
   { a: "ralsei",   b: "kris",     type: "love",       dir: "a->b", mode: "relationships", canon: false,
     title: "Kralsei",
-    desc: "Le comportement de Ralsei avec Kris dans certaines scènes peu laisser penser que Ralsei crush sur Kris." },
+    desc: "Le comportement de Ralsei avec Kris dans certaines scènes peut laisser penser que Ralsei a un crush sur Kris." },
   { a: "berdly",   b: "kris",     type: "love",       dir: "a->b", mode: "relationships", canon: false,
     title: "Kerdly",
-    desc: "L'obsession de Berdly pour Kris ainsi que son invitation au festival peu laisser penser que Berdly crush sur Kris." },
+    desc: "L'obsession de Berdly pour Kris ainsi que son invitation au festival peut laisser penser que Berdly a un crush sur Kris." },
   { a: "friend",   b: "gaster",     type: "partners",       dir: "none", mode: "relationships", canon: false,
     title: "DEVICE_FRIEND",
-    desc: "Friend est classé comme un DEVICE dans le code du jeu, comme des objets associés avec Gaster tels que le goner maker de l'introduction." },
+    desc: "Friend est classé comme un DEVICE dans le code du jeu, comme des objets associés à Gaster tels que le goner maker de l'introduction." },
   { a: "friend",   b: "dess",     type: "unkown",       dir: "none", mode: "relationships", canon: false,
     title: "The poor childrens",
-    desc: "Friend est le premier suspect dans la disparition de December, même si les raisons de cette enlèvement sont encore flous." },
+    desc: "Friend est le premier suspect dans la disparition de December, même si les raisons de cet enlèvement sont encore floues." },
   { a: "noelle",   b: "friend",     type: "friend",       dir: "a->b", mode: "relationships", canon: false,
     title: "Cat Petterz 2",
-    desc: "Il est probable que le chat étrange glitché élevé par Noelle dans Cat Petterz 2 sois FRIEND." },
+    desc: "Il est probable que le chat étrange glitché élevé par Noelle dans Cat Petterz 2 soit FRIEND." },
   { a: "friend",   b: "spamton",     type: "unkown",       dir: "a->b", mode: "relationships", canon: false,
     title: "Bénéfacteur",
-    desc: "Si FRIEND est bien Mike, et que Mike est bien le bénéfacteur de Spamton, alors FRIEND aurais voulu l'aider avant de l'abandonner, pour une raison encore flous." },
+    desc: "Si FRIEND est bien Mike, et que Mike est bien le bienfaiteur de Spamton, alors FRIEND aurait voulu l'aider avant de l'abandonner, pour une raison encore floue." },
   { a: "gaster",   b: "kris",     type: "partners",       dir: "both", mode: "relationships", canon: false,
     title: "Psy",
-    desc: "Si Gaster est l'homme oublié, il est aussi surement l'ancien psychologue de Kris." },
+    desc: "Si Gaster est l'homme oublié, il est aussi sûrement l'ancien psychologue de Kris." },
   { a: "gaster",   b: "ralsei",     type: "family",       dir: "none", mode: "relationships", canon: false,
     title: "Création",
-    desc: "Dus aux propriétés étrange de Ralsei, semblant comprendre et connaitre des éléments du jeu fait uniquement pour le joueur par Gaster, il est possible que Gaster ait crée Ralsei d'une certaine manière, par exemple en créant la prophétie." },
+    desc: "En raison des propriétés étranges de Ralsei, semblant comprendre et connaître des éléments du jeu faits uniquement pour le joueur par Gaster, il est possible que Gaster ait créé Ralsei d'une certaine manière, par exemple en créant la prophétie." },
   { a: "tenna",   b: "friend",     type: "partners",       dir: "a->b", mode: "relationships", canon: false,
     title: "Mike",
-    desc: "Si Mike est FRIEND, Tenna semble le connaitre et pense qu'il travaille maintenant pour lui. C'est peut être aussi pour ça que Pluey semble être son Mike favoris." },
+    desc: "Si Mike est FRIEND, Tenna semble le connaître et pense qu'il travaille maintenant pour lui. C'est peut-être aussi pour ça que Pluey semble être son Mike favori." },
   { a: "friend",   b: "kris",     type: "unkown",       dir: "a->b", mode: "relationships", canon: false,
     title: "SWORD_ROUTE",
-    desc: "Si FRIEND est bien celui ayant donner la manette a Kris et mis en place la sword route, il doit connaitre personnellement Kris et vouloir qu'iel accomplisse la weird route pour une certaine raison encore flou." },
+    desc: "Si FRIEND est bien celui ayant donné la manette à Kris et mis en place la sword route, il doit connaître personnellement Kris et vouloir qu'iel accomplisse la weird route pour une certaine raison encore floue." },
   { a: "asriel",   b: "kris",     type: "family",       dir: "none", mode: "relationships", canon: true,
     title: "Frère et adèlphe",
     desc: "Asriel et Kris sont dans la famille Dreemurr." },
   { a: "asriel",   b: "dess",     type: "friend",       dir: "both", mode: "relationships", canon: true,
     title: "Amitié",
-    desc: "Asriel et December semblent avoir été amis proche avant sa disparition." },
+    desc: "Asriel et December semblent avoir été amis proches avant sa disparition." },
   { a: "dess",   b: "kris",     type: "friend",       dir: "both", mode: "relationships", canon: true,
     title: "Amitié",
-    desc: "December était amis avec Kris, jouant dans la foret avec Noelle et Asriel." },
+    desc: "December était amie avec Kris, jouant dans la forêt avec Noelle et Asriel." },
   { a: "tenna",   b: "asriel",     type: "family",       dir: "a->b", mode: "relationships", canon: true,
     title: "TV Time",
-    desc: "Tenna est la télévision familiale des Dreemurr, et est nostalgique de l'époque ou Asriel s'amusait avec Kris devant la télévision." },
+    desc: "Tenna est la télévision familiale des Dreemurr, et est nostalgique de l'époque où Asriel s'amusait avec Kris devant la télévision." },
   { a: "tenna",   b: "dess",     type: "friend",       dir: "a->b", mode: "relationships", canon: true,
     title: "Dess goon theory",
-    desc: "Tenna est nostalgique de l'époque ou December regardais des émission de rock pas de son age a la télévision." },
+    desc: "Tenna est nostalgique de l'époque où December regardait des émissions de rock pas de son âge à la télévision." },
   { a: "noelle",   b: "dess",     type: "family",       dir: "none", mode: "relationships", canon: true,
     title: "Soeurs",
-    desc: "Noelle et Decemebr sont de la famille Holiday." },
+    desc: "Noelle et December sont de la famille Holiday." },
   { a: "asriel",   b: "dess",     type: "love",       dir: "both", mode: "relationships", canon: false,
     title: "Dessriel",
-    desc: "La proximité de Asriel et December ainsi que certains détails trouvable laisse penser que leur relation aurais pu être romantique." },
+    desc: "La proximité d'Asriel et December ainsi que certains détails trouvables laissent penser que leur relation aurait pu être romantique." },
+  { a: "jevil",   b: "seam",     type: "divorce",       dir: "both", mode: "relationships", canon: true,
+    title: "Une étrange personne",
+    desc: "Jevil et Seam étaient très proches jusqu'à ce que Jevil rencontre une étrange personne, le plongeant dans la folie, ce qui força Seam à l'enfermer." },
+  { a: "jevil",   b: "spamton",     type: "enemy",       dir: "b->a", mode: "relationships", canon: true,
+    title: "ketchup kids",
+    desc: "Jevil et Spamton ont déjà 'joué' ensemble, et Spamton n'est jamais arrivé à son niveau même en trichant. Ce qui a fait de lui son rival, même si Jevil ne le mentionne jamais." },
+  { a: "jevil",   b: "friend",     type: "unkown",       dir: "b->a", mode: "relationships", canon: false,
+    title: "L'étrange personne",
+    desc: "Il est possible que l'étrange personne ayant plongé Jevil dans la folie soit FRIEND, lui ayant également donné le shadow crystal lui révélant la vérité sur la nature du monde." },
+  { a: "gerson",   b: "susie",     type: "partners",       dir: "both", mode: "relationships", canon: true,
+    title: "Old Man",
+    desc: "Un darkner basé sur les mémoires de Gerson du Roaring Knight est devenu le mentor de Susie, lui apprenant à s'entraîner, prendre confiance en elle, et l'encourageant à défier la prophétie. Il vient également l'aider à combattre le titan." },
+  { a: "gerson",   b: "dess",     type: "partners",       dir: "both", mode: "relationships", canon: true,
+    title: "Ancien enseignant",
+    desc: "Gerson était l'enseignant de December quand il était encore vivant." },
+  { a: "gerson",   b: "asriel",     type: "partners",       dir: "both", mode: "relationships", canon: true,
+    title: "Ancien enseignant",
+    desc: "Gerson était l'enseignant d'Asriel quand il était encore vivant." },
+  { a: "gerson",   b: "friend",     type: "unkown",       dir: "b->a", mode: "relationships", canon: false,
+    title: "Shadow crystal",
+    desc: "Un shadow crystal a été donné à Gerson, sûrement par FRIEND dans le but qu'il l'utilise. Il ne l'a cependant pas fait contrairement aux autres boss secrets." },
+  { a: "eram",   b: "kris",     type: "unkown",       dir: "a->b", mode: "relationships", canon: false,
+    title: "Le couteau s'émousse",
+    desc: "ERAM parle à Kris durant la sword route, semblant même connaître la weird route et ses pensées les plus sombres. Mais ses objectifs sont encore flous." },
+  { a: "eram",   b: "friend",     type: "partners",       dir: "both", mode: "relationships", canon: false,
+    title: "Friendlings",
+    desc: "ERAM partage la sword route avec FRIEND, des petites versions digitales de FRIEND apparaissent même durant le combat final. Il est parfois théorisé que FRIEND soit ERAM." },
+  { a: "eram",   b: "noelle",     type: "unkown",       dir: "a->b", mode: "relationships", canon: false,
+    title: "Ice Palace",
+    desc: "Noelle a déjà joué au jeu sur lequel le Mantle game est basé, et est également représentée dans le Mantle game lui-même. Il est théorisé que le carton de pizza Ice-E l'ayant hantée durant son enfance soit en fait ERAM." },
+  { a: "ramb",   b: "eram",     type: "partners",       dir: "both", mode: "relationships", canon: false,
+    title: "Dressing room big shot",
+    desc: "Ramb incite Kris à jouer au Mantle game dans lequel ERAM se trouve. Il est possible qu'il ait malgré tout connaissance d'ERAM. Il est théorisé qu'ERAM ait manipulé Ramb pour appâter Kris." },
+  { a: "ramb",   b: "kris",     type: "family",       dir: "a->b", mode: "relationships", canon: true,
+    title: "Power strip",
+    desc: "Prise électrique avec laquelle Kris jouait enfant, il s'est attaché à Kris. Il cherche à rendre Kris heureux et épanoui, même si Kris semble l'avoir oublié." },
+  { a: "ramb",   b: "tenna",     type: "partners",       dir: "both", mode: "relationships", canon: true,
+    title: "Barman",
+    desc: "Ramb travaille en tant que barman pour Tenna, devant s'occuper de servir des boissons et de distribuer certains lots. Il est cependant peu apprécié, et a interdiction de toucher les points." },
+  { a: "knight",   b: "kris",     type: "partners",       dir: "both", mode: "relationships", canon: true,
+    title: "Roaring GC",
+    desc: "Kris travaille avec le Knight." },
+  { a: "knight",   b: "susie",     type: "enemy",       dir: "both", mode: "relationships", canon: true,
+    title: "Strife by strife",
+    desc: "Le Roaring Knight possède une animosité particulière contre Susie." },
+  { a: "knight",   b: "gaster",     type: "enemy",       dir: "b->a", mode: "relationships", canon: false,
+    title: "Go back",
+    desc: "Après une défaite, Gaster va insister sur notre capacité à vaincre le Roaring Knight, laissant penser qu'il tient à notre victoire et à la défaite du Knight." },
+  { a: "knight",   b: "friend",     type: "unkown",       dir: "both", mode: "relationships", canon: false,
+    title: "crowd laugh",
+    desc: "Le Knight possède le même rire que FRIEND ainsi qu'un shadow crystal qui sont associés à FRIEND, ce qui laisse penser qu'ils ont une certaine relation ensemble." },
+  { a: "knight",   b: "tenna",     type: "partners",       dir: "both", mode: "relationships", canon: true,
+    title: "Le deal",
+    desc: "Tenna a sûrement été menacé par le Knight et Kris pour qu'il kidnappe Toriel et distraie les delta warriors suffisamment longtemps pour que le Knight puisse arriver." },
+  { a: "knight",   b: "tenna",     type: "partners",       dir: "both", mode: "relationships", canon: true,
+    title: "Le deal",
+    desc: "Tenna a sûrement été menacé par le Knight et Kris pour qu'il kidnappe Toriel et distraie les delta warriors suffisamment longtemps pour que le Knight puisse arriver." }, 
+  { a: "soul",   b: "gaster",     type: "partners",       dir: "both", mode: "relationships", canon: false,
+    title: "Notre magnifique connection",
+    desc: "Il est très probable que la voix du début du jeu soit Gaster, et qu'elle nous ait connectés avec ce monde pour un certain objectif." }, 
+  { a: "soul",   b: "kris",     type: "partners",       dir: "both", mode: "relationships", canon: true,
+    title: "Vessel",
+    desc: "Kris et l'âme ont une relation codépendante. Chacune étant faible et ne pouvant pas entrer dans un dark world sans l'autre." }, 
+  { a: "soul",   b: "kris",     type: "enemy",       dir: "both", mode: "relationships", canon: true,
+    title: "The distance between two",
+    desc: "Kris et l'âme sont en grande tension car chacune agit au dépend du libre arbitre de l'autre, et ont des objectifs opposés sur certains points (le Knight)." }, 
+  { a: "soul",   b: "noelle",     type: "partners",       dir: "both", mode: "relationships", canon: true,
+    title: "Proceed",
+    desc: "Dans la Weird Route, l'âme utilise Noelle pour arriver à ses fins." }, 
 
 
-  
+
+  // Parallèles  
   { a: "spamton",   b: "kris",     type: "like",     dir: "none", mode: "parallels",
     title: "La liberté",
-    desc: "Spamton et Kris ne se sentent pas libre, controlés par des forces supérieurs, et voudrais se libérer. Ils sont pourtant dépendant de cette entité, et ne saurais surement pas comment faire sans elle." },
+    desc: "Spamton et Kris ne se sentent pas libres, contrôlés par des forces supérieures, et voudraient se libérer. Ils sont pourtant dépendants de cette entité, et ne sauraient sûrement pas comment faire sans elle." },
   { a: "spamton",     b: "tenna",    type: "like",       dir: "none", mode: "parallels",
     title: "La chute et l'abandon",
-    desc: "Spamton et Tenna sont des hommes d'affaire verreux ayant eux beacoups de succès. Malheuresement ils ont chuter depuis leur heure de gloire, et se sont fait lacher par des êtres cher par le passé leur donnant une peur de l'abandon." },
+    desc: "Spamton et Tenna sont des hommes d'affaire véreux ayant eu beaucoup de succès. Malheureusement, ils ont chuté depuis leur heure de gloire, et se sont fait lâcher par des êtres chers par le passé, leur donnant une peur de l'abandon." },
   { a: "ralsei", b: "lancer",   type: "like",       dir: "none", mode: "parallels",
     title: "Princes des ténèbres",
     desc: "Ralsei et Lancer sont des princes des ténèbres solitaires, attendant l'arrivée des lightners." },
   { a: "berdly",   b: "spamton",    type: "like",      dir: "none", mode: "parallels",
     title: "Carry",
-    desc: "Berdly et Spamton ont obtenus leur succès en parti grace a l'aide d'un bénéfacteur pouvant les abandonner, ce qui est une de leur crainte." },
+    desc: "Berdly et Spamton ont obtenu leur succès en partie grâce à l'aide d'un bienfaiteur pouvant les abandonner, ce qui est une de leurs craintes." },
   { a: "kris",     b: "berdly",    type: "like",      dir: "none", mode: "parallels",
     title: "Autistes",
     desc: "Ils sont autistes pour résumer." },
   { a: "noelle",    b: "susie",    type: "mirror",      dir: "none", mode: "parallels",
     title: "Peur",
-    desc: "Noelle a peur de tout, et sa gentilesse cache une grande force, la ou Susie fait peur a tout le monde, mais sa force cache une grande gentilesse." },
+    desc: "Noelle a peur de tout, et sa gentillesse cache une grande force, là où Susie fait peur à tout le monde, mais sa force cache une grande gentillesse." },
   { a: "kris",    b: "lancer",    type: "like",      dir: "none", mode: "parallels",
     title: "Traitres",
-    desc: "Kris et Lancer sont amis de Susie, mais doivent la trahir pour obéir aux ordres (indirectes dans le cas de Lancer) du Knight." },
+    desc: "Kris et Lancer sont amis de Susie, mais doivent la trahir pour obéir aux ordres (indirects dans le cas de Lancer) du Knight." },
   { a: "ralsei",    b: "spamton",    type: "like",      dir: "none", mode: "parallels",
     title: "Paradis",
-    desc: "Ralsei et Spamton sont les seuls darkners a mentionner l'ange, l'âme et le paradis directement. Ils sont maudits par leur destiné et leur connaissance de cette destiné. Ils utilisent également out deux des versions miniatures et angéliques d'eux même pour soigner les delta warriors." },
+    desc: "Ralsei et Spamton sont les seuls darkners à mentionner l'ange, l'âme et le paradis directement. Ils sont maudits par leur destinée et leur connaissance de cette destinée. Ils utilisent également tous deux des versions miniatures et angéliques d'eux-mêmes pour soigner les delta warriors." },
   { a: "ralsei",    b: "kris",    type: "like",      dir: "none", mode: "parallels",
     title: "L'âme",
-    desc: "Ralsei et Kris cachent de nombreuses choses a Susie comme l'âme, notre présence, la weird route, ou les véritables enjeux en général. Ils sont solitaires et utilisés par des forces supérieurs pour accomplir un plan sans se soucier de leur libre arbitre. En plus elles sont trans mais brf." },
+    desc: "Ralsei et Kris cachent de nombreuses choses à Susie comme l'âme, notre présence, la weird route, ou les véritables enjeux en général. Ils sont solitaires et utilisés par des forces supérieures pour accomplir un plan sans se soucier de leur libre arbitre. En plus elles sont trans mais bref." },
   { a: "noelle",    b: "kris",    type: "mirror",      dir: "none", mode: "parallels",
     title: "Ange et démon",
-    desc: "Noelle est principalement associés avec des imageries angéliques et religieuses, la ou Kris est associés avec des imageries sataniques et profanes." },
+    desc: "Noelle est principalement associée à des imageries angéliques et religieuses, là où Kris est associé à des imageries sataniques et profanes." },
   { a: "susie",    b: "kris",    type: "like",      dir: "none", mode: "parallels",
     title: "écartés",
-    desc: "Susie et Kris sont solitaires et sont mis a l'écart de la société. Elles ont toutes les deux des problèmes avec la violence contre les autres et contre eux même. Susie craint également la fin et le changement ce qui pourrais la lier a l'aspect plus nostalgique supposé de Kris." },
+    desc: "Susie et Kris sont solitaires et sont mis à l'écart de la société. Elles ont toutes les deux des problèmes avec la violence contre les autres et contre elles-mêmes. Susie craint également la fin et le changement, ce qui pourrait la lier à l'aspect plus nostalgique supposé de Kris." },
   { a: "dess",    b: "asriel",    type: "like",      dir: "none", mode: "parallels",
     title: "Disparus",
-    desc: "December et Asriel sont deux personnages important de la vie de Kris qui ont fini par s'éloigner. Ils disparaissent dans leur jeu respectif, ce qui est l'élément déclancheur de l'histoire." },
+    desc: "December et Asriel sont deux personnages importants de la vie de Kris qui ont fini par s'éloigner. Ils disparaissent dans leur jeu respectif, ce qui est l'élément déclencheur de l'histoire." },
   { a: "dess",    b: "susie",    type: "like",      dir: "none", mode: "parallels",
     title: "Lost girls",
-    desc: "Filles rebelles avec tendence violentes qui se plongent dans l'évasion. Associés avec une guitar et la musique Lost Girl." },
+    desc: "Filles rebelles avec tendance violentes qui se plongent dans l'évasion. Associées à une guitare et à la musique Lost Girl." },
   { a: "asriel",    b: "ralsei",    type: "like",      dir: "none", mode: "parallels",
     title: "Asriel dust theory",
-    desc: "Asriel et Ralsei sont des anagrammes. Ralsei a aussi une apparence de chêvre semblable a Asriel jeune. Ils servent d'introduction au nouveau monde dans le quel le jeu se passe, ainsi qu'a l'âme et au système de combat. Ils se présentent comme gentils." },
+    desc: "Asriel et Ralsei sont des anagrammes. Ralsei a aussi une apparence de chèvre semblable à Asriel jeune. Ils servent d'introduction au nouveau monde dans lequel le jeu se passe, ainsi qu'à l'âme et au système de combat. Ils se présentent comme gentils." },
   { a: "ralsei",    b: "friend",    type: "mirror",      dir: "none", mode: "parallels",
     title: "Politesse et honnêteté",
-    desc: "Ralsei connais beacoups de choses sur le monde, et essaie de le cacher pour ne pas blesser les gens. FRIEND va par contre rêvéler toute la vérité pour avoir plus de contrôle. Ralsei souffre de la prophétie mais a peur de la changer, la ou FRIEND n'est pas contraint par la prophétie mais incite a la changer." },
+    desc: "Ralsei connaît beaucoup de choses sur le monde, et essaie de le cacher pour ne pas blesser les gens. FRIEND va par contre révéler toute la vérité pour avoir plus de contrôle. Ralsei souffre de la prophétie mais a peur de la changer, là où FRIEND n'est pas contraint par la prophétie mais incite à la changer." },
   { a: "ralsei",    b: "tenna",    type: "like",      dir: "none", mode: "parallels",
     title: "Esclaves",
-    desc: "Ralsei et Tenna sont des darkners réduisant leur valeur a leur tache de servir les lightners." },
+    desc: "Ralsei et Tenna sont des darkners réduisant leur valeur à leur tâche de servir les lightners." },
   { a: "ralsei",    b: "gaster",    type: "like",      dir: "none", mode: "parallels",
     title: "Green and inbetween",
-    desc: "Ralsei et Gaster sont verts, au milieu, souvent oubliés, associés avec les ténèbres et la prophétie, et ils parlent de darker than dark." },
+    desc: "Ralsei et Gaster sont verts, au milieu, souvent oubliés, associés aux ténèbres et à la prophétie, et ils parlent de darker than dark." },
+  { a: "eram",    b: "friend",    type: "like",      dir: "none", mode: "parallels",
+    title: "Creepypasta",
+    desc: "ERAM et FRIEND sont des entités mystérieuses malfaisantes, hantant des jeux à la manière de creepypasta." },
+  { a: "eram",    b: "asriel",    type: "like",      dir: "none", mode: "parallels",
+    title: "Le couteau s'émousse",
+    desc: "ERAM et Flowey essaient de pousser la personne principale vers la violence, voire le meurtre, étant le reflet sombre des pires pulsions d'un personnage." },
+  { a: "friend",    b: "asriel",    type: "like",      dir: "none", mode: "parallels",
+    title: "Ton amis derrière toi",
+    desc: "FRIEND et Flowey sont représentés avec de grands sourires, et proposent leurs services pour des motifs violents. Ils se cachent à des endroits du jeu, disparaissant peu après avoir été trouvés. Ils sont liés à l'événement déclencheur de l'intrigue du jeu." },
+  { a: "eram",    b: "kris",    type: "like",      dir: "none", mode: "parallels",
+    title: "La violence",
+    desc: "ERAM ressemble à un monstre à cornes comme Kris voulait devenir, et parallèle ses pulsions violentes et pensées intrusives." },
+  { a: "gerson",    b: "gaster",    type: "like",      dir: "none", mode: "parallels",
+    title: "écrivains",
+    desc: "Gerson et Gaster sont des experts très reconnus dans leur domaine, chacun 'créant' un monde via la prophétie. Mais ils sont morts avant de pouvoir finir leur dernière œuvre, et sont remplacés par Alphys. Aussi ils sont verts." },
+  { a: "gerson",    b: "susie",    type: "mirror",      dir: "none", mode: "parallels",
+    title: "La destinée",
+    desc: "Gerson et Susie sont présentés comme ayant des différences fondamentales dans leur vision du destin et de la prophétie. Susie est heureuse de pouvoir vivre cette aventure avec ses amis, et la prophétie lui donne un sens et une importance qu'elle n'a pas envie de quitter. Là où Gerson est en paix avec sa mort et remet en cause la prophétie de multiples fois, ce qui énerve Susie initialement." },
+  { a: "susie",    b: "soul",    type: "like",      dir: "none", mode: "parallels",
+    title: "Protagonistes",
+    desc: "Susie et l'âme sont de nouvelles arrivantes à Hometown et dans la vie de Kris, ce qui fait qu'il leur manque des connaissances pourtant élémentaires pour les autres personnages." },
+  { a: "soul",    b: "jevil",    type: "like",      dir: "none", mode: "parallels",
+    title: "Enfermés",
+    desc: "Jevil et l'âme sont exclus du monde. Ils voient le monde uniquement comme un jeu ou celui dont les PV atteignent 0 le premier a perdu, et sont donc totalement détachés des autres personnages, n'hésitant pas à être violents. Malgré ça, ils pensent qu'ils sont les seuls libres car ils connaissent la vraie nature du monde." },
+  { a: "soul",    b: "gaster",    type: "like",      dir: "none", mode: "parallels",
+    title: "Expériences",
+    desc: "Gaster et l'âme vivent dans un plan hors de l'univers du jeu, les détachant complètement des autres personnages. Même s'ils s'attachent à eux, leur soif de connaissance va les pousser à faire des expériences à leur dépend." },
+  { a: "ramb",    b: "seam",    type: "like",      dir: "none", mode: "parallels",
+    title: "Vendeurs",
+    desc: "Ramb et Seam sont des vendeurs liés à un boss secret vers lequel ils nous guident et donnent les clés. Ils semblent également posséder de grandes connaissances auxquelles le joueur n'a pas accès." },
+  { a: "spamton",    b: "jevil",    type: "mirror",      dir: "none", mode: "parallels",
+    title: "Liberté",
+    desc: "Spamton et Jevil ont des visions opposées de la liberté. En découvrant la vérité sur le monde, Jevil se considère libre via son détachement à celui-ci, alors que Spamton essaie à tout prix de fuir ce monde." },
+  { a: "spamton",    b: "jevil",    type: "like",      dir: "none", mode: "parallels",
+    title: "Boss secrets",
+    desc: "Jevil et Spamton sont des boss optionnels, ils se transforment en item et donnent un shadow crystal une fois vaincus, et leur musique contient le freedom motif. Ils offrent tous les deux une certaine vision de la liberté." },
+  { a: "noelle",    b: "dess",    type: "mirror",      dir: "none", mode: "parallels",
+    title: "La tradition",
+    desc: "Là où Noelle représente initialement une fille modèle de bonne famille religieuse traditionnelle, December est une ado rebelle bien loin de ses valeurs. Aussi Noelle est gay." },
+  { a: "dess",    b: "knight",    type: "like",      dir: "none", mode: "parallels",
+    title: "Symbolismes",
+    desc: "December et le Roaring Knight sont tous deux associés au baseball et à la rébellion, en plus d'avoir des bois." },
+  { a: "asriel",    b: "knight",    type: "like",      dir: "none", mode: "parallels",
+    title: "Asriel Dreemurr",
+    desc: "Comme Asriel Dreemurr de Undertale, le Roaring Knight utilise des étoiles durant son combat, ainsi qu'une attaque faisant tout l'écran et attirant l'âme en son centre." },
+  { a: "friend",    b: "knight",    type: "like",      dir: "none", mode: "parallels",
+    title: "Rire",
+    desc: "Le Knight possède le même rire que FRIEND, peut changer de forme, et est associé sur certaines de ses animations avec la queue de l'enfer." },
+  { a: "eram",    b: "ramb",    type: "mirror",      dir: "none", mode: "parallels",
+    title: "Kris",
+    desc: "ERAM et Ramb partagent un nom similaire mais construit de manière opposée. Là où ERAM se lie à Kris et son enfance pour le pousser vers la violence, Ramb veut le faire pour se connecter avec Kris et lui apporter une joie de l'amusement nostalgique." },
+  { a: "seam",    b: "ralsei",    type: "like",      dir: "none", mode: "parallels",
+    title: "Le joueur",
+    desc: "Seam et Ralsei font partie des rares personnages qui semblent reconnaître la présence du joueur, Ralsei en parlant explicitement des boutons du clavier, et Seam écrivant comment prononcer son nom comme s'il le faisait pour un joueur lisant des lignes de dialogues." },
 ];
 
 
 let currentMode = "relationships";
 let hiddenTypes = new Set();
 let hideCanon = false;
-let hideTheory = false;
+let hideFanon = false;
 let activePath = null;
 let nodes = [];
 let activeLink = null;
@@ -301,7 +431,7 @@ function getVisibleLinks() {
     if (hiddenTypes.has(lk.type)) return false;
     if (lk.mode === "relationships") {
       if (lk.canon && hideCanon) return false;
-      if (!lk.canon && hideTheory) return false;
+      if (!lk.canon && hideFanon) return false;
     }
     return true;
   });
@@ -472,7 +602,7 @@ function drawNode(n, inPath, dimmed) {
  
 function buildLegend() {
   const legend = document.getElementById("legend");
-  legend.innerHTML = '';
+  legend.innerHTML = '<span>KEY:</span>';
   getTypeMap().forEach(t => {
     const item = document.createElement("div");
     item.className = "legend-item";
@@ -496,7 +626,7 @@ function buildLegend() {
     line.style.cssText = "width:28px;height:2px;display:inline-block;opacity:0.5;background:repeating-linear-gradient(90deg,#000 0,#000 8px,transparent 8px,transparent 14px);";
     item.appendChild(line);
     const lbl = document.createElement("span");
-    lbl.textContent = "Theory";
+    lbl.textContent = "Fanon";
     item.appendChild(lbl);
     legend.appendChild(item);
   }
@@ -511,19 +641,19 @@ function buildFilters() {
   if (currentMode === "relationships") {
     const secHeader = document.createElement("div");
     secHeader.style.cssText = "background:#bbb;padding:3px 8px;font-weight:bold;font-size:11px;border-bottom:1px solid #000;letter-spacing:0.5px;";
-    secHeader.textContent = "Canon / Theory";
+    secHeader.textContent = "CANON / FANON";
     list.appendChild(secHeader);
  
-    [{ label: "Canon", key: "canon" }, { label: "Theory", key: "theory" }].forEach(({ label, key }) => {
+    [{ label: "Canon", key: "canon" }, { label: "Fanon", key: "fanon" }].forEach(({ label, key }) => {
       const row = document.createElement("label");
       row.className = "filter-item";
  
       const cb = document.createElement("input");
       cb.type = "checkbox";
-      cb.checked = key === "canon" ? !hideCanon : !hideTheory;
+      cb.checked = key === "canon" ? !hideCanon : !hideFanon;
       cb.addEventListener("change", () => {
         if (key === "canon") hideCanon = !cb.checked;
-        else hideTheory = !cb.checked;
+        else hideFanon = !cb.checked;
         if (activeLink) {
           const still = getVisibleLinks().includes(activeLink);
           if (!still) { activeLink = null; clearInfo(); }
@@ -547,7 +677,7 @@ function buildFilters() {
  
     const secHeader2 = document.createElement("div");
     secHeader2.style.cssText = "background:#ddd;padding:3px 8px;font-weight:bold;font-size:11px;border-bottom:1px solid #000;border-top:1px solid #000;letter-spacing:0.5px;";
-    secHeader2.textContent = "Connections";
+    secHeader2.textContent = "CONNECTION TYPE";
     list.appendChild(secHeader2);
   }
  
@@ -588,7 +718,7 @@ function showInfo(lk) {
   const ic = document.getElementById("info-content");
   ic.style.display = "block";
   const canonTag = lk.mode === "relationships"
-    ? `<span style="display:inline-block;border:1px solid #000;padding:0 4px;font-size:10px;font-weight:bold;background:${lk.canon ? '#000' : '#fff'};color:${lk.canon ? '#fff' : '#000'};margin-left:6px">${lk.canon ? 'CANON' : 'THEORY'}</span>`
+    ? `<span style="display:inline-block;border:1px solid #000;padding:0 4px;font-size:10px;font-weight:bold;background:${lk.canon ? '#000' : '#fff'};color:${lk.canon ? '#fff' : '#000'};margin-left:6px">${lk.canon ? 'CANON' : 'FANON'}</span>`
     : '';
   ic.innerHTML = `
     <h2>${lk.title}${canonTag}</h2>
@@ -716,7 +846,7 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
     currentMode = btn.dataset.mode;
     hiddenTypes.clear();
     hideCanon = false;
-    hideTheory = false;
+    hideFanon = false;
     activeLink = null;
     hoveredLink = null;
     activePath = null;
@@ -815,53 +945,81 @@ function runPathfinder() {
   const result = document.getElementById("path-result");
  
   if (fromId === toId) {
-    result.innerHTML = '<span class="path-err">Select two different characters.</span>';
+    result.innerHTML = '<span class="path-err">Sélectionne 2 personnages différents.</span>';
     clearPath();
     return;
   }
  
   const res = findShortestPath(fromId, toId);
   if (!res) {
-    result.innerHTML = '<span class="path-err">No path found between these characters in this mode.</span>';
+    result.innerHTML = '<span class="path-err">Erreur Gaster.</span>';
     clearPath();
     return;
   }
  
- 
   activePath = {
     nodes: new Set(res.path),
-    links: new Set(res.links)
+    links: new Set(res.links),
+    res
   };
  
+  result.innerHTML = "";
  
   const hops = res.path.length - 1;
   const distDisplay = Number.isInteger(res.dist) ? res.dist : res.dist.toFixed(1);
-  let html = `<strong>Distance: ${hops} liens${hops !== 1 ? 's' : ''}</strong>`;
+  const summary = document.createElement("div");
+  summary.style.marginBottom = "3px";
+  let summaryHtml = `<strong>Distance: ${hops}</strong>`;
   if (currentMode === "relationships" && res.dist !== hops) {
-    html += ``;
+    summaryHtml += ` <span style="color:#888"></span>`;
   }
-  html += '<br>';
+  summary.innerHTML = summaryHtml;
+  result.appendChild(summary);
  
   res.path.forEach((nodeId, i) => {
     const char = CHARACTERS.find(c => c.id === nodeId);
-    html += `<div class="path-step">`;
-    html += `<div class="path-step-dot" style="background:${i === 0 || i === res.path.length-1 ? '#000' : '#fff'}"></div>`;
-    html += `<span>${char.label}</span></div>`;
+ 
+    const stepDiv = document.createElement("div");
+    stepDiv.className = "path-step";
+    const dot = document.createElement("div");
+    dot.className = "path-step-dot";
+    dot.style.background = (i === 0 || i === res.path.length - 1) ? "#000" : "#fff";
+    stepDiv.appendChild(dot);
+    const nameSpan = document.createElement("span");
+    nameSpan.textContent = char.label;
+    stepDiv.appendChild(nameSpan);
+    result.appendChild(stepDiv);
+ 
     if (i < res.links.length) {
       const lk = res.links[i];
-      const ti = getTypeInfo(lk.type) || { color: '#000', label: lk.type };
+      const ti = getTypeInfo(lk.type) || { color: "#000", label: lk.type };
       const canonTag = lk.mode === "relationships"
-        ? ` <span style="font-size:9px;border:1px solid ${ti.color};padding:0 2px;color:${ti.color}">${lk.canon ? 'C' : 'T'}</span>`
-        : '';
-      html += `<div class="path-edge-line" style="border-color:${ti.color}">`;
-      html += `<span style="color:${ti.color}">&#9472; ${ti.label}${canonTag}</span>`;
-      html += `</div>`;
+        ? ` <span style="font-size:9px;border:1px solid ${ti.color};padding:0 2px;color:${ti.color}">${lk.canon ? "C" : "T"}</span>`
+        : "";
+ 
+      const edgeDiv = document.createElement("div");
+      edgeDiv.className = "path-edge-line";
+      edgeDiv.style.borderColor = ti.color;
+      edgeDiv.style.cursor = "pointer";
+      edgeDiv.innerHTML = `<span style="color:${ti.color}">&#9472; ${ti.label}${canonTag}</span>`;
+ 
+      edgeDiv.addEventListener("mouseenter", () => {
+        showInfo(lk);
+      });
+      edgeDiv.addEventListener("mouseleave", () => {
+        if (!activeLink) clearInfo();
+      });
+ 
+      result.appendChild(edgeDiv);
     }
   });
  
-  html += `<button id="path-clear">CLEAR</button>`;
-  result.innerHTML = html;
-  document.getElementById("path-clear").addEventListener("click", clearPath);
+  const clearBtn = document.createElement("button");
+  clearBtn.id = "path-clear";
+  clearBtn.textContent = "CLEAR";
+  clearBtn.addEventListener("click", clearPath);
+  result.appendChild(clearBtn);
+ 
   draw();
 }
  
@@ -874,10 +1032,10 @@ document.getElementById("path-header").addEventListener("click", () => {
  
 document.getElementById("path-run").addEventListener("click", runPathfinder);
  
- 
 window.addEventListener("resize", resize);
 resize();
 buildLegend();
 buildFilters();
 buildPathSelects();
 physicsStep();
+
