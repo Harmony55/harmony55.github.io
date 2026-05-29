@@ -18,6 +18,16 @@ const CHARACTERS = [
   { id: "soul",    label: "SOUL",  desc: "The angel, banished, will finally meet with its desire." },
   { id: "seam",    label: "Seam",  desc: "The name's Seam. Pronounced 'Shawm.'" },
   { id: "ramb",    label: "Ramb",  desc: "Freedom. That's what YOU want, chum, freedom!" },
+
+  { id: "papyrus",    label: "Papyrus",  desc: "I, THE GREAT PAPYRUS" },
+  { id: "sans",       label: "Sans",  desc: "Don't forget." },
+  { id: "toriel",       label: "Toriel",  desc: "Caretaker of the ruins." },
+  { id: "asgore",       label: "Asgore",  desc: "The flower man, trapped in asylum." },
+  { id: "alphys",       label: "Alphys",  desc: "I will create the power to free us all." },
+  { id: "undyne",       label: "Undyne",  desc: "I, UNDYNE, will strike you down!" },
+  { id: "mettaton",       label: "Mettaton",  desc: "That robot was the embodiment of a Lightner's dream." },
+  { id: "chara",       label: "Chara",  desc: "The true name." },
+  { id: "frisk",       label: "Frisk",  desc: "Still just you, Frisk." },
 ];
 
 
@@ -37,178 +47,296 @@ const PAR_TYPES = [
 ];
 
 const RELATIONSHIPS = [
-  { a: "kris",   b: "susie",     type: "friend",       dir: "both", mode: "relationships", canon: true,
+  // Relations
+  { a: "kris",   b: "susie",     type: "friend",       dir: "both", mode: "relationships", canon: true,  chapters: [{ edition:"Deltarune"}],
     title: "L'amitié entre Kris et Susie",
     desc: "Amis depuis la fin du Chapitre 1." },
-  { a: "kris",   b: "noelle",     type: "friend",       dir: "both", mode: "relationships", canon: true,
+  { a: "kris",   b: "noelle",     type: "friend",       dir: "both", mode: "relationships", canon: true,  chapters: [{ edition:"Deltarune"}],
     title: "L'amitié entre Kris et Noelle",
     desc: "Amis d'enfance." },
-  { a: "noelle",   b: "susie",     type: "friend",       dir: "both", mode: "relationships", canon: true,
+  { a: "noelle",   b: "susie",     type: "friend",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "L'amitié entre Susie et Noelle",
     desc: "Amis depuis le Chapitre 2." },
-  { a: "susie",   b: "ralsei",     type: "friend",       dir: "both", mode: "relationships", canon: true,
+  { a: "susie",   b: "ralsei",     type: "friend",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "L'amitié entre Susie et Ralsei",
     desc: "Amis depuis le Chapitre 1." },
-  { a: "ralsei",   b: "kris",     type: "friend",       dir: "both", mode: "relationships", canon: true,
+  { a: "ralsei",   b: "kris",     type: "friend",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "L'amitié entre Kris et Ralsei",
     desc: "Amis depuis le Chapitre 1." },
-  { a: "berdly",   b: "kris",     type: "friend",       dir: "both", mode: "relationships", canon: true,
+  { a: "berdly",   b: "kris",     type: "friend",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "L'amitié entre Kris et Berdly",
     desc: "Amis d'enfance." },
-  { a: "noelle",   b: "berdly",     type: "friend",       dir: "both", mode: "relationships", canon: true,
+  { a: "noelle",   b: "berdly",     type: "friend",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "L'amitié entre Noelle et Berdly",
     desc: "Amis d'enfance et camarades de classe." },
-  { a: "lancer",   b: "susie",     type: "friend",       dir: "both", mode: "relationships", canon: true,
+  { a: "lancer",   b: "susie",     type: "friend",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "L'amitié entre Lancer et Susie",
     desc: "Amis depuis le milieu du Chapitre 1." },
-  { a: "tenna",   b: "kris",     type: "family",       dir: "a->b", mode: "relationships", canon: true,
+  { a: "tenna",   b: "kris",     type: "family",       dir: "a->b", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "TV Time",
     desc: "Tenna est la télévision familiale des Dreemurr, et veut divertir Kris comme au bon vieux temps." },
-  { a: "spamton",   b: "noelle",     type: "friend",       dir: "a->b", mode: "relationships", canon: true,
+  { a: "spamton",   b: "noelle",     type: "friend",       dir: "a->b", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "Pipis",
     desc: "Comme Noelle était la seule personne lisant ses spams, Spamton est devenu ami avec Noelle et lui a offert un pipis." },
-  { a: "tenna",   b: "kris",     type: "partners",       dir: "none", mode: "relationships", canon: true,
+  { a: "tenna",   b: "kris",     type: "partners",       dir: "none", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "Notre deal",
     desc: "Kris a conclu un deal avec Tenna pour aider le Roaring Knight." },
-  { a: "spamton",   b: "tenna",     type: "enemy",       dir: "both", mode: "relationships", canon: true,
+  { a: "spamton",   b: "tenna",     type: "enemy",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "Rupture du contract",
     desc: "Un événement tragique s'est produit après la signature du contrat de Tenna par Spamton, le contraignant à fuir TV World. Chacun était convaincu d'avoir été escroqué par l'autre." },
-  { a: "spamton",   b: "tenna",     type: "love",       dir: "both", mode: "relationships", canon: false,
+  { a: "spamton",   b: "tenna",     type: "love",       dir: "both", mode: "relationships", canon: false, chapters: [{ edition:"Deltarune"}],
     title: "Spamtenna",
     desc: "Le ship entre Spamton et Tenna est le ship le plus populaire de Deltarune. Leur obsession l'un pour l'autre, le fait que leur séparation soit un quiproquo, et de nombreux autres indices dans le jeu et ses fichiers laissent penser que Spamton et Tenna sont encore amoureux, rendant ce ship très populaire." },
-  { a: "noelle",   b: "susie",     type: "love",       dir: "a->b", mode: "relationships", canon: true,
+  { a: "noelle",   b: "susie",     type: "love",       dir: "a->b", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "Suselle",
     desc: "Noelle a un crush sur Susie depuis son arrivée." },
-  { a: "berdly",   b: "susie",     type: "love",       dir: "a->b", mode: "relationships", canon: true,
+  { a: "berdly",   b: "susie",     type: "love",       dir: "a->b", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "Berdsie",
     desc: "Berdly veut rizz Susie dans le Chapitre 2." },
-  { a: "kris",   b: "susie",     type: "love",       dir: "a->b", mode: "relationships", canon: false,
+  { a: "kris",   b: "susie",     type: "love",       dir: "a->b", mode: "relationships", canon: false, chapters: [{ edition:"Deltarune"}],
     title: "Krusie",
     desc: "Le comportement de Kris avec Susie dans certaines scènes peut laisser penser que Kris a un crush sur Susie." },
-  { a: "ralsei",   b: "kris",     type: "love",       dir: "a->b", mode: "relationships", canon: false,
+  { a: "ralsei",   b: "kris",     type: "love",       dir: "a->b", mode: "relationships", canon: false, chapters: [{ edition:"Deltarune"}],
     title: "Kralsei",
     desc: "Le comportement de Ralsei avec Kris dans certaines scènes peut laisser penser que Ralsei a un crush sur Kris." },
-  { a: "berdly",   b: "kris",     type: "love",       dir: "a->b", mode: "relationships", canon: false,
+  { a: "berdly",   b: "kris",     type: "love",       dir: "a->b", mode: "relationships", canon: false, chapters: [{ edition:"Deltarune"}],
     title: "Kerdly",
     desc: "L'obsession de Berdly pour Kris ainsi que son invitation au festival peut laisser penser que Berdly a un crush sur Kris." },
-  { a: "friend",   b: "gaster",     type: "partners",       dir: "none", mode: "relationships", canon: false,
+  { a: "friend",   b: "gaster",     type: "partners",       dir: "none", mode: "relationships", canon: false, chapters: [{ edition:"Deltarune"}],
     title: "DEVICE_FRIEND",
     desc: "Friend est classé comme un DEVICE dans le code du jeu, comme des objets associés à Gaster tels que le goner maker de l'introduction." },
-  { a: "friend",   b: "dess",     type: "unkown",       dir: "none", mode: "relationships", canon: false,
+  { a: "friend",   b: "dess",     type: "unkown",       dir: "none", mode: "relationships", canon: false, chapters: [{ edition:"Deltarune"}],
     title: "The poor childrens",
     desc: "Friend est le premier suspect dans la disparition de December, même si les raisons de cet enlèvement sont encore floues." },
-  { a: "noelle",   b: "friend",     type: "friend",       dir: "a->b", mode: "relationships", canon: false,
+  { a: "noelle",   b: "friend",     type: "friend",       dir: "a->b", mode: "relationships", canon: false, chapters: [{ edition:"Deltarune"}],
     title: "Cat Petterz 2",
     desc: "Il est probable que le chat étrange glitché élevé par Noelle dans Cat Petterz 2 soit FRIEND." },
-  { a: "friend",   b: "spamton",     type: "unkown",       dir: "a->b", mode: "relationships", canon: false,
+  { a: "friend",   b: "spamton",     type: "unkown",       dir: "a->b", mode: "relationships", canon: false, chapters: [{ edition:"Deltarune"}],
     title: "Bénéfacteur",
     desc: "Si FRIEND est bien Mike, et que Mike est bien le bienfaiteur de Spamton, alors FRIEND aurait voulu l'aider avant de l'abandonner, pour une raison encore floue." },
-  { a: "gaster",   b: "kris",     type: "partners",       dir: "both", mode: "relationships", canon: false,
+  { a: "gaster",   b: "kris",     type: "partners",       dir: "both", mode: "relationships", canon: false, chapters: [{ edition:"Deltarune"}],
     title: "Psy",
     desc: "Si Gaster est l'homme oublié, il est aussi sûrement l'ancien psychologue de Kris." },
-  { a: "gaster",   b: "ralsei",     type: "family",       dir: "none", mode: "relationships", canon: false,
+  { a: "gaster",   b: "ralsei",     type: "family",       dir: "none", mode: "relationships", canon: false, chapters: [{ edition:"Deltarune"}],
     title: "Création",
     desc: "En raison des propriétés étranges de Ralsei, semblant comprendre et connaître des éléments du jeu faits uniquement pour le joueur par Gaster, il est possible que Gaster ait créé Ralsei d'une certaine manière, par exemple en créant la prophétie." },
-  { a: "tenna",   b: "friend",     type: "partners",       dir: "a->b", mode: "relationships", canon: false,
+  { a: "tenna",   b: "friend",     type: "partners",       dir: "a->b", mode: "relationships", canon: false, chapters: [{ edition:"Deltarune"}],
     title: "Mike",
     desc: "Si Mike est FRIEND, Tenna semble le connaître et pense qu'il travaille maintenant pour lui. C'est peut-être aussi pour ça que Pluey semble être son Mike favori." },
-  { a: "friend",   b: "kris",     type: "unkown",       dir: "a->b", mode: "relationships", canon: false,
+  { a: "friend",   b: "kris",     type: "unkown",       dir: "a->b", mode: "relationships", canon: false, chapters: [{ edition:"Deltarune"}],
     title: "SWORD_ROUTE",
     desc: "Si FRIEND est bien celui ayant donné la manette à Kris et mis en place la sword route, il doit connaître personnellement Kris et vouloir qu'iel accomplisse la weird route pour une certaine raison encore floue." },
-  { a: "asriel",   b: "kris",     type: "family",       dir: "none", mode: "relationships", canon: true,
+  { a: "asriel",   b: "kris",     type: "family",       dir: "none", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "Frère et adèlphe",
     desc: "Asriel et Kris sont dans la famille Dreemurr." },
-  { a: "asriel",   b: "dess",     type: "friend",       dir: "both", mode: "relationships", canon: true,
+  { a: "asriel",   b: "dess",     type: "friend",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "Amitié",
     desc: "Asriel et December semblent avoir été amis proches avant sa disparition." },
-  { a: "dess",   b: "kris",     type: "friend",       dir: "both", mode: "relationships", canon: true,
+  { a: "dess",   b: "kris",     type: "friend",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "Amitié",
     desc: "December était amie avec Kris, jouant dans la forêt avec Noelle et Asriel." },
-  { a: "tenna",   b: "asriel",     type: "family",       dir: "a->b", mode: "relationships", canon: true,
+  { a: "tenna",   b: "asriel",     type: "family",       dir: "a->b", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "TV Time",
     desc: "Tenna est la télévision familiale des Dreemurr, et est nostalgique de l'époque où Asriel s'amusait avec Kris devant la télévision." },
-  { a: "tenna",   b: "dess",     type: "friend",       dir: "a->b", mode: "relationships", canon: true,
+  { a: "tenna",   b: "dess",     type: "friend",       dir: "a->b", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "Dess goon theory",
     desc: "Tenna est nostalgique de l'époque où December regardait des émissions de rock pas de son âge à la télévision." },
-  { a: "noelle",   b: "dess",     type: "family",       dir: "none", mode: "relationships", canon: true,
+  { a: "noelle",   b: "dess",     type: "family",       dir: "none", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}, { edition:"Deltarune"}],
     title: "Soeurs",
     desc: "Noelle et December sont de la famille Holiday." },
-  { a: "asriel",   b: "dess",     type: "love",       dir: "both", mode: "relationships", canon: false,
+  { a: "asriel",   b: "dess",     type: "love",       dir: "both", mode: "relationships", canon: false, chapters: [{ edition:"Deltarune"}],
     title: "Dessriel",
     desc: "La proximité d'Asriel et December ainsi que certains détails trouvables laissent penser que leur relation aurait pu être romantique." },
-  { a: "jevil",   b: "seam",     type: "divorce",       dir: "both", mode: "relationships", canon: true,
+  { a: "jevil",   b: "seam",     type: "divorce",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "Une étrange personne",
     desc: "Jevil et Seam étaient très proches jusqu'à ce que Jevil rencontre une étrange personne, le plongeant dans la folie, ce qui força Seam à l'enfermer." },
-  { a: "jevil",   b: "spamton",     type: "enemy",       dir: "b->a", mode: "relationships", canon: true,
+  { a: "jevil",   b: "spamton",     type: "enemy",       dir: "b->a", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "ketchup kids",
     desc: "Jevil et Spamton ont déjà 'joué' ensemble, et Spamton n'est jamais arrivé à son niveau même en trichant. Ce qui a fait de lui son rival, même si Jevil ne le mentionne jamais." },
-  { a: "jevil",   b: "friend",     type: "unkown",       dir: "b->a", mode: "relationships", canon: false,
+  { a: "jevil",   b: "friend",     type: "unkown",       dir: "b->a", mode: "relationships", canon: false, chapters: [{ edition:"Deltarune"}],
     title: "L'étrange personne",
     desc: "Il est possible que l'étrange personne ayant plongé Jevil dans la folie soit FRIEND, lui ayant également donné le shadow crystal lui révélant la vérité sur la nature du monde." },
-  { a: "gerson",   b: "susie",     type: "partners",       dir: "both", mode: "relationships", canon: true,
+  { a: "gerson",   b: "susie",     type: "partners",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "Old Man",
     desc: "Un darkner basé sur les mémoires de Gerson du Roaring Knight est devenu le mentor de Susie, lui apprenant à s'entraîner, prendre confiance en elle, et l'encourageant à défier la prophétie. Il vient également l'aider à combattre le titan." },
-  { a: "gerson",   b: "dess",     type: "partners",       dir: "both", mode: "relationships", canon: true,
+  { a: "gerson",   b: "dess",     type: "partners",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "Ancien enseignant",
     desc: "Gerson était l'enseignant de December quand il était encore vivant." },
-  { a: "gerson",   b: "asriel",     type: "partners",       dir: "both", mode: "relationships", canon: true,
+  { a: "gerson",   b: "asriel",     type: "partners",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "Ancien enseignant",
     desc: "Gerson était l'enseignant d'Asriel quand il était encore vivant." },
-  { a: "gerson",   b: "friend",     type: "unkown",       dir: "b->a", mode: "relationships", canon: false,
+  { a: "gerson",   b: "friend",     type: "unkown",       dir: "b->a", mode: "relationships", canon: false, chapters: [{ edition:"Deltarune"}],
     title: "Shadow crystal",
     desc: "Un shadow crystal a été donné à Gerson, sûrement par FRIEND dans le but qu'il l'utilise. Il ne l'a cependant pas fait contrairement aux autres boss secrets." },
-  { a: "eram",   b: "kris",     type: "unkown",       dir: "a->b", mode: "relationships", canon: false,
+  { a: "eram",   b: "kris",     type: "unkown",       dir: "a->b", mode: "relationships", canon: false, chapters: [{ edition:"Deltarune"}],
     title: "Le couteau s'émousse",
     desc: "ERAM parle à Kris durant la sword route, semblant même connaître la weird route et ses pensées les plus sombres. Mais ses objectifs sont encore flous." },
-  { a: "eram",   b: "friend",     type: "partners",       dir: "both", mode: "relationships", canon: false,
+  { a: "eram",   b: "friend",     type: "partners",       dir: "both", mode: "relationships", canon: false, chapters: [{ edition:"Deltarune"}],
     title: "Friendlings",
     desc: "ERAM partage la sword route avec FRIEND, des petites versions digitales de FRIEND apparaissent même durant le combat final. Il est parfois théorisé que FRIEND soit ERAM." },
-  { a: "eram",   b: "noelle",     type: "unkown",       dir: "a->b", mode: "relationships", canon: false,
+  { a: "eram",   b: "noelle",     type: "unkown",       dir: "a->b", mode: "relationships", canon: false, chapters: [{ edition:"Deltarune"}],
     title: "Ice Palace",
     desc: "Noelle a déjà joué au jeu sur lequel le Mantle game est basé, et est également représentée dans le Mantle game lui-même. Il est théorisé que le carton de pizza Ice-E l'ayant hantée durant son enfance soit en fait ERAM." },
-  { a: "ramb",   b: "eram",     type: "partners",       dir: "both", mode: "relationships", canon: false,
+  { a: "ramb",   b: "eram",     type: "partners",       dir: "both", mode: "relationships", canon: false, chapters: [{ edition:"Deltarune"}],
     title: "Dressing room big shot",
     desc: "Ramb incite Kris à jouer au Mantle game dans lequel ERAM se trouve. Il est possible qu'il ait malgré tout connaissance d'ERAM. Il est théorisé qu'ERAM ait manipulé Ramb pour appâter Kris." },
-  { a: "ramb",   b: "kris",     type: "family",       dir: "a->b", mode: "relationships", canon: true,
+  { a: "ramb",   b: "kris",     type: "family",       dir: "a->b", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "Power strip",
     desc: "Prise électrique avec laquelle Kris jouait enfant, il s'est attaché à Kris. Il cherche à rendre Kris heureux et épanoui, même si Kris semble l'avoir oublié." },
-  { a: "ramb",   b: "tenna",     type: "partners",       dir: "both", mode: "relationships", canon: true,
+  { a: "ramb",   b: "tenna",     type: "partners",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "Barman",
     desc: "Ramb travaille en tant que barman pour Tenna, devant s'occuper de servir des boissons et de distribuer certains lots. Il est cependant peu apprécié, et a interdiction de toucher les points." },
-  { a: "knight",   b: "kris",     type: "partners",       dir: "both", mode: "relationships", canon: true,
+  { a: "knight",   b: "kris",     type: "partners",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "Roaring GC",
     desc: "Kris travaille avec le Knight." },
-  { a: "knight",   b: "susie",     type: "enemy",       dir: "both", mode: "relationships", canon: true,
+  { a: "knight",   b: "susie",     type: "enemy",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "Strife by strife",
     desc: "Le Roaring Knight possède une animosité particulière contre Susie." },
-  { a: "knight",   b: "gaster",     type: "enemy",       dir: "b->a", mode: "relationships", canon: false,
+  { a: "knight",   b: "gaster",     type: "enemy",       dir: "b->a", mode: "relationships", canon: false, chapters: [{ edition:"Deltarune"}],
     title: "Go back",
     desc: "Après une défaite, Gaster va insister sur notre capacité à vaincre le Roaring Knight, laissant penser qu'il tient à notre victoire et à la défaite du Knight." },
-  { a: "knight",   b: "friend",     type: "unkown",       dir: "both", mode: "relationships", canon: false,
+  { a: "knight",   b: "friend",     type: "unkown",       dir: "both", mode: "relationships", canon: false, chapters: [{ edition:"Deltarune"}],
     title: "crowd laugh",
     desc: "Le Knight possède le même rire que FRIEND ainsi qu'un shadow crystal qui sont associés à FRIEND, ce qui laisse penser qu'ils ont une certaine relation ensemble." },
-  { a: "knight",   b: "tenna",     type: "partners",       dir: "both", mode: "relationships", canon: true,
+  { a: "knight",   b: "tenna",     type: "partners",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "Le deal",
     desc: "Tenna a sûrement été menacé par le Knight et Kris pour qu'il kidnappe Toriel et distraie les delta warriors suffisamment longtemps pour que le Knight puisse arriver." },
-  { a: "knight",   b: "tenna",     type: "partners",       dir: "both", mode: "relationships", canon: true,
+  { a: "knight",   b: "tenna",     type: "partners",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "Le deal",
     desc: "Tenna a sûrement été menacé par le Knight et Kris pour qu'il kidnappe Toriel et distraie les delta warriors suffisamment longtemps pour que le Knight puisse arriver." }, 
-  { a: "soul",   b: "gaster",     type: "partners",       dir: "both", mode: "relationships", canon: false,
+  { a: "soul",   b: "gaster",     type: "partners",       dir: "both", mode: "relationships", canon: false, chapters: [{ edition:"Deltarune"}],
     title: "Notre magnifique connection",
     desc: "Il est très probable que la voix du début du jeu soit Gaster, et qu'elle nous ait connectés avec ce monde pour un certain objectif." }, 
-  { a: "soul",   b: "kris",     type: "partners",       dir: "both", mode: "relationships", canon: true,
+  { a: "soul",   b: "kris",     type: "partners",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "Vessel",
     desc: "Kris et l'âme ont une relation codépendante. Chacune étant faible et ne pouvant pas entrer dans un dark world sans l'autre." }, 
-  { a: "soul",   b: "kris",     type: "enemy",       dir: "both", mode: "relationships", canon: true,
+  { a: "soul",   b: "kris",     type: "enemy",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "The distance between two",
     desc: "Kris et l'âme sont en grande tension car chacune agit au dépend du libre arbitre de l'autre, et ont des objectifs opposés sur certains points (le Knight)." }, 
-  { a: "soul",   b: "noelle",     type: "partners",       dir: "both", mode: "relationships", canon: true,
+  { a: "soul",   b: "noelle",     type: "partners",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune", chapter: "Weird Route"}],
     title: "Proceed",
-    desc: "Dans la Weird Route, l'âme utilise Noelle pour arriver à ses fins." }, 
+    desc: "Dans la Weird Route, l'âme utilise Noelle pour arriver à ses fins." },
+
+
+  // NEW ! 
+  { a: "toriel",   b: "asgore",     type: "divorce",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}, { edition:"Deltarune"}],
+    title: "Togore",
+    desc: "Dans Undertale et dans Deltarune, Toriel et Asgore sont divorcés au début du jeu, et vivent dans des maisons séparés." },
+  { a: "alphys",   b: "undyne",     type: "love",       dir: "both", mode: "relationships", canon: true, chapters: [{edition:"Undertale"}],
+    title: "Alphyne",
+    desc: "Alphys et Undyne finissent en couple lors de la fin True Pacifist, et se font des bisous aussi. Même avant Undertale elles sont amoureuses aussi juste elles osent pas le dire." },
+  { a: "alphys",   b: "undyne",     type: "love",       dir: "both", mode: "relationships", canon: false, chapters: [{ edition:"Deltarune"}],
+    title: "Alphyne est de retour",
+    desc: "Alphys fait crasher son vélo en mattant Undyne, qui lui offre une boite de chocolat en forme de coeur pour s'excuser, mais elles ne se connaisent pas dans Deltarune." },
+  { a: "toriel",   b: "asriel",     type: "family",       dir: "none", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}, { edition:"Deltarune"}],
+    title: "Dreemurr",
+    desc: "Asriel est l'enfant de Toriel dans Undertale et Deltarune." },
+  { a: "asgore",   b: "asriel",     type: "family",       dir: "none", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}, { edition:"Deltarune"}],
+    title: "Dreemurr",
+    desc: "Asriel est l'enfant de Asgore dans Undertale et Deltarune." },
+  { a: "toriel",   b: "chara",     type: "family",       dir: "none", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}],
+    title: "Dreemurr",
+    desc: "Chara est l'enfant de Toriel dans Undertale après son adoption par les Dreemurr." },
+  { a: "asgore",   b: "chara",     type: "family",       dir: "none", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}],
+    title: "Dreemurr",
+    desc: "Chara est l'enfant de Asgore dans Undertale après son adoption par les Dreemurr." },
+  { a: "asriel",   b: "chara",     type: "family",       dir: "none", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}],
+    title: "Dreemurr",
+    desc: "Par adoption, Asriel est le frère de Chara." },
+  { a: "toriel",   b: "kris",     type: "family",       dir: "none", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
+    title: "Dreemurr",
+    desc: "Kris est l'enfant de Toriel." },
+  { a: "asgore",   b: "kris",     type: "family",       dir: "none", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
+    title: "Dreemurr",
+    desc: "Kris est l'enfant de Asgore." },
+  { a: "alphys",   b: "asgore",     type: "partners",       dir: "none", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}],
+    title: "Scientifique royale",
+    desc: "Asgore a embaucher Alphys pour faire des expériences sur les âmes dans le but de briser la barrière, voir de ressusciter Asriel et Chara." },
+  { a: "alphys",   b: "asgore",     type: "love",       dir: "a->b", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}, { edition:"Deltarune"}],
+    title: "Alphgore",
+    desc: "Alphys a un crush sur Asgore." },
+  { a: "alphys",   b: "toriel",     type: "love",       dir: "a->b", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}],
+    title: "Alphiel",
+    desc: "Alphys a un crush sur Toriel dans Undertale." },
+  { a: "alphys",   b: "soul",     type: "love",       dir: "a->b", mode: "relationships", canon: false, chapters: [{ edition:"Undertale"}],
+    title: "The unknownable",
+    desc: "Mettaton indique que Alphys crush sur une personne qui, selon ses théories, l'observe a travers plusieurs univers. Nous pourrions être cette personne étant donner que nous l'observons dans l'univers de Undertale et Deltarune." },
+  { a: "alphys",   b: "mettaton",     type: "friend",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}],
+    title: "Fans des humains",
+    desc: "Alphys est devenue amie de Mettaton, étant la seul a avoir rejoins son club des fans des humains. Elle a fabriquer ses différentes formes physique pour qu'il puisse atteindre son corp idéal." },
+  { a: "alphys",   b: "sans",     type: "friend",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}],
+    title: "Science peoples",
+    desc: "Alphys est amie avec Sans, qui l'aide a s'occuper des amalgames, et semble être au courant de ses recherches sur les univers parallèle. La machine dans l'atelier de Sans est aussi possiblement crée par Alphys." },
+  { a: "alphys",   b: "frisk",     type: "partners",       dir: "a->b", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}],
+    title: "Caméras secrètes",
+    desc: "Alphys surveille le parcours de Frisk dès sa sortie des ruines, et l'aide a de nombreuses reprises pour gagner sa confience et lae convaincre de ne pas quitter les sous terrain." },
+  { a: "alphys",   b: "kris",     type: "partners",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
+    title: "Enseignante",
+    desc: "Alphys est la prof de Kris dans Deltarune." },
+  { a: "alphys",   b: "kris",     type: "enemy",       dir: "b->a", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
+    title: "Hate des animes",
+    desc: "Malgrès son laxisme, Kris semble détester Alphys. Dans plusieurs interactions, Kris peut être rude avec elle." },
+  { a: "alphys",   b: "susie",     type: "partners",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
+    title: "Enseignante",
+    desc: "Alphys est la prof de Susie dans Deltarune, même si elles semblent avoir peur l'une de l'autre." },
+  { a: "alphys",   b: "toriel",     type: "partners",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
+    title: "Collègues",
+    desc: "Alphys et Toriel travaillent toutes deux comme enseignantes a la même école." },
+  { a: "alphys",   b: "noelle",     type: "partners",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
+    title: "Enseignante",
+    desc: "Alphys est la prof de Noelle dans Deltarune." },
+  { a: "alphys",   b: "berdly",     type: "partners",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
+    title: "Enseignante",
+    desc: "Alphys est la prof de Berdly dans Deltarune." },
+  { a: "alphys",   b: "berdly",     type: "partners",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
+    title: "Enseignante",
+    desc: "Alphys est la prof de Berdly dans Deltarune." },
+  { a: "undyne",   b: "frisk",     type: "friend",       dir: "both", mode: "relationships", canon: true, chapters: [{edition:"Undertale", chapter:"True Pacifist"}],
+    title: "Cours de cuisine",
+    desc: "Dans la route True Pacifist, Undyne deviens amie avec Frisk malgrès sa haine des humains." },
+  { a: "undyne",   b: "frisk",     type: "enemy",       dir: "a->b", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}],
+    title: "67",
+    desc: "Undyne déteste les humains pour ce qu'ils ont fait aux monstres, et veut tuer Frisk pour récupérer la 7ème âme qui permettra d'ouvrire la barrière." },
+  { a: "undyne",   b: "asgore",     type: "partners",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}],
+    title: "Garde royale",
+    desc: "Asgore a proposer a Undyne de l'entrainer au combat, elle est éventuellement devenue si forte qu'il la nommer cheffe de la garde royale." },
+  { a: "undyne",   b: "asgore",     type: "unkown",       dir: "none", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
+    title: "Forces de police",
+    desc: "Undyne connais Asgore, et elle la remplacer après qu'il se soit fait virer de son travaille comme chef de la police." },
+  { a: "undyne",   b: "papyrus",     type: "friend",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}],
+    title: "Spaghetti",
+    desc: "Undyne et Papyrus sont amis, donc Undyne a trop peur que Papyrus rejoigne la garde royale. Elle lui apprend la cuisine a la place en espérant qu'il se trouve une autre vocation." },
+  { a: "sans",   b: "papyrus",     type: "family",       dir: "none", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}, { edition:"Deltarune"}],
+    title: "Skelebros",
+    desc: "Sans est le grand frère de Papyrus." },
+  { a: "sans",   b: "gaster",     type: "family",       dir: "none", mode: "relationships", canon: false, chapters: [{ edition:"Undertale"}, { edition:"Deltarune"}],
+    title: "Skelebros",
+    desc: "Sans est surement le grand frère de Gaster." },
+  { a: "papyrus",   b: "gaster",     type: "family",       dir: "none", mode: "relationships", canon: false, chapters: [{ edition:"Undertale"}, { edition:"Deltarune"}],
+    title: "Skelebros",
+    desc: "Papyrus est surement le petit frère de Gaster." },
+  { a: "papyrus",   b: "frisk",     type: "friend",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Undertale", chapter:"True Pacifist"}],
+    title: "Dating Start",
+    desc: "Papyrus peut se lier d'amitié avec Frisk si Frisk ne le tue pas et traine avec lui." },
+  { a: "chara",   b: "frisk",     type: "partners",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}],
+    title: "A great partner",
+    desc: "Après sa réanimation, Chara partage son esprit avec Frisk, l'assistant dans différents points. Dans la route génocide, Chara représente la satisfaction de voir des statistiques augmenter, permettant de se détacher de la moralité de ses actions." },
+  { a: "sans",   b: "toriel",     type: "friend",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}, { edition:"Deltarune"}],
+    title: "Jitterbug",
+    desc: "Toriel, après le divorce de Asgore, fini par se rapprocher de Sans et son amour des jeux de mots." },
+  { a: "sans",   b: "toriel",     type: "love",       dir: "both", mode: "relationships", canon: false, chapters: [{ edition:"Undertale"}, { edition:"Deltarune"}],
+    title: "Soriel",
+    desc: "La proximité entre Sans et Toriel, ainsi que les blagues de Sans, laisse penser que les deux serais amoureux. Leur rapprochement arrivant toujours après le divorce avec Asgore, cela laisserais penser que Toriel est aller chercher ailleurs." },
+  { a: "toriel",   b: "susie",     type: "friend",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
+    title: "Espoir",
+    desc: "Toriel est aller dinner avec Susie pour l'encourager et lui donner de l'espoir, ce qui lui donne un grand respect envers elle." },
+  { a: "asriel",   b: "papyrus",     type: "friend",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}],
+    title: "Fan club",
+    desc: "Dus a son imprévisibilité, Flowey est devenue fan de Papyrus et a ouvert un fan club en son honeur. Ils sont devenue amis, ce que Flowey utilise a son avantage dans la route True Pacifist." },
 
 
 
-  // Parallèles  
+  // Parralels
   { a: "spamton",   b: "kris",     type: "like",     dir: "none", mode: "parallels",
     title: "La liberté",
     desc: "Spamton et Kris ne se sentent pas libres, contrôlés par des forces supérieures, et voudraient se libérer. Ils sont pourtant dépendants de cette entité, et ne sauraient sûrement pas comment faire sans elle." },
@@ -314,13 +442,75 @@ const RELATIONSHIPS = [
   { a: "seam",    b: "ralsei",    type: "like",      dir: "none", mode: "parallels",
     title: "Le joueur",
     desc: "Seam et Ralsei font partie des rares personnages qui semblent reconnaître la présence du joueur, Ralsei en parlant explicitement des boutons du clavier, et Seam écrivant comment prononcer son nom comme s'il le faisait pour un joueur lisant des lignes de dialogues." },
+
+  // NEW ! 
+  { a: "asgore",    b: "spamton",    type: "like",      dir: "none", mode: "parallels",
+    title: "Connection et prospérité",
+    desc: "Asgore et Spamton on perdu tout ce qu'ils avais et leur connections, et profitent a la place d'un bénéfacteur. Ils sont des vendeurs dont le buisness est en perte de vitesse, mais pensent pouvoir redevenir grand, et sont obséder par le fait de retrouver leur succès passé. Ils sont associés avec les tours de voiture, le rose et le jaune, et le noeud papillon de Spamton." },
+  { a: "mettaton",    b: "spamton",    type: "like",      dir: "none", mode: "parallels",
+    title: "Dream",
+    desc: "Mettaton et Spamton veulent avoir un nouveau corp, littéralement un corp NEO. Le combat contre Spamton NEO utilise la méchanique de l'âme justice utilisé contre Mettaton, et BIG SHOT possède le leitmotif de Power of NEO de Mettaton." },
+  { a: "asgore",    b: "tenna",    type: "like",      dir: "none", mode: "parallels",
+    title: "Le vrais méchant",
+    desc: "Asgore et Tenna endossent tout deux le rôle du méchant a cause des circonstance, et subissent beacoups de peine, nottament après leur divorce. Ils sont portés sur le passé et la nostalgie, voulant que les choses reviennent comme elles était avant. Cependant, ils ont pulsion de vouloir tout aranger, et sont également très paternels." },
+  { a: "undyne",    b: "alphys",    type: "like",      dir: "none", mode: "parallels",
+    title: "Alphyne est toujours de retour",
+    desc: "Undyne et Alphys occupent les deux postes les plus important de l'administration royale et son collèges. Elles partagent une passion pour les animes (même si Undyne pense qu'il s'agit de films historiques sur les humains), et sont amoureuses l'une de l'autre sans oser le dire." },
+  { a: "undyne",    b: "alphys",    type: "mirror",      dir: "none", mode: "parallels",
+    title: "Deck poisson",
+    desc: "Undyne semble avoir plus de confiance en elle que Alphys, mais elle admire pourtant la confiance d'Alphys en ses passions et ce qu'elle aime, ce qu'Undyne fait bien plus difficilement. Undyne vie également dans une zone aquatique la ou Alphys vie dans une zone de feu." },
+  { a: "asgore",    b: "frisk",    type: "like",      dir: "none", mode: "parallels",
+    title: "Wimpy loser with a big heart",
+    desc: "Asgore et Frisk sont tout deux de tendences pacifiste malgrès leur pouvoir et leur position, même si ils peuvent a tuer par nécessité. Ils sont également placer dans le rôle de devoir changer le destin des sous terrains et de libérer les monstres après avoir été séparer de leur famille. Dans la fin neutre, Asgore et Frisk sont mis dans un rôle similaire, ou ils sont forcer de s'entretuer pour pouvoir rejoindre la surface." },
+  { a: "asgore",    b: "toriel",    type: "mirror",      dir: "none", mode: "parallels",
+    title: "Vivre dans le passé",
+    desc: "Asgore veut absolument retrouver la vie de famille qu'il avais avant, et semble obséder par le passé. Toriel veut elle tourner la page et passer a autre chose en se faisant une autre vie." },
+  { a: "asgore",    b: "sans",    type: "mirror",      dir: "none", mode: "parallels",
+    title: "Nice day today",
+    desc: "Sans fait référence au monologue d'introduction de Asgore au début de son combat dans la route génocide, mais détourne sa fin pour montrer la différence de son approche. Ce qui s'approche de l'interprétation que Frisk est un combat de boss pour Sans." },
+  { a: "mettaton",    b: "lancer",    type: "like",      dir: "none", mode: "parallels",
+    title: "Lancer cookie",
+    desc: "Ils vendent tout deux des nourritures de soins a leur image" },
+  { a: "asriel",    b: "chara",    type: "mirror",      dir: "none", mode: "parallels",
+    title: "Le plan",
+    desc: "Contrairement a Chara, Asriel a utiliser l'influence partager sur son corp pour épargner les humains au prix de sa propre vie." },
+  { a: "asriel",    b: "chara",    type: "like",      dir: "none", mode: "parallels",
+    title: "L'ange qui a vue la surface",
+    desc: "Chara et Asriel sont placer dans le rôle de l'ange, ayant tout deux vue la surface, et tuant ou sauvant les sous terrains selon la route." },
+  { a: "chara",    b: "kris",    type: "like",      dir: "none", mode: "parallels",
+    title: "Chara est de retour",
+    desc: "Chara et Kris sont des humains adopter par la famille Dreemurr. Iels ont des tendence violentes, des yeux qui brulent, et possèdent un couteau." },
+  { a: "mettaton",    b: "tenna",    type: "like",      dir: "none", mode: "parallels",
+    title: "MTTV Time",
+    desc: "Mettaton et Tenna sont des présentateurs de télévision et des patrons tyraniques exploitant leur employés. Ils font également des nourritures et statues a leur effigie." },
+  { a: "alphys",    b: "chara",    type: "like",      dir: "none", mode: "parallels",
+    title: "Libération des monstres",
+    desc: "Alphys et Chara avais un plan secret pour briser la barrière et libérer les monstres, mais le plan a horriblement rater." },
+  { a: "frisk",    b: "undyne",    type: "like",      dir: "none", mode: "parallels",
+    title: "Détermination",
+    desc: "Frisk et Undyne sont des combatantes extrêmement déterminer, mais soutiennent aussi leur amis." },
+  { a: "papyrus",    b: "susie",    type: "like",      dir: "none", mode: "parallels",
+    title: "Tuff",
+    desc: "Papyrus et Susie essayent d'apparaitre forts et intimidants, mais ils sont pleins de gentillesse et d'espoir." },
+  { a: "sans",    b: "kris",    type: "like",      dir: "none", mode: "parallels",
+    title: "A peak behind the curtain",
+    desc: "Sans et Kris sont secrets, protecteurs, et ont connaissances des puissances au dela du monde. Aussi c'est des flemmards qui aiment bien faire des pranks et des blagues." },
+  { a: "undyne",    b: "susie",    type: "like",      dir: "none", mode: "parallels",
+    title: "Axe of justice",
+    desc: "Undyne et Susie sont des filles fortes et intimidantes qui se soucient profondément de leur amis, et ont aussi peut être un truc avec cette fille timide comme dit littéralement Toby Fox. Mais elles ont aussi toutes deux admirer Gerson comme mentor, qui fait lui même une référence a Undyne en parlant de Susie." },
+  { a: "undyne",    b: "susie",    type: "mirror",      dir: "none", mode: "parallels",
+    title: "Institutions",
+    desc: "Undyne est une figure institutionellement normative, faisant partie des forces de l'ordre, et est déjà intégrer a la société a des amis, mais elle est extrême, exagérée, et très tétu dans son comprtement. La ou Susie est peu normative, contre l'autorité et arrivant seul dans un nouvel univers, mais est en fait très chill et respectueuse." },
 ];
 
 
+ 
 let currentMode = "relationships";
 let hiddenTypes = new Set();
 let hideCanon = false;
-let hideFanon = false;
+let hideTheory = false;
+
+let hiddenChapters = new Set();
 let activePath = null;
 let nodes = [];
 let activeLink = null;
@@ -431,7 +621,12 @@ function getVisibleLinks() {
     if (hiddenTypes.has(lk.type)) return false;
     if (lk.mode === "relationships") {
       if (lk.canon && hideCanon) return false;
-      if (!lk.canon && hideFanon) return false;
+      if (!lk.canon && hideTheory) return false;
+     
+      if (lk.chapters && hiddenChapters.size > 0) {
+        const anyVisible = lk.chapters.some(c => !hiddenChapters.has(c.edition + "::" + c.chapter));
+        if (!anyVisible) return false;
+      }
     }
     return true;
   });
@@ -602,7 +797,7 @@ function drawNode(n, inPath, dimmed) {
  
 function buildLegend() {
   const legend = document.getElementById("legend");
-  legend.innerHTML = '<span>KEY:</span>';
+  legend.innerHTML = '<span></span>';
   getTypeMap().forEach(t => {
     const item = document.createElement("div");
     item.className = "legend-item";
@@ -626,7 +821,7 @@ function buildLegend() {
     line.style.cssText = "width:28px;height:2px;display:inline-block;opacity:0.5;background:repeating-linear-gradient(90deg,#000 0,#000 8px,transparent 8px,transparent 14px);";
     item.appendChild(line);
     const lbl = document.createElement("span");
-    lbl.textContent = "Fanon";
+    lbl.textContent = "Theory";
     item.appendChild(lbl);
     legend.appendChild(item);
   }
@@ -641,19 +836,19 @@ function buildFilters() {
   if (currentMode === "relationships") {
     const secHeader = document.createElement("div");
     secHeader.style.cssText = "background:#bbb;padding:3px 8px;font-weight:bold;font-size:11px;border-bottom:1px solid #000;letter-spacing:0.5px;";
-    secHeader.textContent = "CANON / FANON";
+    secHeader.textContent = "CANON / THEORY";
     list.appendChild(secHeader);
  
-    [{ label: "Canon", key: "canon" }, { label: "Fanon", key: "fanon" }].forEach(({ label, key }) => {
+    [{ label: "Canon", key: "canon" }, { label: "Theory", key: "theory" }].forEach(({ label, key }) => {
       const row = document.createElement("label");
       row.className = "filter-item";
  
       const cb = document.createElement("input");
       cb.type = "checkbox";
-      cb.checked = key === "canon" ? !hideCanon : !hideFanon;
+      cb.checked = key === "canon" ? !hideCanon : !hideTheory;
       cb.addEventListener("change", () => {
         if (key === "canon") hideCanon = !cb.checked;
-        else hideFanon = !cb.checked;
+        else hideTheory = !cb.checked;
         if (activeLink) {
           const still = getVisibleLinks().includes(activeLink);
           if (!still) { activeLink = null; clearInfo(); }
@@ -676,9 +871,116 @@ function buildFilters() {
     });
  
     const secHeader2 = document.createElement("div");
-    secHeader2.style.cssText = "background:#ddd;padding:3px 8px;font-weight:bold;font-size:11px;border-bottom:1px solid #000;border-top:1px solid #000;letter-spacing:0.5px;";
-    secHeader2.textContent = "CONNECTION TYPE";
+    secHeader2.style.cssText = "background:#bbb;padding:3px 8px;font-weight:bold;font-size:11px;border-bottom:1px solid #000;border-top:1px solid #000;letter-spacing:0.5px;";
+    secHeader2.textContent = "UNIVERS";
     list.appendChild(secHeader2);
+ 
+   
+    const editionMap = new Map();
+    RELATIONSHIPS.filter(lk => lk.mode === "relationships" && lk.chapters).forEach(lk => {
+      lk.chapters.forEach(({ edition, chapter }) => {
+        if (!editionMap.has(edition)) editionMap.set(edition, new Set());
+        editionMap.get(edition).add(chapter);
+      });
+    });
+ 
+   
+    const sortedEditions = [...editionMap.keys()].sort();
+ 
+    sortedEditions.forEach(edition => {
+      const chapters = [...editionMap.get(edition)].sort();
+      const allKeys = chapters.map(ch => edition + "::" + ch);
+ 
+     
+      const allHidden = () => allKeys.every(k => hiddenChapters.has(k));
+     
+      const someHidden = () => allKeys.some(k => hiddenChapters.has(k)) && !allHidden();
+ 
+     
+      const masterRow = document.createElement("div");
+      masterRow.className = "edition-master";
+ 
+      const masterCb = document.createElement("input");
+      masterCb.type = "checkbox";
+      masterCb.checked = !allHidden();
+      masterCb.indeterminate = someHidden();
+ 
+      const masterLabel = document.createElement("span");
+      masterLabel.textContent = edition;
+      masterLabel.style.flex = "1";
+ 
+      const toggleIcon = document.createElement("span");
+      toggleIcon.className = "edition-toggle";
+      toggleIcon.textContent = "[-]";
+ 
+      masterRow.appendChild(masterCb);
+      masterRow.appendChild(masterLabel);
+      masterRow.appendChild(toggleIcon);
+      list.appendChild(masterRow);
+ 
+     
+      const chapContainer = document.createElement("div");
+      chapContainer.className = "edition-chapters";
+ 
+      const chapterCheckboxes = [];
+ 
+      chapters.forEach(chapter => {
+        const key = edition + "::" + chapter;
+        const chapRow = document.createElement("label");
+        chapRow.className = "chapter-item";
+ 
+        const chapCb = document.createElement("input");
+        chapCb.type = "checkbox";
+        chapCb.checked = !hiddenChapters.has(key);
+        chapterCheckboxes.push(chapCb);
+ 
+        chapCb.addEventListener("change", () => {
+          if (chapCb.checked) hiddenChapters.delete(key);
+          else hiddenChapters.add(key);
+         
+          masterCb.checked = !allHidden();
+          masterCb.indeterminate = someHidden();
+          if (activeLink && !getVisibleLinks().includes(activeLink)) { activeLink = null; clearInfo(); }
+          draw();
+        });
+ 
+        const chapLabel = document.createElement("span");
+        chapLabel.textContent = chapter;
+ 
+        chapRow.appendChild(chapCb);
+        chapRow.appendChild(chapLabel);
+        chapContainer.appendChild(chapRow);
+      });
+ 
+     
+      masterCb.addEventListener("change", () => {
+        if (masterCb.checked) {
+          allKeys.forEach(k => hiddenChapters.delete(k));
+          chapterCheckboxes.forEach(cb => { cb.checked = true; });
+        } else {
+          allKeys.forEach(k => hiddenChapters.add(k));
+          chapterCheckboxes.forEach(cb => { cb.checked = false; });
+        }
+        masterCb.indeterminate = false;
+        if (activeLink && !getVisibleLinks().includes(activeLink)) { activeLink = null; clearInfo(); }
+        draw();
+      });
+ 
+     
+      const toggleCollapse = (e) => {
+        if (e.target === masterCb) return;
+        chapContainer.classList.toggle("collapsed");
+        toggleIcon.textContent = chapContainer.classList.contains("collapsed") ? "[+]" : "[-]";
+      };
+      masterRow.addEventListener("click", toggleCollapse);
+ 
+      list.appendChild(chapContainer);
+    });
+ 
+    const secHeader3 = document.createElement("div");
+    secHeader3.style.cssText = "background:#ddd;padding:3px 8px;font-weight:bold;font-size:11px;border-bottom:1px solid #000;border-top:1px solid #000;letter-spacing:0.5px;";
+    secHeader3.textContent = "RELATION";
+    list.appendChild(secHeader3);
   }
  
   getTypeMap().forEach(t => {
@@ -718,13 +1020,26 @@ function showInfo(lk) {
   const ic = document.getElementById("info-content");
   ic.style.display = "block";
   const canonTag = lk.mode === "relationships"
-    ? `<span style="display:inline-block;border:1px solid #000;padding:0 4px;font-size:10px;font-weight:bold;background:${lk.canon ? '#000' : '#fff'};color:${lk.canon ? '#fff' : '#000'};margin-left:6px">${lk.canon ? 'CANON' : 'FANON'}</span>`
+    ? `<span style="display:inline-block;border:1px solid #000;padding:0 4px;font-size:10px;font-weight:bold;background:${lk.canon ? '#000' : '#fff'};color:${lk.canon ? '#fff' : '#000'};margin-left:6px">${lk.canon ? 'CANON' : 'THEORY'}</span>`
+    : '';
+  const editionTag = (lk.mode === "relationships" && lk.chapters)
+    ? (() => {
+       
+        const byEd = {};
+        lk.chapters.forEach(({ edition, chapter }) => {
+          if (!byEd[edition]) byEd[edition] = [];
+          byEd[edition].push(chapter);
+        });
+        return Object.entries(byEd).map(([ed, chs]) =>
+          `<span style="display:inline-block;border:1px solid #555;padding:0 4px;font-size:10px;font-style:italic;color:#555;margin-left:4px">${ed} ${chs.join(", ")}</span>`
+        ).join("");
+      })()
     : '';
   ic.innerHTML = `
-    <h2>${lk.title}${canonTag}</h2>
+    <h2>${lk.title}${canonTag}${editionTag}</h2>
     <p>${lk.desc}</p>
     <p class="meta">${a.label} &mdash; ${b.label}</p>
-    <p class="meta">Type: <strong style="color:${ti.color}">${ti.label}</strong></p>
+    <p class="meta">Type: <strong style="color:${ti ? ti.color : '#000'}">${ti ? ti.label : lk.type}</strong></p>
   `;
 }
  
@@ -846,7 +1161,8 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
     currentMode = btn.dataset.mode;
     hiddenTypes.clear();
     hideCanon = false;
-    hideFanon = false;
+    hideTheory = false;
+    hiddenChapters.clear();
     activeLink = null;
     hoveredLink = null;
     activePath = null;
@@ -945,23 +1261,25 @@ function runPathfinder() {
   const result = document.getElementById("path-result");
  
   if (fromId === toId) {
-    result.innerHTML = '<span class="path-err">Sélectionne 2 personnages différents.</span>';
+    result.innerHTML = '<span class="path-err">Select two different characters.</span>';
     clearPath();
     return;
   }
  
   const res = findShortestPath(fromId, toId);
   if (!res) {
-    result.innerHTML = '<span class="path-err">Erreur Gaster.</span>';
+    result.innerHTML = '<span class="path-err">No path found between these characters in this mode.</span>';
     clearPath();
     return;
   }
  
+ 
   activePath = {
     nodes: new Set(res.path),
     links: new Set(res.links),
-    res
+    res  
   };
+ 
  
   result.innerHTML = "";
  
@@ -969,9 +1287,9 @@ function runPathfinder() {
   const distDisplay = Number.isInteger(res.dist) ? res.dist : res.dist.toFixed(1);
   const summary = document.createElement("div");
   summary.style.marginBottom = "3px";
-  let summaryHtml = `<strong>Distance: ${hops}</strong>`;
+  let summaryHtml = `<strong>Distance: ${hops}${hops !== 1 ? 's' : ''}</strong>`;
   if (currentMode === "relationships" && res.dist !== hops) {
-    summaryHtml += ` <span style="color:#888"></span>`;
+    summaryHtml += ` <span style="color:#888">(weighted ${distDisplay})</span>`;
   }
   summary.innerHTML = summaryHtml;
   result.appendChild(summary);
@@ -996,17 +1314,30 @@ function runPathfinder() {
       const canonTag = lk.mode === "relationships"
         ? ` <span style="font-size:9px;border:1px solid ${ti.color};padding:0 2px;color:${ti.color}">${lk.canon ? "C" : "T"}</span>`
         : "";
+      const editionTag = (lk.mode === "relationships" && lk.chapters)
+        ? (() => {
+            const byEd = {};
+            lk.chapters.forEach(({ edition, chapter }) => {
+              if (!byEd[edition]) byEd[edition] = [];
+              byEd[edition].push(chapter);
+            });
+            return Object.entries(byEd).map(([ed, chs]) =>
+              ` <span style="font-size:9px;border:1px solid #999;padding:0 2px;color:#999;font-style:italic">${ed}: ${chs.join(", ")}</span>`
+            ).join("");
+          })()
+        : "";
  
       const edgeDiv = document.createElement("div");
       edgeDiv.className = "path-edge-line";
       edgeDiv.style.borderColor = ti.color;
       edgeDiv.style.cursor = "pointer";
-      edgeDiv.innerHTML = `<span style="color:${ti.color}">&#9472; ${ti.label}${canonTag}</span>`;
+      edgeDiv.innerHTML = `<span style="color:${ti.color}">&#9472; ${ti.label}${canonTag}${editionTag}</span>`;
  
       edgeDiv.addEventListener("mouseenter", () => {
         showInfo(lk);
       });
       edgeDiv.addEventListener("mouseleave", () => {
+       
         if (!activeLink) clearInfo();
       });
  
@@ -1032,10 +1363,10 @@ document.getElementById("path-header").addEventListener("click", () => {
  
 document.getElementById("path-run").addEventListener("click", runPathfinder);
  
+ 
 window.addEventListener("resize", resize);
 resize();
 buildLegend();
 buildFilters();
 buildPathSelects();
 physicsStep();
-
