@@ -333,57 +333,62 @@ const RELATIONSHIPS = [
     title: "Dessriel",
     desc: "Asriel a écrit des lettres d'amour pour December, et ils jouait de la musique ensemble. Ils 'pratiquaient' souvent ensemble, et pas leur instruments." },
 
-  { a: "noelle",   b: "susie",     type: "love",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
+  { a: "noelle",   b: "susie",     type: "love",       dir: "both", mode: "relationships", canon: true, added: "2026-06-27",
+    chapters: [{ edition:"Deltarune"}],
     title: "Suselle",
     desc: "Noelle et Susie sont profondément amoureuses." },
 
-  { a: "flowery",   b: "asgore",     type: "friend",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
+  { a: "flowery",   b: "asgore",     type: "friend",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}], added: "2026-06-27",
     title: "Oldbuddy",
     desc: "Asgore a donner tant d'amour a d'attention a ses 7 fleurs de marriage durant des années, qu'elles veulent absolument lui rendre cette amour dont elles débordent maintenant qu'elles en ont enfin la possibilité." },
-  { a: "flowery",   b: "ralsei",     type: "enemy",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
+  { a: "flowery",   b: "ralsei",     type: "enemy",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}], added: "2026-06-27",
     title: "Kill that boy",
     desc: "Ralsei est très énervée par le snobisme et la témérité de Flowery, qui se permet de la taquiner de multiples manières au cours du chapitre. Flowery et Ralsei ont une philosophie contraire, et Flowery utilise pleinement sa liberté en dépit de la destiné. Flowery essaye de plus d'empêcher les héros de fermer sa fontaine, remettant en question le favoritisme de Ralsei pour la sienne." },
-  { a: "flowery",   b: "susie",     type: "enemy",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
+  { a: "flowery",   b: "susie",     type: "enemy",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}], added: "2026-06-27",
     title: "Protecteurs de la fontaine",
     desc: "Flowery s'oppose au fun gang, voulant les empêcher de fermer leur fontaine. Il remet aussi spécifiquement l'égoisme de Susie pour placer son rêve de Castle Town au dessus du sien." },
-  { a: "flowery",   b: "kris",     type: "enemy",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
+  { a: "flowery",   b: "kris",     type: "enemy",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}], added: "2026-06-27",
     title: "Protecteurs de la fontaine",
     desc: "Flowery s'oppose au fun gang, voulant les empêcher de fermer leur fontaine." },
-  { a: "flowery",   b: "susie",     type: "friend",       dir: "b->a", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
+  { a: "flowery",   b: "susie",     type: "friend",       dir: "b->a", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}], added: "2026-06-27",
     title: "Voice lines",
     desc: "Susie admire Flowery qui l'impressionne avec son indépendance et son aura/larp." },
 
-  { a: "rudy",   b: "asgore",     type: "friend",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}, { edition:"Deltarune"}],
+  { a: "rudy",   b: "asgore",     type: "friend",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}, { edition:"Deltarune"}], added: "2026-06-27",
     title: "La bête et la bête",
     desc: "Rudy et Asgore sont meilleurs amis depuis la fac. Ils sont très proches et s'inquiètent du sort malencontreux de l'autre." },
-  { a: "rudy",   b: "noelle",     type: "family",       dir: "none", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}, { edition:"Deltarune"}],
+  { a: "rudy",   b: "noelle",     type: "family",       dir: "none", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}, { edition:"Deltarune"}], added: "2026-06-27",
     title: "Holidays",
     desc: "Rudy Holiday est le père de Noelle Holiday." },
-  { a: "rudy",   b: "dess",     type: "family",       dir: "none", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}, { edition:"Deltarune"}],
+  { a: "rudy",   b: "dess",     type: "family",       dir: "none", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}, { edition:"Deltarune"}], added: "2026-06-27",
     title: "Holidays",
     desc: "Rudy Holiday est le père de December Holiday." },
-  { a: "rudy",   b: "toriel",     type: "friend",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
+  { a: "rudy",   b: "toriel",     type: "friend",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}], added: "2026-06-27",
     title: "Holiday and Dreemurr",
     desc: "Rudy Holiday semble être amis avec Toriel Dreemurr, ils se parlent a l'église et Rudy est le dernier membre des Holidays a continuer de regarder la télévision avec Toriel, même après le divorce." },
-  { a: "rudy",   b: "susie",     type: "friend",       dir: "a->b", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
+  { a: "rudy",   b: "susie",     type: "friend",       dir: "a->b", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}], added: "2026-06-27",
     title: "Wingman",
     desc: "Rudy Holiday backseat Susie pour ship Suselle." },
 
-  { a: "mewmew",   b: "asgore",     type: "family",       dir: "none", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
+  { a: "mewmew",   b: "asgore",     type: "family",       dir: "none", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}], added: "2026-06-27",
     title: "Mew Mew Doll",
     desc: "Le corp de Mew Mew est posséder par Asgore dans Deltarune, et il est présent dans son magasin." },
-  { a: "mewmew",   b: "alphys",     type: "family",       dir: "none", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}, { edition:"Deltarune"}],
+  { a: "mewmew",   b: "alphys",     type: "family",       dir: "none", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}, { edition:"Deltarune"}], added: "2026-06-27",
     title: "Mew Mew Doll",
     desc: "Le corp de Mew Mew est posséder par Alphys dans Undertale, et a surement aussi été posséder par Alphys dans Deltarune avant de le donner a Asgore." },
-  { a: "mewmew",   b: "alphys",     type: "friend",       dir: "b->a", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}],
+  { a: "mewmew",   b: "alphys",     type: "friend",       dir: "b->a", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}], added: "2026-06-27",
     title: "E-Girl",
     desc: "Mew Mew est révéler comme une streameuse par Mettaton, et Alphys la regarde." },
-  { a: "mewmew",   b: "undyne",     type: "love",       dir: "a->b", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}],
+  { a: "mewmew",   b: "undyne",     type: "love",       dir: "a->b", mode: "relationships", canon: true, chapters: [{ edition:"Undertale"}], added: "2026-06-27",
     title: "Mewdyne",
     desc: "Mew Mew a un crush sur Undyne dans Undertale, mais fini par apprendre a respecter son amour pour ALphys." },
-  { a: "mewmew",   b: "mewmew",     type: "love",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
+  { a: "mewmew",   b: "mewmew",     type: "love",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}], added: "2026-06-27",
     title: "Let's date, mew!!!",
     desc: "Mew Mew est très possesive avec son corp, et refuse la partie drageuse de ce dernier, mais fini par aimer et être en harmony avec son nouveau corp." },
+
+  { a: "spamton",   b: "tenna",     type: "divorce",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}], added: "2026-06-27",
+    title: "So happy you want to know...",
+    desc: "Spamton et Tenna était des partenaires très proches, mais après la signature du contract de Spamton ils se sont séparer, blamant chacun l'autre pour l'avoir trahie. Ils n'arrivent pourtant pas a passer a autre chose, pensent encore a leur ancien partenaire." },
 
 
   // Parralels
@@ -489,8 +494,6 @@ const RELATIONSHIPS = [
   { a: "seam",    b: "ralsei",    type: "like",      dir: "none", mode: "parallels",
     title: "Le joueur",
     desc: "Seam et Ralsei font partie des rares personnages qui semblent reconnaître la présence du joueur, Ralsei en parlant explicitement des boutons du clavier, et Seam écrivant comment prononcer son nom comme s'il le faisait pour un joueur lisant des lignes de dialogues." },
-
-  // NEW ! 
   { a: "asgore",    b: "spamton",    type: "like",      dir: "none", mode: "parallels",
     title: "Connection et prospérité",
     desc: "Asgore et Spamton on perdu tout ce qu'ils avais et leur connections, et profitent a la place d'un bénéfacteur. Ils sont des vendeurs dont le buisness est en perte de vitesse, mais pensent pouvoir redevenir grand, et sont obséder par le fait de retrouver leur succès passé. Ils sont associés avec les tours de voiture, le rose et le jaune, et le noeud papillon de Spamton." },
@@ -550,45 +553,49 @@ const RELATIONSHIPS = [
     desc: "Undyne est une figure institutionellement normative, faisant partie des forces de l'ordre, et est déjà intégrer a la société a des amis, mais elle est extrême, exagérée, et très tétu dans son comprtement. La ou Susie est peu normative, contre l'autorité et arrivant seul dans un nouvel univers, mais est en fait très chill et respectueuse." },
 
   // NEW !!!
-  { a: "frisk",    b: "kris",    type: "mirror",      dir: "none", mode: "parallels",
+  { a: "frisk",    b: "kris",    type: "mirror",      dir: "none", mode: "parallels", added: "2026-06-27",
     title: "Contrôle",
     desc: "La ou Frisk sert d'avatar directement contrôler par la joueuse, Kris est bien séparer de notre personne, et refuse activement notre contrôle." },
 
-  { a: "flowery",    b: "ralsei",    type: "mirror",      dir: "none", mode: "parallels",
+  { a: "flowery",    b: "ralsei",    type: "mirror",      dir: "none", mode: "parallels", added: "2026-06-27",
     title: "With hope, can he make it real!?",
     desc: "Flowery s'oppose directement a Ralsei, en défiant son destin et en brisant les règles et les normes. Il n'hésite pas a utiliser des pouvoirs surpuissant même si ils sont faux, la ou Ralsei possède des pouvoirs surement plus fort encore mais refuse de l'utiliser, craignant de dévier ainsi de son role. Ralsei reste dans son role, en espérant que le destin sois miséricordieux en retour. Flowery, lui, sais que son histoire doit se terminer, mais décide d'utiliser cette opportunité pour en faire le plus possible et écrire sa propre histoire avant qu'elle prenne fin." },
-  { a: "flowery",    b: "rudy",    type: "like",      dir: "none", mode: "parallels",
+  { a: "flowery",    b: "rudy",    type: "like",      dir: "none", mode: "parallels", added: "2026-06-27",
     title: "College room-mate",
     desc: "Flowery se présente comme un amis d'Asgore du collège, et semble très proche de lui, ce qui rappelle sa relation avec Rudy ayant commencer au collège. Il porte les couleurs de noel, et se présente comme de haute société, et sa tendence a craner, ragebait, et défier rappelle également Rudy." },
-  { a: "flowery",    b: "asriel",    type: "mirror",      dir: "none", mode: "parallels",
+  { a: "flowery",    b: "asriel",    type: "mirror",      dir: "none", mode: "parallels", added: "2026-06-27",
     title: "love et LOVE",
     desc: "Flowery utilise ses pouvoirs et mépris des conséquences pour distribuer l'amour qu'il possède, devanant amis avec toutes les autres fleurs, la ou Flowey se détache des autres et cherche a leur faire du mal, finissant par devenue ennemie avec toutes les âmes humaines." },
-  { a: "flowery",    b: "asriel",    type: "like",      dir: "none", mode: "parallels",
+  { a: "flowery",    b: "asriel",    type: "like",      dir: "none", mode: "parallels", added: "2026-06-27",
     title: "Omega Flowery",
     desc: "Flowery et Asriel sont des fleurs sans âme possédant de grands pouvoirs, attaquant avec le pouvoir des différentes âmes humaines dans leur combat final. Ils n'ont pas a subir de conséquences pour leur actions car ils savent que leur monde prendra bientôt fin au profit d'un autre. Flowery partage même le leitmotif de Flowey et sa trainée arc en ciel quand il deviens Asriel Dreemurr." },
-  { a: "flowery",    b: "gerson",    type: "like",      dir: "none", mode: "parallels",
+  { a: "flowery",    b: "gerson",    type: "like",      dir: "none", mode: "parallels", added: "2026-06-27",
     title: "Stylo blanc de l'espoir",
     desc: "Flowery et Gerson encouragent chacun a leur manière un des héro du fun gang a sortir de leur role, et a écrire leur propre histoire avant que les marées du destin ne s'approchent, et a se battre pour leur liberté et leur indépendance." },
 
-  { a: "mewmew",    b: "kris",    type: "like",      dir: "none", mode: "parallels",
+  { a: "mewmew",    b: "kris",    type: "like",      dir: "none", mode: "parallels", added: "2026-06-27",
     title: "Puppet",
     desc: "Mew Mew est composer d'un corp et d'un esprit initialement en désacord, le corp résistant le pleins contrôle de son esprit, tout comme Kris résistant a la volonté de l'âme." },
-  { a: "mewmew",    b: "soul",    type: "like",      dir: "none", mode: "parallels",
+  { a: "mewmew",    b: "soul",    type: "like",      dir: "none", mode: "parallels", added: "2026-06-27",
     title: "Puppet",
     desc: "Comme le parallèle entre Mew Mew et Kris, c'est un parallèle de la relation entre Kris et l'âme." },
-  { a: "mewmew",    b: "spamton",    type: "like",      dir: "none", mode: "parallels",
+  { a: "mewmew",    b: "spamton",    type: "like",      dir: "none", mode: "parallels", added: "2026-06-27",
     title: "Mannequins",
     desc: "Mew Mew et Spamton sont des mannequins cherchant tout deux un corp qui les corresponds. Ils sont des boss secrets de type mannequin/chat avec un Shadow Crystal." },
 
-  { a: "noelle",    b: "jevil",    type: "like",      dir: "none", mode: "parallels",
+  { a: "noelle",    b: "jevil",    type: "like",      dir: "none", mode: "parallels", added: "2026-06-27",
     title: "I can do anything",
     desc: "Dans la Weird Route, Noelle découvre ou se doute surement de la nature de son monde. Tout comme Jevil, elle va essayer de reprendre sa liberté par tout les moyens, et se crois capable de tout faire." },
-  { a: "noelle",    b: "dess",    type: "like",      dir: "none", mode: "parallels",
+  { a: "noelle",    b: "dess",    type: "like",      dir: "none", mode: "parallels", added: "2026-06-27",
     title: "Angel wings",
     desc: "Noelle se sentant piégée dans sa vie, a envie de la fuir et de disparaitre. Ce qui peut être un parallèle avec December, qui elle aussi avais soif de liberté avec son style alternatif et sa passion pour le survivalisme, et a fini par disparaitre elle même. Noelle disparait peut être dans le même endroit que sa soeur dans la Weird Route." },
-  { a: "noelle",    b: "dess",    type: "mirror",      dir: "none", mode: "parallels",
+  { a: "noelle",    b: "dess",    type: "mirror",      dir: "none", mode: "parallels", added: "2026-06-27",
     title: "La tradition",
     desc: "Là où Noelle représente initialement une fille modèle de bonne famille religieuse traditionnelle, December est une ado rebelle bien loin de ses valeurs. Le courage et la force de December lui ont peut être permis de disparaitre la ou Noelle n'en a pas la force. Aussi Noelle est gay." },
+
+  { a: "gaster",    b: "dess",    type: "like",      dir: "none", mode: "parallels", added: "2026-06-28",
+    title: "Lost in the dark",
+    desc: "Gaster et Dess se sont tout deux perdus dans les ténèbres, laissant leur famille derrière et servant de racines a l'histoire. La porte de Dess est également entre 2 portes et monochrome." },
 ];
 
 
@@ -801,7 +808,9 @@ function draw() {
     const isActive = lk === activeLink || lk === hoveredLink;
     const inPath = activePath && activePath.links.has(lk);
     const dimmed = activePath && !inPath && !isActive;
-    drawEdge(a, b, ti.color, ti.dash, lk.dir, isActive || inPath, lk.canon, offsets.get(lk) || 0, dimmed);
+    const visLinks = getVisibleLinks();
+    const offsets = assignOffsets(visLinks);
+    drawEdge(a, b, ti.color, ti.dash, lk.dir, isActive || inPath, lk.canon, offsets.get(lk) || 0, dimmed, lk);
   });
  
  
@@ -811,19 +820,87 @@ function draw() {
     drawNode(n, inPath, dimmed);
   });
 }
- 
-function drawEdge(a, b, color, dash, dir, highlight, canon, offset, dimmed) {
-  // ── CAS RÉFLEXIF : boucle sur soi-même ──────────────────────────────────
+
+function drawUnseenDots(links, offsets) {
+  links.forEach(lk => {
+    if (isLinkSeen(lk) || isLinkNew(lk)) return; // déjà géré ou vu
+
+    const a = getNode(lk.a), b = getNode(lk.b);
+    if (!a || !b) return;
+    const offset = offsets.get(lk) || 0;
+
+    let bx, by;
+    if (a === b) {
+      const loopR = NODE_R * 1.1;
+      const angle = -Math.PI / 2 + offset * 0.55;
+      bx = a.x + Math.cos(angle) * (NODE_R + loopR);
+      by = a.y + Math.sin(angle) * (NODE_R + loopR) - loopR - 4;
+    } else {
+      const { cx, cy } = getControlPoint(a.x, a.y, b.x, b.y, offset);
+      const mid = bezierPoint(a.x, a.y, cx, cy, b.x, b.y, 0.5);
+      bx = mid.x; by = mid.y;
+    }
+
+    ctx.save();
+    ctx.fillStyle = "#3498db";
+    ctx.beginPath();
+    ctx.arc(bx, by, 4, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = "#000";
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.restore();
+  });
+}
+
+function drawBadge(x, y, label, bg, dimmed) {
+  ctx.save();
+  ctx.globalAlpha = dimmed ? 0.15 : 1;
+  ctx.font = "bold 9px 'Courier New', monospace";
+  const tw = ctx.measureText(label).width;
+  const pw = tw + 6, ph = 13;
+  ctx.fillStyle = bg;
+  ctx.fillRect(x - pw/2, y - ph/2, pw, ph);
+  ctx.strokeStyle = "#000";
+  ctx.lineWidth = 1;
+  ctx.setLineDash([]);
+  ctx.strokeRect(x - pw/2, y - ph/2, pw, ph);
+  ctx.fillStyle = "#fff";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(label, x, y);
+  ctx.restore();
+}
+
+function drawUnseenDot(x, y, dimmed) {
+  ctx.save();
+  ctx.globalAlpha = dimmed ? 0.15 : 0.85;
+  ctx.fillStyle = "#FFA040";
+  ctx.beginPath();
+  ctx.arc(x, y, 6, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = "#000";
+  ctx.lineWidth = 1;
+  ctx.setLineDash([]);
+  ctx.stroke();
+  ctx.fillStyle = "#fff";
+  ctx.font = "bold 8px 'Courier New', monospace";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText("!", x, y);
+  ctx.restore();
+}
+
+function drawEdge(a, b, color, dash, dir, highlight, canon, offset, dimmed, lk) {
+  // ── self-loop ──────────────────────────────────────────────────────────
   if (a === b) {
-    drawSelfLoop(a, color, dash, dir, highlight, canon, offset, dimmed);
+    drawSelfLoop(a, color, dash, dir, highlight, canon, offset, dimmed, lk);
     return;
   }
 
   const { cx, cy } = getControlPoint(a.x, a.y, b.x, b.y, offset);
-
   const tStart = bezierTrimT(a.x, a.y, cx, cy, b.x, b.y, false);
   const tEnd   = bezierTrimT(a.x, a.y, cx, cy, b.x, b.y, true);
-
   const pStart = bezierPoint(a.x, a.y, cx, cy, b.x, b.y, tStart);
   const pEnd   = bezierPoint(a.x, a.y, cx, cy, b.x, b.y, tEnd);
 
@@ -851,9 +928,19 @@ function drawEdge(a, b, color, dash, dir, highlight, canon, offset, dimmed) {
     drawArrow(ctx, pStart.x, pStart.y, -tan.ux, -tan.uy, arrowLen, arrowW, highlight ? "#000" : color);
   }
   ctx.restore();
+
+// ── badge NEW / MÀJ / point non vu ────────────────────────────────────
+  if (lk && !isLinkSeen(lk)) {
+    const mid = bezierPoint(a.x, a.y, cx, cy, b.x, b.y, 0.5);
+    if (lk.added || lk.updated) {
+      drawBadge(mid.x, mid.y, lk.updated ? "MÀJ" : "NEW", lk.updated ? "#e67e22" : "#008000", dimmed);
+    } else {
+      drawUnseenDot(mid.x, mid.y, dimmed);
+    }
+  }
 }
 
-function drawSelfLoop(n, color, dash, dir, highlight, canon, offset, dimmed) {
+function drawSelfLoop(n, color, dash, dir, highlight, canon, offset, dimmed, lk) {
   const loopR = NODE_R * 1.1;
   const baseAngle = -Math.PI / 2;
   const angleStep = 0.55;
@@ -891,6 +978,16 @@ function drawSelfLoop(n, color, dash, dir, highlight, canon, offset, dimmed) {
     const uy = -Math.cos(arrowAngle);
 
     drawArrow(ctx, ax, ay, ux, uy, 9, 4, highlight ? "#000" : color);
+  }
+
+  if (lk && !isLinkSeen(lk)) {
+    const bx = lx + Math.cos(angle) * loopR;
+    const by = ly + Math.sin(angle) * loopR;
+    if (lk.added || lk.updated) {
+      drawBadge(bx, by, lk.updated ? "MÀJ" : "NEW", lk.updated ? "#e67e22" : "#008000", dimmed);
+    } else {
+      drawUnseenDot(bx, by, dimmed);
+    }
   }
 
   ctx.restore();
@@ -1286,7 +1383,10 @@ canvas.addEventListener("mouseup", e => {
   const lk = hitTestLink(mx, my);
   if (lk) {
     activeLink = (activeLink === lk) ? null : lk;
-    if (activeLink) showInfo(activeLink);
+    if (activeLink){
+      showInfo(activeLink);
+      markLinkSeen(lk);
+    }
     else clearInfo();
     draw();
   } else {
@@ -1503,6 +1603,19 @@ function runPathfinder() {
  
   draw();
 }
+
+function getLinkId(lk) { return `${lk.a}::${lk.b}::${lk.type}::${lk.title}`; }
+const SEEN_KEY = "utdr_seen_links";
+function getSeenLinks() {
+  try { return new Set(JSON.parse(localStorage.getItem(SEEN_KEY) || "[]")); }
+  catch { return new Set(); }
+}
+function markLinkSeen(lk) {
+  const seen = getSeenLinks();
+  seen.add(getLinkId(lk));
+  localStorage.setItem(SEEN_KEY, JSON.stringify([...seen]));
+}
+function isLinkSeen(lk) { return getSeenLinks().has(getLinkId(lk)); }
  
 document.getElementById("path-header").addEventListener("click", () => {
   const body = document.getElementById("path-body");
