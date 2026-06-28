@@ -179,7 +179,7 @@ const RELATIONSHIPS = [
     desc: "Ramb incite Kris à jouer au Mantle game dans lequel ERAM se trouve. Il est possible qu'il ait malgré tout connaissance d'ERAM. Il est théorisé qu'ERAM ait manipulé Ramb pour appâter Kris." },
   { a: "ramb",   b: "kris",     type: "family",       dir: "a->b", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "Power strip",
-    desc: "Prise électrique avec laquelle Kris jouait enfant, il s'est attaché à Kris. Il cherche à rendre Kris heureux et épanoui, même si Kris semble l'avoir oublié." },
+    desc: "Prise électrique avec laquelle Kris jouait enfant, il s'est attaché à Kris. Il cherche le bonheur de Kris et pense lae comprendre, même si Kris semble l'avoir oublié." },
   { a: "ramb",   b: "tenna",     type: "partners",       dir: "both", mode: "relationships", canon: true, chapters: [{ edition:"Deltarune"}],
     title: "Barman",
     desc: "Ramb travaille en tant que barman pour Tenna, devant s'occuper de servir des boissons et de distribuer certains lots. Il est cependant peu apprécié, et a interdiction de toucher les points." },
